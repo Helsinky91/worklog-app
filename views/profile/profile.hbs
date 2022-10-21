@@ -4,11 +4,17 @@
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
     <h2>My profile</h2>
     {{#with userDetails}}
-    <h3>Worker's name: {{username}}</h3>
+    <h3>Worker's name: {{firstName}}</h3>
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
     <h3>Interested in: {{interest}}</h3>
     {{/with}}
+
+
+    <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
+
+    {{!-- only if isAdmin, viene de admin.routes.js --}}
+    <button> <a href="/profile/edit/{{userDetails._id}}/delet">Delete</a> </button>
 
 
 {{!-- if isAdmin se verá el carrussel de sus empleados, else verá el carrusel de eventos --}}

@@ -1,0 +1,21 @@
+<div>
+
+    <h1>Edit your information</h1>
+
+ {{#with userDetails}}
+
+    <form action="/profile/edit/{{_id}}" method="POST">
+        <label for="firstName">Worker's first name</label>
+        <input type="text" name="firstName" value="{{firstName}}">
+<br>
+        <label for="email">email</label>
+        <input type="email" name="email" value="{{email}}">
+
+    <button>Submit changes</button>
+    </form>
+ {{/with}}
+</div>
+
+
+{{!-- admin solo puede editar role + department + eliminar--}}
+{{!-- user ve su info prefilled (value="userDetails.email")--}}

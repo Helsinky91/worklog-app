@@ -15,6 +15,11 @@ router.get("/", async (req, res, next) => {
     
 })
 
+/*router.post("/", async (req, res, next) => {
+    
+    res.redirect("/profile")
+} )*/
+
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
 router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
@@ -27,12 +32,13 @@ router.get("/edit/:userId", async (req, res, next) => {
 })
 
 //POST "profile/edit/:userId" => recieve data to update profile's user.
-router.get("/edit/:userId", async (req, res, next) => {
+router.post("/edit/:userId", async (req, res, next) => {
     const { userId } = req.params
     const { firstName, lastName, photo, email, role, department, interest } = req.body
-    const newUserDetails = { firstName, lastName, photo, email, role, department, interest } 
+    const userDetails = { firstName, lastName, photo, email, role, department, interest } 
     try {
-        await User.findByIdAndUpdate(userId, { newUserDetails } )
+        await User.findByIdAndUpdate(userId,  userDetails  )
+        console.log(userDetails)
         res.redirect("/profile")
     } catch (error) {
         next(err)
