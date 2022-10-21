@@ -1,10 +1,19 @@
-const { Schema, model, default: mongoose } = require("mongoose");
+const { Schema, model} = require("mongoose");
 
-const Log = new mongoose.Schema({
+const logSchema = new mongoose.Schema({
     time: Date.today,
     comment: String,
     validation: { 
         type: String, 
         enum: ["Approved", "Pending", "Denied"], 
-        default: "Pending"}
-}),
+        default: "Pending"
+    }, 
+    user: {
+        type: mongoose.Schema.Types.ObjectId,  
+        ref: "User"
+    }
+})
+
+const Log = mongoose.model("Log", logSchema);
+
+module.exports = Log;
