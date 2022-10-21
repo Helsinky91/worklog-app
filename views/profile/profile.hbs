@@ -3,12 +3,20 @@
 <div>
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
     <h2>My profile</h2>
-    {{#with}}
+    {{#with userDetails}}
     <h3>Worker's name: {{username}}</h3>
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
     <h3>Interested in: {{interest}}</h3>
     {{/with}}
 
+
+{{!-- if isAdmin se verá el carrussel de sus empleados, else verá el carrusel de eventos --}}
+
+    {{!-- if isAdmin show botón de 
+               1. edit (redirects to "/profile/:userId") and 
+               2. delte 
+               3. worklog aproved
+               --}}
 
 </div>

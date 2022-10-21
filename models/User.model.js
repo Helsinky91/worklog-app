@@ -17,7 +17,7 @@ const userSchema = new Schema(
     },
     interest: {
       type: String,
-      enum: ["TIC formation", "Teamlead", "Lenguages formation", "Costumer service", "Recreational activities" ]
+      enum: ["TIC formation", "Teamlead", "Lenguages formation", "Customer service", "Recreational activities" ]
     },  
     email: {
       type: String,
