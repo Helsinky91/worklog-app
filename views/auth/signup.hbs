@@ -1,0 +1,19 @@
+<div>
+    <h3>Sign up form</h3>
+    
+    <form action="/auth/signup" method="POST">
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+       
+            <br>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+        
+       <p style="color: red"><strong>{{errorMessage}}</strong></p> 
+        
+        <button>Sing up</button>
+    </form>
+
+</div>
