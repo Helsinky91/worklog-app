@@ -1,14 +1,21 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
-  {
-    username: {
-      type: String,
-      trim: true,
-      required: false,
-      unique: true
+  { 
+    firstName: String,
+    lastName: String,
+    photo: String,
+    email: String,
+    role: {
+        type: String, 
+        enum: ["user", "admin"], 
+        default: "user" 
     },
+    position: {
+        type: String, 
+        enum: ["cook", "receptionist", "waiter/waitress", "reservations"]
+    },
+    interest: [String],  
     email: {
       type: String,
       required: true,
