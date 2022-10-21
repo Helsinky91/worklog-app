@@ -1,0 +1,13 @@
+<div>
+    <h3>Acces form</h3>
+    <form action="/auth/login" method="POST">
+    <label for="email">email: </label>
+    <input type="email" name="email">
+    <br />
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <br />
+    <p style="color: red">{{errorMessage}}</p>
+    <button>Log in</button>
+    </form>
+</div>

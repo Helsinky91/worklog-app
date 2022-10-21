@@ -1,0 +1,14 @@
+{{!--reder user and admin profile --}}
+
+<div>
+    {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
+    <h2>My profile</h2>
+    {{#with}}
+    <h3>Worker's name: {{username}}</h3>
+    <h3>email: {{email}}</h3>
+    <h3>Department: {{department}}</h3>
+    <h3>Interested in: {{interest}}</h3>
+    {{/with}}
+
+
+</div>

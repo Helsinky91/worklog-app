@@ -11,11 +11,14 @@ const userSchema = new Schema(
         enum: ["user", "admin"], 
         default: "user" 
     },
-    position: {
+    department: {
         type: String, 
         enum: ["cook", "receptionist", "waiter/waitress", "reservations"]
     },
-    interest: [String],  
+    interest: {
+      type: String,
+      enum: ["TIC formation", "Teamlead", "Lenguages formation", "Costumer service", "Recreational activities" ]
+    },  
     email: {
       type: String,
       required: true,
