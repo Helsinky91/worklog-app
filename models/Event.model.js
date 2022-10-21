@@ -1,6 +1,6 @@
-const { Schema, model, default: mongoose } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const enventSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     photo: String,
@@ -18,4 +18,6 @@ const enventSchema = new mongoose.Schema({
     
 })
 
-const Event = mongoose.
+const Event = mongoose.model("Event", eventSchema);
+
+module.exports = Event
