@@ -4,8 +4,8 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
 //GET "/auth/registrer" => render a page with a registration form
-router.get("/registrer", (req, res, next) => {
-    res.render("auth/singup.hbs")
+router.get("/signup", (req, res, next) => {
+    res.render("auth/signup.hbs")
 })
 
 //POST "/auth/signup" => recive form data and create profile in DB. Redirect to login page
@@ -14,7 +14,7 @@ router.post("/signup", async (req, res, next) => {
     const { email, password } = req.body
     // Backend validations
     if ( email === "" || password === "") {
-        res.render("auth/singup.hbs", {
+        res.render("auth/signup.hbs", {
             errorMessage: "Please, fill all the fields"
         })
         return;
@@ -22,7 +22,7 @@ router.post("/signup", async (req, res, next) => {
     //validate the password security level
     const passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,}$/gm;
     if (passwordRegex.test(password) === false) {
-        res.render("auth/singup.hbs", {
+        res.render("auth/signup.hbs", {
           errorMessage:
             "The password must have 6 caracters containing one number",
         });
@@ -31,7 +31,7 @@ router.post("/signup", async (req, res, next) => {
     try { 
         const userEmail = await User.findOne({email})
         if (userEmail !== null) {
-            res.render("auth/singup.hbs", {
+            res.render("auth/signup.hbs", {
                 errorMessage: "This email is already registered",
               });
               //! bonus: RECUPERA TU CONTRASEÑA?
