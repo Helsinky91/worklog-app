@@ -105,6 +105,8 @@ router.post("/login", async (req, res, next) => {
         next(err)
     }
 
+})
+
 //GET "/auth/logout" => cierra la sessión (la destruye)
 router.get("/logout", (req, res, next) => {
     req.session.destroy(() => {
@@ -112,10 +114,8 @@ router.get("/logout", (req, res, next) => {
         res.redirect("/");
      //! crear mensaje "you'be been logged out"
     }) 
-    return;
-}) 
 
-})
+}) 
 
 
 

@@ -8,13 +8,44 @@
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
     <h3>Interested in: {{interest}}</h3>
+    
     {{/with}}
-
-
     <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
+    <br>    
+   
+ {{!-- feeds from Log.model con EACH ... --}}
+ {{#each worklogDates}}
+    <h2>WORKLOG time in:{{timeIn}}</h2>
+    <h2>WORKLOG time out:{{timeOut}}</h2>
 
+    <h2>WORKLOG comment:{{comment}}</h2>
+{{/each}}
+
+    <br>
+    
+    <form action="/profile" method="POST">
+
+        <label for="comment">Write a comment:</label>
+        <input type="text" name="comment">
+        <br>
+       {{!-- <label for="timeIn">TimeIn</label>
+        <input type="text" name="timeIn">
+        <br>--}} 
+        <label for="user"></label>
+        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
+        
+        <button>WORK LOG</button>
+
+    </form>
     {{!-- only if isAdmin, viene de admin.routes.js --}}
     <button> <a href="/profile/edit/{{userDetails._id}}/delet">Delete</a> </button>
+
+
+{{!-- SÁBADO: CREAR UN FORMULARIO DE SALIDA QUE RENDERICE timeOut (REPETIR EL Q HEM FET) --}}
+{{!-- OCULTAR FORMULARIO IN O OUT DEPENDIENDO DE SU ESTADO--}}
+
+
+
 
 
 {{!-- if isAdmin se verá el carrussel de sus empleados, else verá el carrusel de eventos --}}

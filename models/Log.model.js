@@ -1,7 +1,15 @@
 const { Schema, model} = require("mongoose");
 
-const logSchema = new mongoose.Schema({
-    time: Date.today,
+const logSchema = new Schema({
+
+    timeIn : { 
+        type : Date, 
+        default: Date.now 
+    },
+    timeOut : { 
+        type : Date, 
+        default: Date.now 
+    },
     comment: String,
     validation: { 
         type: String, 
@@ -9,11 +17,12 @@ const logSchema = new mongoose.Schema({
         default: "Pending"
     }, 
     user: {
-        type: mongoose.Schema.Types.ObjectId,  
+        type: Schema.Types.ObjectId,  
         ref: "User"
-    }
+    },
+   
 })
 
-const Log = mongoose.model("Log", logSchema);
+const Log = model("Log", logSchema);
 
-module.exports = Log;
+module.exports = Log
