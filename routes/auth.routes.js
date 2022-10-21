@@ -46,21 +46,76 @@ router.post("/signup", async (req, res, next) => {
             password: hashPassword, //guardamos la contraseña que hemos cifrado en el punto 2
           };
           await User.create(newUser)
+ //redirect to login page 
+ res.redirect("/auth/login");
+
+    } catch(err) {
+        next(err)
+    }
+    
+})
+
+
+//GET "auth/login" => render login form view
+router.get("/login", (req, res, next) => {
+    res.render("auth/login.hbs")
+})
+
+//POST "auth/login" => recieve user credencials and validate
+router.post("/login", async (req, res, next) => {
+    //recieved information
+    const {email, password} = req.body
+
+    // Backend validations
+    if ( email === "" || password === "") {
+    res.render("auth/login.hbs", {
+        errorMessage: "Please, fill all the fields"
+        })
+        return;
+    }
+    
+    try{
+        //verificates if email exists
+        const foundUser = await User.findOne({email})
+        if (foundUser === null) {
+            res.render("auth/login.hbs", {
+                errorMessage: "Wrong credentials",
+              });
+            return
+        }
+        //verificates if password is correct
+        const isPasswordValid = await bcrypt.compare(password, foundUser.password) 
+        if (isPasswordValid === false) {
+            res.render("auth/login.hbs", {
+                errorMessage: "Wrong credentials"
+            })
+            return
+        }
+
+        //active session of the user
+        req.session.activeUser = foundUser
+    
+        //to make sure 
+        req.session.save(() => {
+            //4. redireccionar private view
+            res.redirect("/profile");
+        })
+
     } catch(err) {
         next(err)
     }
 
-    
-
-
-
-
-
-
+//GET "/auth/logout" => cierra la sessión (la destruye)
+router.get("/logout", (req, res, next) => {
+    req.session.destroy(() => {
+        res.render("index.hbs", {logoutMessag: "You've been logged out"} )
+        //res.redirect("/");
+        
+    }) 
+    return;
+}) 
 
 })
-
-
 
 
 
