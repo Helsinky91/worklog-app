@@ -108,9 +108,9 @@ router.post("/login", async (req, res, next) => {
 //GET "/auth/logout" => cierra la sessión (la destruye)
 router.get("/logout", (req, res, next) => {
     req.session.destroy(() => {
-        res.render("index.hbs", {logoutMessag: "You've been logged out"} )
-        //res.redirect("/");
-        
+        //res.render("index.hbs", {logoutMessag: "You've been logged out"} )
+        res.redirect("/");
+     //! crear mensaje "you'be been logged out"
     }) 
     return;
 }) 
