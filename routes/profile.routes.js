@@ -17,14 +17,16 @@ router.get("/", async (req, res, next) => {
     } catch(err) {
         next(err)
     }
-    
+    //!add eventlistener to show/hidde the button
 })
 
 //POST "/profile" => takes info from "worklog form" and updates DB
 router.post("/", async (req, res, next) => {
     //funcionalidad botón worklog para que fiche con la hora con el Log.model
         
-    const {timeIn, timeOut, comment, validation, user} = req.body;
+    const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
+    
+    
     try {
         
   //  const userDetails = User.findById(req.session.activeUser._id)
@@ -33,7 +35,8 @@ router.post("/", async (req, res, next) => {
         timeOut: timeOut,
         comment: comment,
         validation: validation,
-        user: user
+        user: user,
+        isWorking: isWorking
     })
     res.redirect("/profile")
     

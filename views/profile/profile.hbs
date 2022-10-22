@@ -22,7 +22,7 @@
 {{/each}}
 
     <br>
-    
+     {{#if isWorking = false}}
     <form action="/profile" method="POST">
 
         <label for="comment">Write a comment:</label>
@@ -34,9 +34,29 @@
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
         
-        <button>WORK LOG</button>
+        <button>WORK LOG IN</button>
 
     </form>
+{{else}}
+    <form action="/profile" method="POST">
+
+        <label for="comment">Write a comment:</label>
+        <input type="text" name="comment">
+        <br>
+       {{!-- <label for="timeIn">TimeIn</label>
+        <input type="text" name="timeIn">
+        <br>--}} 
+        <label for="user"></label>
+        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
+        
+        <button>WORK LOG OUT</button>
+
+    </form>
+
+
+
+
+
     {{!-- only if isAdmin, viene de admin.routes.js --}}
     <button> <a href="/profile/edit/{{userDetails._id}}/delet">Delete</a> </button>
 
