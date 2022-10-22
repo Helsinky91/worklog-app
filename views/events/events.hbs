@@ -9,6 +9,15 @@
 <h3>Place: {{place}}</h3>
 {{!-- arreglar como se ve la fecha --}}
 <h3>Date: {{date}}</h3>
+
+    {{!-- Añadir que solo lo pueda ver el Admin--}}
+   <button> <a href="/events/{{_id}}/edit">Edit this event</a></button>
+   
+   <form action="/events/{{_id}}/delete" method="POST">
+        <button>Delete this event</button>
+    </form>
+
+<br>
 {{/each}}
 
 {{!-- Añadir que solo lo pueda ver el Admin--}}

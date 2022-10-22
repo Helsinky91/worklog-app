@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
         const userDetails = await User.findById(req.session.activeUser._id)     
 
         const worklogDates = await Log.find({"user": userDetails}).limit(1).populate("user")
-        console.log("this is worlogdates:", worklogDates)
+       // console.log("this is worlogdates:", worklogDates)
         
         res.render("profile/profile.hbs", {userDetails, worklogDates})
 
@@ -25,7 +25,7 @@ router.post("/", async (req, res, next) => {
     //funcionalidad botón worklog para que fiche con la hora con el Log.model
         
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
-        
+    
     try {
         //pendiente: ruta para cambiar isWorking de false a true
         
@@ -43,8 +43,6 @@ router.post("/", async (req, res, next) => {
     } catch (error) {
     next(error)
     }
-
-
 })
 
 

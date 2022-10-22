@@ -25,14 +25,10 @@ router.get("/create", isAdmin, async(req, res, next) => {
     try {
         const adminDetails = await User.findById(req.session.activeUser._id)
         res.render("events/create.hbs", {adminDetails})
-    } 
-        
-        
+    }
      catch (error) {
         next(error)
-        
-    
-}
+     }
 })
 
 
@@ -57,6 +53,51 @@ router.post("/create", isAdmin, async (req, res, next) => {
         next(error)
     }
 
+})
+
+//GET "/events/:eventId/edit" => renders form to update event
+router.get("/:eventId/edit", isAdmin, async (req, res, next) => {
+      const {eventId} = req.params;
+
+    try {
+        const eventDetails = await Event.findById(eventId)
+        res.render("events/events-edit.hbs", {eventDetails})
+    } catch (error) {
+        next(error)
+    }
+
+})
+
+//POST "/events/:eventId/edit" => gets info from update form and update DB
+router.post("/:eventId/edit", isAdmin, async (req, res, next) => { 
+
+    const { name, description, eventType, date, place } = req.body
+   const eventDetails = { name, description, eventType, date, place };
+    const {eventId} = req.params;
+
+    console.log(eventDetails)
+    try {
+       await Event.findByIdAndUpdate(eventId, eventDetails)
+        res.redirect("/events")
+        
+    } catch (error) {
+        next(error)
+    }
+
+})
+
+//POST "/events/:eventId/delete" => delete event
+router.post("/:eventId/delete", isAdmin, async (req, res, next) => {
+
+    const {eventId} = req.params;
+
+    try {
+    await Event.findByIdAndRemove(eventId)
+        res.redirect("/events")
+        
+    } catch (error) {
+        next(error)
+    }
 })
 
 
