@@ -7,16 +7,18 @@ const {isAdmin} = require("../middlewares/auth.middleware.js")
 
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
+    if(req.session.activeUser.role === "admin" ) {
+       // const adminDetails = await User.findById(req.session.activeUser._id)
+        res.redirect("/admin/profile")
+    } 
     try {
 
-        if(req.session.activeUser.role === "admin" ) {
-            res.render("/admin/profile")
-        }
-
+        
         const userDetails = await User.findById(req.session.activeUser._id)     
         
         const worklogDates = await Log.find({"user": userDetails}).limit(1).populate("user")
-       // console.log("this is worlogdates:", worklogDates)
+        // console.log("this is worlogdates:", worklogDates)
+        
         
         res.render("profile/profile.hbs", {userDetails, worklogDates})
 
@@ -50,9 +52,6 @@ router.post("/", async (req, res, next) => {
     next(error)
     }
 })
-
-
-
 
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
 router.get("/edit/:userId", async (req, res, next) => {

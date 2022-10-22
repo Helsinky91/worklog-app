@@ -1,0 +1,25 @@
+<div>
+    <h2>My Teamlead profile</h2>
+        {{#with adminDetails}} 
+            <h3>Name: {{firstName}}</h3>
+            <h3>Email: {{email}}</h3>
+   
+
+     <button><a href="/profile/edit/{{_id}}">Edit your profile</a></button>
+       {{/with}} 
+ <hr>
+    <h2 style="color:blueviolet">trabajadores trabajando trabajos</h2>
+  {{#each allUsers}}
+     {{#if isWorking}}
+        <h3>Name: {{firstName}}</h3> 
+    
+        <h3>Department: {{department}}</h3> 
+    <button><a href="/profile/edit/{{_id}}">Edit this Worker</a></button>
+    <hr>
+
+        {{/if}}
+    
+{{/each}}
+
+
+</div>

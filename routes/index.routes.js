@@ -19,7 +19,7 @@ const eventsRoutes = require("./events.routes.js")
 router.use("/events", isLoggedIn, eventsRoutes)
 
 const adminRoutes = require("./admin.routes.js")
-router.use("/events", isLoggedIn, isAdmin, adminRoutes)
+router.use("/admin", isLoggedIn, isAdmin, adminRoutes)
 
 
 module.exports = router;

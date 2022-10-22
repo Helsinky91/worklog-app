@@ -4,10 +4,11 @@
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
     <h2>My profile</h2>
     {{#with userDetails}}
-    <h3>Worker's name: {{firstName}}</h3>
+    <h5>Photo: {{photo}}</h5>
+    <h3>Worker's name: {{firstName}} {{lastName}}</h3>
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
-    <h3>Interested in: {{interest}}</h3>
+    <h3>Interested in: {{interest}}</h3> {{!--esto es un dropdown!!--}}
     
     {{/with}}
     <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
