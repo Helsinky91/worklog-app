@@ -1,0 +1,28 @@
+<div>
+ <h3>New Event</h3>
+    <form action="/events/create" method="POST">
+    <label for="name">Name of the event: </label>
+    <input type="text" name="name" required="true" autocomplete="false">
+    <br />
+    <label for="eventType">Type of event: </label>
+    <select name="eventType" multiple="false">
+        <option value="TIC formation">TIC formation</option>
+        <option value="Teamlead">Teamlead</option>
+        <option value="Lenguages formation">Lenguages formation </option>
+        <option value="Customer service">Customer service</option>
+        <option value="Recreational activities">Recreational activities</option>
+    </select>
+    <br />
+    <label for="description">Description: </label>
+    <input type="text" name="description" required="true" autocomplete="false">
+    <label for="place">Place of the event: </label>
+    <input type="text" name="place" required="true" autocomplete="false">
+    <label for="date">Date of the event: </label>
+    <input type="date" name="date" required="true" autocomplete="false">
+    {{!--<label for="adminId">Created by: </label>
+    <input type="text" value="{{adminDetails._id}}" name="adminId" required="true" autocomplete="false" >
+    <br> --}}
+    <button>Create Event</button>
+    </form>
+
+</div>

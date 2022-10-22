@@ -1,0 +1,17 @@
+<div>
+<h2>All events</h2>
+
+
+{{#each allEvents}}
+<h3>Name: {{name}}</h3>
+<h3>Type: {{eventType}}</h3>
+<h3>Description: {{description}}</h3>
+<h3>Place: {{place}}</h3>
+{{!-- arreglar como se ve la fecha --}}
+<h3>Date: {{date}}</h3>
+{{/each}}
+
+{{!-- Añadir que solo lo pueda ver el Admin--}}
+<a href="/events/create">Create new Event</a>
+
+</div>

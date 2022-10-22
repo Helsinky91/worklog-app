@@ -15,5 +15,8 @@ router.use("/auth", authRoutes)
 const profileRoutes = require("./profile.routes.js")
 router.use("/profile", isLoggedIn, profileRoutes)
 
+const eventsRoutes = require("./events.routes.js")
+router.use("/events", isLoggedIn, eventsRoutes)
+
 
 module.exports = router;

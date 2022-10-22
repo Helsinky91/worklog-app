@@ -26,8 +26,8 @@ router.post("/", async (req, res, next) => {
         
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
     
-    
     try {
+        //pendiente: ruta para cambiar isWorking de false a true
         
   //  const userDetails = User.findById(req.session.activeUser._id)
     Log.create({

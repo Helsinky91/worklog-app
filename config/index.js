@@ -49,7 +49,7 @@ module.exports = (app) => {
       saveUninitialized: false, // don't create session until something stored
       resave: false, //don't save session if unmodified
       store: MongoStore.create({
-         //where to store the sessions. db > index.js > MONGO_URL: 
+         //where to store the session. db > index.js > MONGO_URL: 
         mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/worklog-app"
       })
     }));

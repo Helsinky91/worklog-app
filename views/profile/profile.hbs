@@ -22,22 +22,7 @@
 {{/each}}
 
     <br>
-     {{#if isWorking = false}}
-    <form action="/profile" method="POST">
-
-        <label for="comment">Write a comment:</label>
-        <input type="text" name="comment">
-        <br>
-       {{!-- <label for="timeIn">TimeIn</label>
-        <input type="text" name="timeIn">
-        <br>--}} 
-        <label for="user"></label>
-        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-        
-        <button>WORK LOG IN</button>
-
-    </form>
-{{else}}
+     {{#if isWorking}}
     <form action="/profile" method="POST">
 
         <label for="comment">Write a comment:</label>
@@ -52,6 +37,26 @@
         <button>WORK LOG OUT</button>
 
     </form>
+{{else}}
+    <form action="/profile" method="POST">
+
+        <label for="comment">Write a comment:</label>
+        <input type="text" name="comment">
+        <br>
+       {{!-- <label for="timeIn">TimeIn</label>
+        <input type="text" name="timeIn">
+        <br>--}} 
+        <label for="user"></label>
+        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
+        
+        <button>WORK LOG IN</button>
+
+    </form>
+    {{/if}}
+
+<h2>Next events</h2>
+{{!-- carrusel eventos --}}
+<a href="/events">See events</a>
 
 
 
