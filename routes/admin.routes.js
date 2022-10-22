@@ -1,11 +1,31 @@
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User.model");
+const Log = require("../models/Log.model")
+
+//GET /admin/profile
+router.get("/profile", async (req, res, next) => {
+
+    try {
+        const adminDetails = await User.findById(req.session.activeUser._id)     
+        
 
 
-// "admin/:userId/" => la info de un user específico q renders "profiles/profile-edit"
+  //!necesitamos la info del isWorking to be true or false para mandarla a la vista. (MONDAY)
 
-// GET /admin/all-users
+    } catch (error) {
+    next(error)
+    }
+
+})
+
+
+//GET /admin/all-users
+
 
 
 // GET /admin/:userId
+// "admin/:userId/" => la info de un user específico q renders "profiles/profile-edit"
 
 
 // POST /admin/worklog-validation 
@@ -18,3 +38,6 @@
 
 
 // POST /admin/:userId/delete
+
+
+module.exports = router;

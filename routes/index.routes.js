@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {isLoggedIn} = require("../middlewares/auth.middleware.js")
+const {isLoggedIn, isAdmin} = require("../middlewares/auth.middleware.js")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -17,6 +17,9 @@ router.use("/profile", isLoggedIn, profileRoutes)
 
 const eventsRoutes = require("./events.routes.js")
 router.use("/events", isLoggedIn, eventsRoutes)
+
+const adminRoutes = require("./admin.routes.js")
+router.use("/events", isLoggedIn, isAdmin, adminRoutes)
 
 
 module.exports = router;

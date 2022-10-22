@@ -2,13 +2,19 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const Log = require("../models/Log.model")
+const {isAdmin} = require("../middlewares/auth.middleware.js")
 
 
 //GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
     try {
-        const userDetails = await User.findById(req.session.activeUser._id)     
 
+        if(req.session.activeUser.role === "admin" ) {
+            res.render("/admin/profile")
+        }
+
+        const userDetails = await User.findById(req.session.activeUser._id)     
+        
         const worklogDates = await Log.find({"user": userDetails}).limit(1).populate("user")
        // console.log("this is worlogdates:", worklogDates)
         
