@@ -4,7 +4,7 @@ const User = require("../models/User.model");
 const Log = require("../models/Log.model")
 
 
-//GET "/profile" => render user or admin profile
+// GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
     try {
         const userDetails = await User.findById(req.session.activeUser._id)     
@@ -25,11 +25,7 @@ router.post("/", async (req, res, next) => {
     //funcionalidad botón worklog para que fiche con la hora con el Log.model
         
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
-<<<<<<< HEAD
-    
-=======
         
->>>>>>> c3afecb58bbf20d4a1ad4183f256c6393095ae90
     try {
         //pendiente: ruta para cambiar isWorking de false a true
         
