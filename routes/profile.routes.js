@@ -25,8 +25,7 @@ router.post("/", async (req, res, next) => {
     //funcionalidad botón worklog para que fiche con la hora con el Log.model
         
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
-    
-    
+        
     try {
         
   //  const userDetails = User.findById(req.session.activeUser._id)

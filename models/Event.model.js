@@ -2,16 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema(
   {
-
-    Name: String,
-    EventType: { 
+    name: String,
+    eventType: { 
       type: String,
       enum: ["TIC formation", "Teamlead", "Lenguages formation", "Customer service", "Recreational activities" ]
     },
-    Date: Date,
-    Place: String,
-    Description: String,
-    AdminId: { 
+    date: Date,
+    place: String,
+    description: String,
+    adminId: { 
         type: Schema.Types.ObjectId, 
         ref: "User"
     }
