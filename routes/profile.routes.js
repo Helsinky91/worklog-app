@@ -25,7 +25,11 @@ router.post("/", async (req, res, next) => {
     //funcionalidad botón worklog para que fiche con la hora con el Log.model
         
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
+<<<<<<< HEAD
     
+=======
+        
+>>>>>>> c3afecb58bbf20d4a1ad4183f256c6393095ae90
     try {
         //pendiente: ruta para cambiar isWorking de false a true
         
