@@ -5,7 +5,7 @@ const Log = require("../models/Log.model")
 const {isAdmin} = require("../middlewares/auth.middleware.js")
 
 
-//GET "/profile" => render user or admin profile
+// GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
     try {
 

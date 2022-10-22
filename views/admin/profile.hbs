@@ -1,0 +1,15 @@
+<div>
+    <h2>My Teamlead profile</h2>
+        {{#with}}
+            <h3>Name: {{name}}</h3>
+            <h3>Email: {{email}}</h3>
+        {{/with}}
+
+    <h2>List of workers</h2>
+    {{#each .department}}
+    {{#each}}
+    {{/each}}
+    <h3>Name: {{name}}</h3>
+    {{/each}}
+
+</div>
