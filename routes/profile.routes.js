@@ -18,11 +18,11 @@ router.get("/", async (req, res, next) => {
     try {
         
         const userDetails = await User.findById(req.session.activeUser._id)     
-        let isWorking = await userDetails.isWorking
+        let isWorking = userDetails.isWorking
         
         if(isWorking === false) {
             const worklogDates = await Log.find({"user": userDetails}).limit(1).sort({"timeIn": -1}).populate("user")
-            console.log("this is worlogdates:", worklogDates)
+            //console.log("this is worlogdates:", worklogDates)
             await User.findByIdAndUpdate(userDetails._id, {isWorking: true})
             return res.render("profile/profile.hbs", {userDetails, worklogDates})
        } else {
@@ -53,7 +53,7 @@ router.post("/", async (req, res, next) => {
     try {
         //2. ruta para cambiar isWorking de false a true, feed from worklog button
         const userDetails = await User.findById(req.session.activeUser._id)     
-        let isWorking = await userDetails.isWorking
+        let isWorking = userDetails.isWorking
         //  const userDetails = User.findById(req.session.activeUser._id)
         if (isWorking === false){
         Log.create({
