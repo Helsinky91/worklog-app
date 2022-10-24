@@ -1,0 +1,58 @@
+<div>
+    <h2> list of all workers</h2>
+
+    <h3>Departments</h3>
+    <ul>
+    <h3>Cook, Receptionist waiter/waitress reservations</h3>
+        {{#each cookDepartment}}
+         <a href="/profile/:userId">
+            {{#if cook}}
+            <li style="color:blue">{{firstName}} {{lastName}}</li>
+            {{else}}
+            <li style="color: red">{{firstName}} {{lastName}}</li>
+            {{/if}}
+            </a>
+        {{/each}}
+
+</ul> <ul>
+
+    <h3>Receptionist</h3>
+  {{#each recepcionistDepartment}}
+   <a href="/profile/:userId">
+            {{#if cook}}
+            <li style="color:blue">{{firstName}} {{lastName}}</li>
+            {{else}}
+            <li style="color: red">{{firstName}} {{lastName}}</li>
+            {{/if}}
+            </a>
+        {{/each}}
+</ul>
+ <ul>
+
+    <h3>Restaurant</h3>
+  {{#each restaurantDepartment}}
+   <a href="/profile/:userId">
+            {{#if cook}}
+            <li style="color:blue">{{firstName}} {{lastName}}</li>
+            {{else}}
+            <li style="color: red">{{firstName}} {{lastName}}</li>
+            {{/if}}
+            </a>
+        {{/each}}
+</ul>
+ <ul>
+
+    <h3>Reservations</h3>
+      {{#each reservationDepartment}}
+             <a href="/profile/:userId">
+            {{#if cook}}
+            <li style="color:blue">{{firstName}} {{lastName}}</li>
+            {{else}}
+            <li style="color: red">{{firstName}} {{lastName}}</li>
+            {{/if}}
+           </a>
+        {{/each}}
+</ul>
+
+
+</div>

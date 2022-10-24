@@ -6,8 +6,18 @@
     <br />
     <label for="password">Password:</label>
     <input type="password" name="password">
+
+    <br />
+     <label for="eventType">Department: </label>
+    <select name="eventType" multiple="false">
+        <option value="cook">Cook</option>
+        <option value="receptionist">Receptionist</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="reservations">Reservations</option>
+    </select>
     <br />
     <p style="color: red">{{errorMessage}}</p>
+        <br />
     <button>Log in</button>
     </form>
 </div>
