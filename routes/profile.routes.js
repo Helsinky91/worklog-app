@@ -8,11 +8,12 @@ const {isAdmin} = require("../middlewares/auth.middleware.js")
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
     //!! está dando errorrrrrrrrrrrr
-  /*  if(req.session.activeUser.role === "admin" ) {
+    if(req.session.activeUser.role === "admin" ) {
+        console.log(req.session.activeUser.role)
        // const adminDetails = await User.findById(req.session.activeUser._id)
-         res.redirect("/admin/profile")
+      res.redirect("/admin/profile")
         return;
-    }*/
+    }
     
     try {
         
