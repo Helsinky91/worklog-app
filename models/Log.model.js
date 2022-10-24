@@ -2,11 +2,11 @@ const { Schema, model} = require("mongoose");
 
 const logSchema = new Schema({
 
-    timeIn : { 
-        type : Date, 
+    timeIn: { 
+        type : Date,
         default: Date.now 
     },
-    timeOut : { 
+    timeOut: { 
         type : Date, 
         default: Date.now 
     },

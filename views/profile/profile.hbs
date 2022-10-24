@@ -9,18 +9,24 @@
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
     <h3>Interested in: {{interest}}</h3> {{!--esto es un dropdown!!--}}
-    
+    <h1>is working= {{isWorking}}</h1>
+
     {{/with}}
     <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
     <br>    
    
  {{!-- feeds from Log.model con EACH ... --}}
- {{#each worklogDates}}
+ 
+{{#each worklogDates}}
     <h2>WORKLOG time in:{{timeIn}}</h2>
-    {{!--<h2>WORKLOG time out:{{timeOut}}</h2>--}}
-
     <h2>WORKLOG comment:{{comment}}</h2>
+    <hr>
+    
+    <h2>WORKLOG time out:{{timeOut}}</h2>
+    <h2>WORKLOG comment:{{comment}}</h2>
+   
 {{/each}}
+
 
     <br>
      {{#if isWorking}}
@@ -78,7 +84,7 @@
 
     {{!-- if isAdmin show botón de 
                1. edit (redirects to "/profile/:userId") and 
-               2. delte 
+               2. delete 
                3. worklog aproved
                --}}
 

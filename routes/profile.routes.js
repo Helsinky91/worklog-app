@@ -18,13 +18,22 @@ router.get("/", async (req, res, next) => {
     try {
         
         const userDetails = await User.findById(req.session.activeUser._id)     
+        let isWorking = await userDetails.isWorking
         
-        const worklogDates = await Log.find({"user": userDetails}).limit(1).populate("user")
-        // console.log("this is worlogdates:", worklogDates)
-        
-        
-        res.render("profile/profile.hbs", {userDetails, worklogDates})
+        if(isWorking === false) {
+            const worklogDates = await Log.find({"user": userDetails}).limit(1).sort({"timeIn": -1}).populate("user")
+            console.log("this is worlogdates:", worklogDates)
+            await User.findByIdAndUpdate(userDetails._id, {isWorking: true})
+            return res.render("profile/profile.hbs", {userDetails, worklogDates})
+       } else {
+           const worklogDates = await Log.find({"user": userDetails}).limit(1).sort({"timeOut": -1}).populate("user")
+           await User.findByIdAndUpdate(userDetails._id, {isWorking: false})
+           return res.render("profile/profile.hbs", {userDetails, worklogDates})
 
+       } next();
+        
+
+       
     } catch(err) {
         next(err)
     }
@@ -33,23 +42,39 @@ router.get("/", async (req, res, next) => {
 
 //POST "/profile" => takes info from "worklog form" and updates DB
 router.post("/", async (req, res, next) => {
-    //funcionalidad botón worklog para que fiche con la hora con el Log.model
-        
+    //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
+    //eventListener que quan es premi botó, canvia a OUT ( jugar amb el hidden) i isWorking a true. 
+    //eventListener lo mismo pero al revés.
+    
+    
+    
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
     
     try {
-        //!pendiente: ruta para cambiar isWorking de false a true
-        
-  //  const userDetails = User.findById(req.session.activeUser._id)
-    Log.create({
-        timeIn: timeIn,
-        timeOut: timeOut,
-        comment: comment,
-        validation: validation,
-        user: user,
-        isWorking: isWorking
-    })
-    res.redirect("/profile")
+        //2. ruta para cambiar isWorking de false a true, feed from worklog button
+        const userDetails = await User.findById(req.session.activeUser._id)     
+        let isWorking = await userDetails.isWorking
+        //  const userDetails = User.findById(req.session.activeUser._id)
+        if (isWorking === false){
+        Log.create({
+            timeIn: timeIn,
+            comment: comment,
+            validation: validation,
+            user: user,
+            isWorking: isWorking
+        }) 
+        return res.redirect("/profile")
+      
+        } else if (isWorking === true){
+        Log.create({
+            timeOut: timeOut,
+            comment: comment,
+            validation: validation,
+            user: user,
+            isWorking: isWorking
+        })
+        }
+        return res.redirect("/profile")
     
     } catch (error) {
     next(error)

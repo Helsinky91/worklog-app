@@ -12,7 +12,8 @@
     <select name="eventType" multiple="false">
     
       {{#each ../eventType}}
-          {{!-- marcar valor que tenia antes selected="true" --}}
+          {{!-- marcar valor que tenia antes selected="true"
+          .map en la ruta y if true > show the variable created with the .map , else show this --}}
          
               <option selected="true" value="{{this}}">{{this}}</option>
       {{/each}}
