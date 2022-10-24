@@ -1,6 +1,9 @@
 <div>
 <h2>All events</h2>
+  {{#if adminRole}}
 
+    <a href="/events/create">Create new Event</a>
+    {{/if}}
 
 {{#each allEvents}}
 <h3>Name: {{name}}</h3>
@@ -9,21 +12,21 @@
 <h3>Place: {{place}}</h3>
 {{!-- arreglar como se ve la fecha --}}
 <h3>Date: {{date}}</h3>
-
-{{/each}}
-{{#if adminRole}}
-   <button> <a href="/events/{{_id}}/edit">Edit this event</a></button>
+  {{#if ../adminRole}} 
+    <button> <a href="/events/{{this._id}}/edit">Edit this event</a></button>
    
-   <form action="/events/{{_id}}/delete" method="POST">
+    <form action="/events/{{this._id}}/delete" method="POST">
         <button>Delete this event</button>
     </form>
-<br>
+    <br>
 
-<a href="/events/create">Create new Event</a>
 
 {{else}}
 {{!-- Añadir que BOTON FAVORITOS--}}
 
 {{/if}}
+<hr>
+{{/each}}
+
 
 </div>

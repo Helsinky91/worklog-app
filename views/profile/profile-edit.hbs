@@ -19,25 +19,37 @@
  {{!--to choose a profile pic}} --}}
 
     <button>Submit changes</button>
-    </form>
+  
     <br><br>
- {{/with}}
+ 
 
- {{#if adminRole}}
+ {{#if ../adminRole}}
+ 
+<label for="role">Role</label>
+    
+    <select name="role" multiple="false">
+                   <option value="{{role}}" selected="true">{{role}}</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+</select> 
+<br>
+
+<label for="department">Department</label>
      <select name="department" multiple="false" >
-            <option value="{{userDetails.department}}" selected="true">{{userDetails.department}}</option>
+            <option value="{{department}}" selected="true">{{department}}</option>
             <option value="cook">Cook</option>
             <option value="receptionist">Receptionist</option>
             <option value="restaurant">Restaurant</option>
             <option value="reservations">Reservations</option>
         </select>
-
-    <form action="/admin/{{userDetails._id}}/delete" method="POST">
+<br>
+    <form action="/admin/{{_id}}/delete" method="POST">
         <button  style="color: red">Delete this worker</button>
     </form>
     {{/if}}
+    {{/with}}
 </div>
 
-
+  </form>
 {{!-- admin solo puede editar role + department + eliminar--}}
 {{!-- user ve su info prefilled (value="userDetails.email")--}}

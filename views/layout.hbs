@@ -12,13 +12,20 @@
    <body>
 
    <nav>
+      
        <a href="/">Home</a>
+
+      {{#if isUserActive}}
+      <a href="/profile">My Profile</a>
+       <a href="/events">Events</a> 
+       <a href="/auth/logout">Log out</a>
+         {{else}}
        <a href="/auth/signup">Sign up</a>
        <a href="/auth/login">Log in</a>
+        
+         
+      {{/if}}
 
-       <a href="/profile">My Profile</a>
-
-       <a href="/auth/logout">Log out</a>
        
    </nav>
    

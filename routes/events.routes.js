@@ -9,15 +9,16 @@ const Event = require("../models/Event.model");
 router.get("/", async (req, res, next) => {
     let adminRole = false;
     console.log(req.session.activeUser.role)
-   /* if(req.session.activeUser.role = "admin"){
+    if(req.session.activeUser.role === "admin"){
         adminRole = true;
-        console.log("is admin role: ", adminRole)
-    } */
+    } 
+    console.log("is admin role: ", adminRole)
     try { 
         const allEvents = await Event.find()
         res.render("events/events.hbs", {
             allEvents, adminRole
         })
+        console.log("allEvents is: ", allEvents)
         
     } catch (error) {
         next(error)
