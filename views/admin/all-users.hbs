@@ -3,10 +3,10 @@
 
     <h3>Departments</h3>
     <ul>
-    <h3>Cook, Receptionist waiter/waitress reservations</h3>
+    <h3>Cook</h3>
         {{#each cookDepartment}}
-         <a href="/profile/:userId">
-            {{#if cook}}
+         <a href="/profile/edit/{{_id}}">
+            {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
@@ -17,9 +17,9 @@
 </ul> <ul>
 
     <h3>Receptionist</h3>
-  {{#each recepcionistDepartment}}
-   <a href="/profile/:userId">
-            {{#if cook}}
+  {{#each receptionistDepartment}}
+         <a href="/profile/edit/{{_id}}">
+            {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
@@ -31,8 +31,8 @@
 
     <h3>Restaurant</h3>
   {{#each restaurantDepartment}}
-   <a href="/profile/:userId">
-            {{#if cook}}
+         <a href="/profile/edit/{{_id}}">
+            {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
@@ -44,8 +44,8 @@
 
     <h3>Reservations</h3>
       {{#each reservationDepartment}}
-             <a href="/profile/:userId">
-            {{#if cook}}
+         <a href="/profile/edit/{{_id}}">
+            {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>

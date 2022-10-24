@@ -10,7 +10,9 @@ router.get("/", async (req, res, next) => {
     if(req.session.activeUser.role === "admin" ) {
        // const adminDetails = await User.findById(req.session.activeUser._id)
         res.redirect("/admin/profile")
+        return;
     } 
+    
     try {
 
         
@@ -35,7 +37,7 @@ router.post("/", async (req, res, next) => {
     const {timeIn, timeOut, comment, validation, user, isWorking} = req.body;
     
     try {
-        //pendiente: ruta para cambiar isWorking de false a true
+        //!pendiente: ruta para cambiar isWorking de false a true
         
   //  const userDetails = User.findById(req.session.activeUser._id)
     Log.create({
@@ -56,9 +58,15 @@ router.post("/", async (req, res, next) => {
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
 router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
+        let adminRole = false;
+        if(req.session.activeUser.role = "admin"){
+            adminRole = true;
+        }
+      //  console.log(adminRole)
     try {
         const userDetails = await User.findById(userId)
-        res.render("profile/profile-edit.hbs", {userDetails})
+        
+        res.render("profile/profile-edit.hbs", {userDetails, adminRole})
     } catch(err) {
         next(err)
     }

@@ -8,18 +8,22 @@
      <button><a href="/profile/edit/{{_id}}">Edit your profile</a></button>
        {{/with}} 
  <hr>
-    <h2 style="color:blueviolet">trabajadores trabajando trabajos</h2>
+  <div>  <h2 style="color:blueviolet">trabajadores trabajando trabajos</h2>
+  <button> <a href="/admin/all-users">List of all workers</a>
+</button>
   {{#each allUsers}}
      {{#if isWorking}}
-        <h3>Name: {{firstName}}</h3> 
+        <h3>Name: {{firstName}} {{lastName}}</h3> 
     
         <h3>Department: {{department}}</h3> 
     <button><a href="/profile/edit/{{_id}}">Edit this Worker</a></button>
     <hr>
 
+
+
         {{/if}}
     
 {{/each}}
-
+</div>
 
 </div>

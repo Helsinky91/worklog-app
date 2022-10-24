@@ -13,7 +13,7 @@ const userSchema = new Schema(
     },
     department: {
         type: String, 
-        enum: ["cook", "receptionist", "waiter/waitress", "reservations"]
+        enum: ["cook", "receptionist", "restaurant", "reservations"]
     },
     interest: {
       type: String,

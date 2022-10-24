@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 
-//GET "/auth/registrer" => render a page with a registration form
+//GET "/auth/signup" => render a page with a registration form
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup.hbs")
 })
@@ -11,9 +11,9 @@ router.get("/signup", (req, res, next) => {
 //POST "/auth/signup" => recive form data and create profile in DB. Redirect to login page
 router.post("/signup", async (req, res, next) => {
     //recieved information
-    const { email, password } = req.body
+    const { email, password, department } = req.body
     // Backend validations
-    if ( email === "" || password === "") {
+    if ( email === "" || password === "" || department === "") {
         res.render("auth/signup.hbs", {
             errorMessage: "Please, fill all the fields"
         })
@@ -44,6 +44,7 @@ router.post("/signup", async (req, res, next) => {
         const newUser = {
             email: email,
             password: hashPassword, //guardamos la contraseña que hemos cifrado en el punto 2
+            department: department,
           };
           await User.create(newUser)
  //redirect to login page 

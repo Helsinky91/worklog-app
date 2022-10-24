@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
-const Log = require("../models/Log.model")
+const Log = require("../models/Log.model");
+
 
 //GET /admin/profile
 router.get("/profile", async (req, res, next) => {
@@ -11,7 +12,7 @@ router.get("/profile", async (req, res, next) => {
        // console.log(adminDetails)
 
         const allUsers = await User.find()
-        console.log(allUsers)
+       // console.log(allUsers)
         res.render("admin/admin-profile", {adminDetails, allUsers})
 
 
@@ -23,25 +24,46 @@ router.get("/profile", async (req, res, next) => {
 
 })
 
+//GET /admin/all-users => list of all user names and department
+router.get("/all-users", async (req, res, next) => {
+    try{
+        //set dif views depending of department
 
-//GET /admin/all-users
-
-
-
-// GET /admin/:userId
-// "admin/:userId/" => la info de un user específico q renders "profiles/profile-edit"
+        const cookDepartment = await User.find({"department": "cook"});
+        const receptionistDepartment = await User.find({"department": "receptionist"});
+        const restaurantDepartment = await User.find({"department": "restaurant"});
+        const reservationDepartment = await User.find({"department": "reservations"});
+       
+        res.render("admin/all-users.hbs", {
+            cookDepartment,
+            receptionistDepartment,
+            restaurantDepartment,
+            reservationDepartment
+        })
+                
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 // POST /admin/worklog-validation 
+//boton en all-users.hbs que diga "validate worklog"
 
-
-// GET /admin/:userId/edit
-
-
-// POST /admin/:userId/edit
 
 
 // POST /admin/:userId/delete
+router.post("/:userId/delete", async (req, res, next) => {
+    const {userId} = req.params;
+
+    try {
+        await User.findByIdAndRemove(userId);
+        res.redirect("/admin/all-users")
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 
 module.exports = router;

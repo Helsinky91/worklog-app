@@ -14,15 +14,23 @@
         <label for="email">email</label>
         <input type="email" name="email" value="{{email}}">
 <br>
- {{!--to choose from the Department in Model}} --}}
+ {{!--to choose from the Department in Model}} --}} 
                       
  {{!--to choose from the interest (eventType) in Model or just create a form as in the event-edit.hbs  }} --}}
  {{!--to choose a profile pic}} --}}
 
 
+
     <button>Submit changes</button>
     </form>
+    
  {{/with}}
+
+ {{#if adminRole}}
+    <form action="/admin/{{userDetails._id}}/delete" method="POST">
+        <button>Delete this worker</button>
+    </form>
+    {{/if}}
 </div>
 
 
