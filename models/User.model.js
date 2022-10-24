@@ -16,8 +16,9 @@ const userSchema = new Schema(
         enum: ["cook", "receptionist", "restaurant", "reservations"]
     },
     interest: {
-      type: String,
-      enum: ["TIC formation", "Teamlead", "Lenguages formation", "Customer service", "Recreational activities" ]
+      //feeds from Event.model to select the eventType
+        type: Schema.Types.ObjectId, 
+        ref: "Event"
     },  
     email: {
       type: String,

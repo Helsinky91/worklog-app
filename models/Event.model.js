@@ -10,6 +10,7 @@ const eventSchema = new Schema(
     date: Date,
     place: String,
     description: String,
+    //para ver quien ha creado el evento. //!To be used
     adminId: { 
         type: Schema.Types.ObjectId, 
         ref: "User"

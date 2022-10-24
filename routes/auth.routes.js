@@ -11,9 +11,9 @@ router.get("/signup", (req, res, next) => {
 //POST "/auth/signup" => recive form data and create profile in DB. Redirect to login page
 router.post("/signup", async (req, res, next) => {
     //recieved information
-    const { email, password, department } = req.body
+    const { email, password, department, firstName } = req.body
     // Backend validations
-    if ( email === "" || password === "" || department === "") {
+    if ( email === "" || password === "" || department === "" || firstName === "") {
         res.render("auth/signup.hbs", {
             errorMessage: "Please, fill all the fields"
         })
@@ -45,6 +45,7 @@ router.post("/signup", async (req, res, next) => {
             email: email,
             password: hashPassword, //guardamos la contraseña que hemos cifrado en el punto 2
             department: department,
+            firstName: firstName,
           };
           await User.create(newUser)
  //redirect to login page 

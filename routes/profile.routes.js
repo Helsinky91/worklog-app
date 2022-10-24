@@ -7,14 +7,14 @@ const {isAdmin} = require("../middlewares/auth.middleware.js")
 
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
-    if(req.session.activeUser.role === "admin" ) {
+    //!! está dando errorrrrrrrrrrrr
+  /*  if(req.session.activeUser.role === "admin" ) {
        // const adminDetails = await User.findById(req.session.activeUser._id)
-        res.redirect("/admin/profile")
+         res.redirect("/admin/profile")
         return;
-    } 
+    }*/
     
     try {
-
         
         const userDetails = await User.findById(req.session.activeUser._id)     
         
@@ -59,10 +59,11 @@ router.post("/", async (req, res, next) => {
 router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
         let adminRole = false;
+        console.log(req.session.activeUser.role)
         if(req.session.activeUser.role = "admin"){
             adminRole = true;
         }
-      //  console.log(adminRole)
+       console.log(adminRole)
     try {
         const userDetails = await User.findById(userId)
         

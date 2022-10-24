@@ -7,11 +7,16 @@ const Event = require("../models/Event.model");
 
 //GET "/events" => render the page with all events
 router.get("/", async (req, res, next) => {
-    
+    let adminRole = false;
+    console.log(req.session.activeUser.role)
+    if(req.session.activeUser.role = "admin"){
+        adminRole = true;
+        console.log("is admin role: ", adminRole)
+    } 
     try { 
         const allEvents = await Event.find()
         res.render("events/events.hbs", {
-            allEvents
+            allEvents, adminRole
         })
         
     } catch (error) {
@@ -20,9 +25,11 @@ router.get("/", async (req, res, next) => {
 })
 
 //GET "/events/create" => render a page whit a form to create events
-router.get("/create", isAdmin, async(req, res, next) => {
-    
+router.get("/create", isAdmin, async(req, res, next) => {    
+   
     try {
+       //! hacer lista evento dinámica??
+        // const tipeOfEvent = await Event.find() //.select("eventType")
         const adminDetails = await User.findById(req.session.activeUser._id)
         res.render("events/create.hbs", {adminDetails})
     }
@@ -37,7 +44,7 @@ router.post("/create", isAdmin, async (req, res, next) => {
     const { name, description, eventType, date, place, adminId } = req.body
 
     try {   const adminDetails = await User.findById(req.session.activeUser._id)     
-
+//! to check pq no funciona el adminId 
         const adminCreator = await Event.find({"adminId": adminDetails}).populate("adminId")
         await Event.create( {
         name,
@@ -58,7 +65,7 @@ router.post("/create", isAdmin, async (req, res, next) => {
 //GET "/events/:eventId/edit" => renders form to update event
 router.get("/:eventId/edit", isAdmin, async (req, res, next) => {
       const {eventId} = req.params;
-
+      
     try {
         const eventDetails = await Event.findById(eventId)
         res.render("events/events-edit.hbs", {eventDetails})
@@ -75,7 +82,8 @@ router.post("/:eventId/edit", isAdmin, async (req, res, next) => {
    const eventDetails = { name, description, eventType, date, place };
     const {eventId} = req.params;
 
-    console.log(eventDetails)
+    //console.log(eventDetails)
+    
     try {
        await Event.findByIdAndUpdate(eventId, eventDetails)
         res.redirect("/events")

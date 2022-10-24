@@ -10,22 +10,20 @@
 {{!-- arreglar como se ve la fecha --}}
 <h3>Date: {{date}}</h3>
 
-    {{!-- Añadir que solo lo pueda ver el Admin--}}
+{{/each}}
+{{#if adminRole}}
    <button> <a href="/events/{{_id}}/edit">Edit this event</a></button>
-{{!-- Añadir que solo lo pueda ver el Admin--}}
    
    <form action="/events/{{_id}}/delete" method="POST">
         <button>Delete this event</button>
     </form>
-
 <br>
-{{/each}}
 
-{{!-- Añadir que solo lo pueda ver el Admin--}}
 <a href="/events/create">Create new Event</a>
 
-
+{{else}}
 {{!-- Añadir que BOTON FAVORITOS--}}
 
+{{/if}}
 
 </div>
