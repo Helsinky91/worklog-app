@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const department = require("../utils/department")
+const role = require("../utils/role")
 
 const userSchema = new Schema(
   { 
@@ -8,12 +10,12 @@ const userSchema = new Schema(
     email: String,
     role: {
         type: String, 
-        enum: ["user", "admin"], 
+        enum: role, 
         default: "user" 
     },
     department: {
         type: String, 
-        enum: ["cook", "receptionist", "restaurant", "reservations"]
+        enum: department,
     },
     interest: {
       //feeds from Event.model to select the eventType

@@ -3,7 +3,8 @@ const router = express.Router();
 const User = require("../models/User.model");
 const Log = require("../models/Log.model")
 const {isAdmin} = require("../middlewares/auth.middleware.js")
-
+const department = require("../utils/department")
+const role = require("../utils/role")
 
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
@@ -59,15 +60,15 @@ router.post("/", async (req, res, next) => {
 router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
         let adminRole = false;
-        console.log(req.session.activeUser.role)
+       // console.log(req.session.activeUser.role)
         if(req.session.activeUser.role = "admin"){
             adminRole = true;
         }
-       console.log(adminRole)
+     //  console.log(adminRole)
     try {
         const userDetails = await User.findById(userId)
         
-        res.render("profile/profile-edit.hbs", {userDetails, adminRole})
+        res.render("profile/profile-edit.hbs", {userDetails, adminRole, role, department})
     } catch(err) {
         next(err)
     }

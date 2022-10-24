@@ -1,11 +1,12 @@
 const { Schema, model } = require("mongoose");
+const eventType = require("../utils/event-types")
 
 const eventSchema = new Schema(
   {
     name: String,
     eventType: { 
       type: String,
-      enum: ["TIC formation", "Teamlead", "Lenguages formation", "Customer service", "Recreational activities" ]
+      enum: eventType
     },
     date: Date,
     place: String,

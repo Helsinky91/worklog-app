@@ -8,15 +8,15 @@
     <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
     <br />
     <label for="eventType">Type of event: </label>
+    
     <select name="eventType" multiple="false">
-        <option value="{{eventType}}" selected="true">{{eventType}}</option>
-      {{!--crear condicional que si eventType q no se muestre--}}
-      
-        <option value="TIC formation">TIC formation</option>
-        <option value="Teamlead">Teamlead</option>
-        <option value="Lenguages formation">Lenguages formation </option>
-        <option value="Customer service">Customer service</option>
-        <option value="Recreational activities">Recreational activities</option>
+    
+      {{#each ../eventType}}
+          {{!-- marcar valor que tenia antes selected="true" --}}
+         
+              <option selected="true" value="{{this}}">{{this}}</option>
+      {{/each}}
+
     </select>
     <br />
     <label for="description">Description: </label>
