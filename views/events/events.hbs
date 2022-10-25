@@ -4,14 +4,16 @@
 
     <a href="/events/create">Create new Event</a>
     {{/if}}
-
+<br>
 {{#each allEvents}}
+<img src="{{photo}}" alt="{{name}}" width="150px">
 <h3>Name: {{name}}</h3>
 <h3>Type: {{eventType}}</h3>
 <h3>Description: {{description}}</h3>
 <h3>Place: {{place}}</h3>
 {{!-- arreglar como se ve la fecha --}}
 <h3>Date: {{date}}</h3>
+<h3>Hour: {{hour}}</h3>
   {{#if ../adminRole}} 
     <button> <a href="/events/{{this._id}}/edit">Edit this event</a></button>
    

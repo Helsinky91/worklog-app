@@ -6,11 +6,9 @@ const logSchema = new Schema({
 
     timeIn: { 
         type : Date,
-        
     },
     timeOut: { 
         type : Date, 
-        
     },
     comment: String,
     validation: { 

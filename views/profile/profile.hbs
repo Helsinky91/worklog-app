@@ -16,22 +16,17 @@
     <br>    
    <hr>
  {{!-- feeds from Log.model con EACH ... --}}
+    <h2>WORKLOG time in:{{formatedWorklogDatesIn}}</h2>
 
 {{#each worklogDatesIn}}   
-    <h2>WORKLOG time in:{{timeIn}}</h2>
     <h2>WORKLOG comment:{{comment}}</h2>
 {{/each}}
+    <h2>WORKLOG time out:{{formatedWorklogDatesOut}}</h2>
 {{#each worklogDatesOut}}
-
-    <h2>WORKLOG time out:{{timeOut}}</h2>
     <h2>WORKLOG comment:{{comment}}</h2>
-
- 
-    <hr>
-
 {{/each}} 
 
-
+<hr>
 
 
     <br>
@@ -54,7 +49,7 @@
     <form action="/profile/log-in" method="POST">
 
         <label for="comment">Write a comment:</label>
-        <input type="text" name="comment">
+        <input type="text" name="comment" required="true">
         <br>
        {{!-- <label for="timeIn">TimeIn</label>
         <input type="text" name="timeIn">
@@ -71,28 +66,5 @@
     <h2>Next events</h2>
     {{!-- carrusel eventos --}}
     <a href="/events">See events</a>
-
-
-
-
-
-    {{!-- only if isAdmin, viene de admin.routes.js --}}
-    <button> <a href="/profile/edit/{{userDetails._id}}/delet">Delete</a> </button>
-
-
-{{!-- SÁBADO: CREAR UN FORMULARIO DE SALIDA QUE RENDERICE timeOut (REPETIR EL Q HEM FET) --}}
-{{!-- OCULTAR FORMULARIO IN O OUT DEPENDIENDO DE SU ESTADO--}}
-
-
-
-
-
-{{!-- if isAdmin se verá el carrussel de sus empleados, else verá el carrusel de eventos --}}
-
-    {{!-- if isAdmin show botón de 
-               1. edit (redirects to "/profile/:userId") and 
-               2. delete 
-               3. worklog aproved
-               --}}
 
 </div>

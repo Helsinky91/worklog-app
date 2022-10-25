@@ -35,17 +35,6 @@ app.use((req, res, next)=> {
     next()
 })
 
-//set up isAdminActive variable to show or hide some elements in specific views
-/*app.use((req, res, next)=> {
-    if(req.session.activeUser.role === "admin"){ //role: admin
-        res.locals.isAdminActive = true;
-    } else{ //role: user 
-        res.locals.isUserActive = false;
-    }
-    next()
-})*/
-
-
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");

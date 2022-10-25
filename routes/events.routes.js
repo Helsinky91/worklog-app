@@ -3,7 +3,9 @@ const router = express.Router();
 const {isLoggedIn, isAdmin} = require("../middlewares/auth.middleware.js")
 const User = require("../models/User.model");
 const Event = require("../models/Event.model");
-const eventType = require("../utils/event-types")
+const eventType = require("../utils/event-types");
+const fileUploader = require('../config/cloudinary.config');
+
 
 //GET "/events" => render the page with all events
 router.get("/", async (req, res, next) => {
@@ -13,6 +15,8 @@ router.get("/", async (req, res, next) => {
         adminRole = true;
     } 
     console.log("is admin role: ", adminRole)
+//! EDIT DATE FORMAT 
+
     try { 
         const allEvents = await Event.find()
         res.render("events/events.hbs", {
@@ -26,7 +30,7 @@ router.get("/", async (req, res, next) => {
 })
 
 //GET "/events/create" => render a page whit a form to create events
-router.get("/create", isAdmin, async(req, res, next) => {    
+router.get("/create", isAdmin,  async(req, res, next) => {    
    
     try {
         // const tipeOfEvent = await Event.find() //.select("eventType")
@@ -40,19 +44,19 @@ router.get("/create", isAdmin, async(req, res, next) => {
 
 
 //POST "/events/create" => recive the data from the form and add to the DB/ redirect
-router.post("/create", isAdmin, async (req, res, next) => {
-    const { name, description, eventType, date, place, adminId } = req.body
+router.post("/create", isAdmin, fileUploader.single('event-image'), async (req, res, next) => {
+    const { name, description, eventType, date, photo, place, hour } = req.body
 
-    try {   const adminDetails = await User.findById(req.session.activeUser._id)     
-//! to check pq no funciona el adminId 
-        const adminCreator = await Event.find({"adminId": adminDetails}).populate("adminId")
+    try { 
         await Event.create( {
         name,
         description, 
         eventType, 
         date, 
         place, 
-        //adminId: adminCreator 
+        photo: req.file.path,
+        hour
+        
     })
         res.redirect("/events")
 
@@ -78,13 +82,13 @@ router.get("/:eventId/edit", isAdmin, async (req, res, next) => {
 })
 
 //POST "/events/:eventId/edit" => gets info from update form and update DB
-router.post("/:eventId/edit", isAdmin, async (req, res, next) => { 
+router.post("/:eventId/edit", isAdmin, fileUploader.single('event-image'), async (req, res, next) => { 
 
-    const { name, description, eventType, date, place } = req.body
-   const eventDetails = { name, description, eventType, date, place };
+    const { name, description, eventType, date, place, hour } = req.body
+    const eventDetails = { name, description, eventType, date, place, photo: req.file?.path, hour };
     const {eventId} = req.params;
 
-    //console.log(eventDetails)
+    
     
     try {
        await Event.findByIdAndUpdate(eventId, eventDetails)

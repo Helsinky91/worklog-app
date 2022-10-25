@@ -8,15 +8,17 @@ const eventSchema = new Schema(
       type: String,
       enum: eventType
     },
-    date: Date,
+    photo: { 
+      type: String,
+      default: "https://cdn2.iconfinder.com/data/icons/festivalization-and-exhibition-filled-outline/64/event-organizer-manager-planner-operation-staff-512.png"
+    },  
     place: String,
-    description: String,
-    //para ver quien ha creado el evento. //!To be used
-    adminId: { 
-        type: Schema.Types.ObjectId, 
-        ref: "User"
-    }
-})
+    date: {
+      type: Date
+    },
+    hour: String,
+    description: String
+  })
 
 const Event = model("Event", eventSchema);
 

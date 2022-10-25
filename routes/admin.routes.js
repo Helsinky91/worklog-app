@@ -30,10 +30,11 @@ router.get("/all-users", async (req, res, next) => {
     try{
         //set dif views depending of department
 
-        const cookDepartment = await User.find({"department": "cook"});
-        const receptionistDepartment = await User.find({"department": "receptionist"});
-        const restaurantDepartment = await User.find({"department": "restaurant"});
-        const reservationDepartment = await User.find({"department": "reservations"});
+
+        const cookDepartment = await User.find({$and: [{"department": "cook"}, {"role": "user"}]});
+        const receptionistDepartment = await User.find({$and: [{"department": "receptionist"}, {"role": "user"}]});
+        const restaurantDepartment = await User.find({$and: [{"department": "restaurant"}, {"role": "user"}]});
+        const reservationDepartment = await User.find({$and: [{"department": "reservations"}, {"role": "user"}]});
        
         res.render("admin/all-users.hbs", {
             cookDepartment,
@@ -41,9 +42,7 @@ router.get("/all-users", async (req, res, next) => {
             restaurantDepartment,
             reservationDepartment,
             validation
-
-        })
-                
+        })  
     } catch (error) {
         next(error)
     }
@@ -53,17 +52,26 @@ router.get("/all-users", async (req, res, next) => {
 // POST /admin/worklog-validation/:userId
 router.post("/worklog-validation/:userId", async (req, res, next) => {
     const { userId } = req.params
-
-
+//! EDIT DATE FORMAT
 try { 
-    const pendingValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).limit(3).sort({"timeIn": -1})
-    const pendingValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).limit(3).sort({"timeIn": -1})  
-    const deniedValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).limit(3).sort({"timeIn": -1})    
-    const deniedValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).limit(3).sort({"timeIn": -1})    
-    const validateValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).limit(3).sort({"timeIn": -1})    
-    const validateValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).limit(3).sort({"timeIn": -1})
+    //pending validation
+    const pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
+    const pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeIn": -1}).limit(3)  
+    
+    //denied validation
+    const deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
+    const deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
+    
+    //approved validation
+    const validatenIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
+    const validateOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeIn": -1}).limit(3)
+   
     const userDetails = await Log.find({user: userId}).populate("user")
-    console.log(pendingValidationIn)
+
+    let formatedDatesPedingVIn = pendingValidationIn[0].timeIn.toDateString()
+    formatedDatesPedingVIn += " " + pendingValidationIn[0].timeIn.toLocaleTimeString()
+   
+    console.log("PendingV time ", formatedDates )
 
     res.render("admin/worklog-validation.hbs", { 
         pendingValidationIn, 
