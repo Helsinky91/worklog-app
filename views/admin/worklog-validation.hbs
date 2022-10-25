@@ -6,13 +6,13 @@
     <h3>Worklogs in</h3>
     {{#each pendingValidationIn}}
         <li>{{timeIn}}</li>
-        <li>{{comment}}</li>
+        <h4>Comment: {{comment}}</h4>
          <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
-     <select name="{{validation}}" multiple="false" >
-    {{#each ../validation}}
-        <option value="{{this}}">{{this}}</option>
-    {{/each}}
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
         </select>
         <button>Submit</button>
     </form>
@@ -22,7 +22,16 @@
     <h3>Worklogs out</h3>
       {{#each pendingValidationOut}}
         <li>{{timeOut}}</li>
-        <li>{{comment}}</li>
+        <h4>Comment: {{comment}}</h4>
+        <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
 
     {{/each}}
 </ul>
@@ -34,14 +43,32 @@
     <h3>Worklogs in</h3>
     {{#each validateValidationIn}}
         <li>{{timeIn}}</li>
-        <li>{{comment}}</li>
+       <h4>Comment: {{comment}}</h4>
+        <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
 
     {{/each}}
 
     <h3>Worklogs out</h3>
       {{#each validateValidationOut}}
         <li>{{timeOut}}</li>
-        <li>{{comment}}</li>
+       <h4>Comment: {{comment}}</h4>
+        <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
 
     {{/each}}
 </ul>
@@ -54,14 +81,32 @@
     <h3>Worklogs in</h3>
     {{#each deniedValidationIn}}
         <li>{{timeIn}}</li>
-        <li>{{comment}}</li>
+        <h4>Comment: {{comment}}</h4>
+        <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
 
     {{/each}}
 
     <h3>Worklogs out</h3>
       {{#each deniedValidationOut}}
         <li>{{timeOut}}</li>
-        <li>{{comment}}</li>
+        <h4>Comment: {{comment}}</h4>
+        <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+        <select name="validation" multiple="false" >
+            {{#each ../validation}}
+             <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
 
     {{/each}}
 </ul>
