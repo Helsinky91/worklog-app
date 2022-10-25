@@ -1,4 +1,6 @@
 const { Schema, model} = require("mongoose");
+const validation = require("../utils/validation")
+
 
 const logSchema = new Schema({
 
@@ -13,7 +15,7 @@ const logSchema = new Schema({
     comment: String,
     validation: { 
         type: String, 
-        enum: ["Approved", "Pending", "Denied"], 
+        enum: validation, 
         default: "Pending"
     }, 
     user: {
