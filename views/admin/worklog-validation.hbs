@@ -1,0 +1,74 @@
+<div>
+    <h2>Worker's name: {{userDetails.firstName}} {{userDetails.lastName}}</h2>
+<div>
+<ul>
+    <h2>Pending</h2>
+    <h3>Worklogs in</h3>
+    {{#each pendingValidationIn}}
+        <li>{{timeIn}}</li>
+        <li>{{comment}}</li>
+         <form action="/admin/{{_id}}/edit" method="POST">
+         <label for="validation">Validation: </label>
+     <select name="{{validation}}" multiple="false" >
+    {{#each ../validation}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+        </select>
+        <button>Submit</button>
+    </form>
+    {{/each}}
+
+
+    <h3>Worklogs out</h3>
+      {{#each pendingValidationOut}}
+        <li>{{timeOut}}</li>
+        <li>{{comment}}</li>
+
+    {{/each}}
+</ul>
+</div>
+
+<div>
+<ul>
+    <h2>Approved</h2>
+    <h3>Worklogs in</h3>
+    {{#each validateValidationIn}}
+        <li>{{timeIn}}</li>
+        <li>{{comment}}</li>
+
+    {{/each}}
+
+    <h3>Worklogs out</h3>
+      {{#each validateValidationOut}}
+        <li>{{timeOut}}</li>
+        <li>{{comment}}</li>
+
+    {{/each}}
+</ul>
+</div>
+
+
+<div>
+<ul>
+    <h2>Denied</h2>
+    <h3>Worklogs in</h3>
+    {{#each deniedValidationIn}}
+        <li>{{timeIn}}</li>
+        <li>{{comment}}</li>
+
+    {{/each}}
+
+    <h3>Worklogs out</h3>
+      {{#each deniedValidationOut}}
+        <li>{{timeOut}}</li>
+        <li>{{comment}}</li>
+
+    {{/each}}
+</ul>
+</div>
+
+
+
+</div>
+
+

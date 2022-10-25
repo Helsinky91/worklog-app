@@ -19,18 +19,15 @@ router.get("/", async (req, res, next) => {
         
         const userDetails = await User.findById(req.session.activeUser._id)     
         let isWorking = userDetails.isWorking
-        const worklogDatesIn = await Log.find({ user: userDetails } ).limit(1).sort({"timeIn": -1})         //en esta busqueda está la clave. Falta, tambien, una 
-                                                                                                        //funcion que de la hora al apretar el boton, o volver a poner default en el Model
+        const worklogDatesIn = await Log.find({ user: userDetails } ).limit(1).sort({"timeIn": -1})        
+                                                                                                        
         const worklogDatesOut = await Log.find({ user: userDetails } ).limit(1).sort({"timeOut": -1})  
         res.render("profile/profile.hbs", {userDetails, worklogDatesIn, worklogDatesOut, isWorking}) 
-        console.log("enseña worklogDatesIn", worklogDatesIn)
-        console.log("enseña worklogDatesOut", worklogDatesOut)
-
        
     } catch(err) {
         next(err)
     }
-    //!add eventlistener to show/hidde the button
+    
 })
 
 //POST "/profile/log-in" => takes info from "worklog form" and updates DB
@@ -47,7 +44,7 @@ router.post("/log-in", async (req, res, next) => {
         const userDetails = await User.findById(req.session.activeUser._id)     
         await User.findByIdAndUpdate(userDetails, {isWorking: true})
         //  const userDetails = User.findById(req.session.activeUser._id)
-       console.log("timeIn", timeIn)
+       //console.log("timeIn", timeIn)
         Log.create({
             timeIn: timeIn,
             comment: comment,
@@ -69,7 +66,7 @@ router.post("/log-out", async (req, res, next) => {
     //eventListener lo mismo pero al revés.
     const {comment, validation, user} = req.body;
     const timeOut = new Date()
-    console.log("timeOut", timeOut)
+    //console.log("timeOut", timeOut)
     try {
         //2. ruta para cambiar isWorking de false a true, feed from worklog button
         const userDetails = await User.findById(req.session.activeUser._id)     
@@ -95,11 +92,12 @@ router.post("/log-out", async (req, res, next) => {
 router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
         let adminRole = false;
-       // console.log(req.session.activeUser.role)
-        if(req.session.activeUser.role = "admin"){
+       console.log(req.session.activeUser.role)
+        if(req.session.activeUser.role === "admin"){
             adminRole = true;
         }
-     //  console.log(adminRole)
+      
+      console.log("es admin?", adminRole)
     try {
         const userDetails = await User.findById(userId)
         

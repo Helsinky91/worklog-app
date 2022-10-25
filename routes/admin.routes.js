@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const Log = require("../models/Log.model");
+const validation = require("../utils/validation.js")
 
 
 //GET /admin/profile
@@ -38,7 +39,9 @@ router.get("/all-users", async (req, res, next) => {
             cookDepartment,
             receptionistDepartment,
             restaurantDepartment,
-            reservationDepartment
+            reservationDepartment,
+            validation
+
         })
                 
     } catch (error) {
@@ -47,8 +50,59 @@ router.get("/all-users", async (req, res, next) => {
 })
 
 
-// POST /admin/worklog-validation 
-//boton en all-users.hbs que diga "validate worklog"
+// POST /admin/worklog-validation/:userId
+router.post("/worklog-validation/:userId", async (req, res, next) => {
+    const { userId } = req.params
+
+
+try { 
+    const pendingValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).limit(3).sort({"timeIn": -1})
+    const pendingValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).limit(3).sort({"timeIn": -1})  
+    const deniedValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).limit(3).sort({"timeIn": -1})    
+    const deniedValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).limit(3).sort({"timeIn": -1})    
+    const validateValidationIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).limit(3).sort({"timeIn": -1})    
+    const validateValidationOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).limit(3).sort({"timeIn": -1})
+    const userDetails = await Log.find({user: userId}).populate("user")
+    console.log(pendingValidationIn)
+
+    res.render("admin/worklog-validation.hbs", { 
+        pendingValidationIn, 
+        pendingValidationOut, 
+        deniedValidationIn, 
+        deniedValidationOut, 
+        validateValidationIn, 
+        validateValidationOut,
+        userDetails,
+        validation
+    })
+} catch (error) {
+    next(error)
+}
+
+})
+
+
+
+
+//POST "/admin/:logId/edit" => recieve the data from the form and update validation state
+router.post("/:logId/edit", async (req, res, next) => {
+
+        const { logId } = req.params
+        const { validation }  = req.body
+        console.log("validation",  validation )
+
+
+
+    try {
+        const userId = await Log.findById(logId).populate("user")
+        console.log("userID", userId)
+        await Log.findByIdAndUpdate(logId, { validation } )
+        res.redirect(`/admin/all-users`)
+        
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 

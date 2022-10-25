@@ -42,18 +42,27 @@
     {{/each}}
         </select>
 <br>
-<br>
-    <form action="/admin/{{_id}}/delete" method="POST">
-        <button  style="color: red">Delete this worker</button>
-    
     {{/if}}
     <button>Submit changes</button>
+    {{/with}}
+  </form>
+<br>
+
+
+ {{#if adminRole}}
+    <form action="/admin/{{userDetails._id}}/delete" method="POST">
+        <button style="color: red">Delete this worker</button>
     </form>
+    {{/if}}
+<form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>
+
+    
 
       
-    {{/with}}
 </div>
 
-  </form>
+
 {{!-- admin solo puede editar role + department + eliminar--}}
 {{!-- user ve su info prefilled (value="userDetails.email")--}}
