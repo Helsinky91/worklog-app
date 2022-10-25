@@ -6,7 +6,10 @@ const userSchema = new Schema(
   { 
     firstName: String,
     lastName: String,
-    photo: String,
+    photo: { 
+      type: String,
+      default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqQntImQPYse84fFTOn6j-yeWx5KlQdZdaD5iB_rXqn2hD2xyp0sG3c7WUbIdWXJUpAXc&usqp=CAU"
+    },
     email: String,
     role: {
         type: String, 

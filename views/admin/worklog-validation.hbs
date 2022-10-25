@@ -7,6 +7,7 @@
     {{#each pendingValidationIn}}
         <li>{{timeIn}}</li>
         <h4>Comment: {{comment}}</h4>
+        {{!--partials con el código del form debajo --}}
          <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
         <select name="validation" multiple="false" >

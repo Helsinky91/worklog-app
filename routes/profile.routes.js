@@ -86,7 +86,7 @@ router.post("/log-out", async (req, res, next) => {
 
 
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
-router.get("/edit/:userId", fileUploader.single('profile-pic-image'), async (req, res, next) => {
+router.get("/edit/:userId", async (req, res, next) => {
         const { userId } = req.params
         let adminRole = false;
        console.log(req.session.activeUser.role)
@@ -105,12 +105,13 @@ router.get("/edit/:userId", fileUploader.single('profile-pic-image'), async (req
 })
 
 //POST "profile/edit/:userId" => recieve data to update profile's user.
-router.post("/edit/:userId", async (req, res, next) => {
+router.post("/edit/:userId", fileUploader.single('profile-pic-image'), async (req, res, next) => {
     const { userId } = req.params
     const { firstName, lastName, photo, email, role, department, interest } = req.body
-    const userDetails = { firstName, lastName, photo, email, role, department, interest } 
+    const userDetails = { firstName, lastName, photo: req.file.path , email, role, department, interest } 
+    
     try {
-        await User.findByIdAndUpdate(userId,  userDetails  )
+        await User.findByIdAndUpdate(userId,  userDetails )
       //  console.log(userDetails)
         res.redirect("/profile")
     } catch (error) {

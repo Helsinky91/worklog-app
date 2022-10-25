@@ -4,7 +4,7 @@
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
     <h2>My profile</h2>
     {{#with userDetails}}
-    <h5>Photo: {{photo}}</h5>
+    <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
     <h3>Worker's name: {{firstName}} {{lastName}}</h3>
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
