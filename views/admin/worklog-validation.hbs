@@ -1,42 +1,47 @@
 <div>
     <h2>Worker's name: {{userDetails.firstName}} {{userDetails.lastName}}</h2>
 <div>
-<ul>
+<div>
     <h2>Pending</h2>
+    <div>
     <h3>Worklogs in</h3>
-        <li>{{formatedDatesPendingIn}}</li>
-    {{#each pendingIn}}
-        <h4>Comment: {{comment}}</h4>
-        {{!--partials con el código del form debajo --}}
-         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
-    {{/each}}
-
-
-    <h3>Worklogs out</h3>
-        <li>{{formatedDatesPendingIn}}</li>
-      {{#each pendingVOut}}
-        <h4>Comment: {{comment}}</h4>
+        <ul>
+            <li>{{formatedDatesPendingIn}}</li>
+            {{#each pendingIn}}
+            <li>Comment: {{comment}}</li>
+        </ul>
+            {{!--partials con el código del form debajo --}}
         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
-
-    {{/each}}
-</ul>
-</div>
+            <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                {{#each ../validation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
+        {{/each}}
+    
+    </div>
+    <div>
+    <h3>Worklogs out</h3>
+   
+       <ul>
+            <li>{{formatedDatesPendingOut}}</li>
+            {{#each pendingOut}}
+            <li>Comment: {{comment}}</li>
+        </ul>
+        <form action="/admin/{{_id}}/edit" method="POST">
+            <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                 {{#each ../validation}}
+                 <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
+        {{/each}}
+    </div>
 
 <div>
 <ul>

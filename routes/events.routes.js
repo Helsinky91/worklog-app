@@ -29,6 +29,10 @@ router.get("/", async (req, res, next) => {
     }
 })
 
+//POST "/events/:eventId/events-favorites" => add to favourite collection in User Profile
+router.post("/:eventId/events-favorites")
+
+
 //GET "/events/create" => render a page whit a form to create events
 router.get("/create", isAdmin,  async(req, res, next) => {    
    

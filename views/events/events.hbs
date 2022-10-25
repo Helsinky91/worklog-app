@@ -1,7 +1,6 @@
 <div>
 <h2>All events</h2>
   {{#if adminRole}}
-
     <a href="/events/create">Create new Event</a>
     {{/if}}
 <br>
@@ -23,10 +22,13 @@
     <br>
 
 
-{{else}}
-{{!-- Añadir que BOTON FAVORITOS--}}
+  {{else}}
+    {{!-- Añadir que BOTON FAVORITOS--}}
+   <form action="/events/{{this._id}}/events-favorites" method="POST">
+      <button>Add to favourites</button>
+    </form>
 
-{{/if}}
+  {{/if}}
 <hr>
 {{/each}}
 
