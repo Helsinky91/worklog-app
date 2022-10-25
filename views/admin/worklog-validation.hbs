@@ -4,8 +4,8 @@
 <ul>
     <h2>Pending</h2>
     <h3>Worklogs in</h3>
-    {{#each pendingValidationIn}}
-        <li>{{timeIn}}</li>
+        <li>{{formatedDatesPendingIn}}</li>
+    {{#each pendingIn}}
         <h4>Comment: {{comment}}</h4>
         {{!--partials con el código del form debajo --}}
          <form action="/admin/{{_id}}/edit" method="POST">
@@ -21,8 +21,8 @@
 
 
     <h3>Worklogs out</h3>
-      {{#each pendingValidationOut}}
-        <li>{{timeOut}}</li>
+        <li>{{formatedDatesPendingIn}}</li>
+      {{#each pendingVOut}}
         <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
@@ -42,8 +42,8 @@
 <ul>
     <h2>Approved</h2>
     <h3>Worklogs in</h3>
-    {{#each validateValidationIn}}
-        <li>{{timeIn}}</li>
+        <li>{{formatedDatesApprovedIn}}</li>
+    {{#each approvedIn}}
        <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
@@ -58,8 +58,8 @@
     {{/each}}
 
     <h3>Worklogs out</h3>
-      {{#each validateValidationOut}}
-        <li>{{timeOut}}</li>
+        <li>{{formatedDatesApprovedOut}}</li>
+      {{#each approvedOut}}
        <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
@@ -80,8 +80,8 @@
 <ul>
     <h2>Denied</h2>
     <h3>Worklogs in</h3>
-    {{#each deniedValidationIn}}
-        <li>{{timeIn}}</li>
+        <li>{{formatedDatesDeniedIn}}</li>
+    {{#each deniedIn}}
         <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
@@ -96,8 +96,8 @@
     {{/each}}
 
     <h3>Worklogs out</h3>
-      {{#each deniedValidationOut}}
-        <li>{{timeOut}}</li>
+        <li>{{formatedDatesDeniedOut}}</li>
+      {{#each deniedOut}}
         <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
          <label for="validation">Validation: </label>
