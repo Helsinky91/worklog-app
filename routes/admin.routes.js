@@ -58,28 +58,51 @@ try {
     const pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
     const pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeIn": -1}).limit(3)  
     
+    let formatedDatesPendingIn = pendingIn[0].timeIn.toDateString()  //format the date to String
+    formatedDatesPendingIn += " " + pendingIn[0].timeIn.toLocaleTimeString()  //format the Hour
+    
+    let formatedDatesPendingOut = pendingOut[0].timeOut.toDateString()
+    formatedDatesPendingOut += " " + pendingOut[0].timeOut.toLocaleTimeString()
+
     //denied validation
     const deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
     const deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
     
+    let formatedDatesDeniedIn = deniedIn[0].timeIn.toDateString()
+    formatedDatesDeniedIn += " " + deniedIn[0].timeIn.toLocaleTimeString()
+    
+    let formatedDatesDeniedOut = deniedOut[0].timeOut.toDateString()
+    formatedDatesDeniedOut += " " + deniedOut[0].timeOut.toLocaleTimeString()
+
     //approved validation
-    const validatenIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
-    const validateOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeIn": -1}).limit(3)
+    const approvedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
+    const approvedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeIn": -1}).limit(3)
    
+    let formatedDatesApprovedIn = approvedIn[0].timeIn.toDateString()
+    formatedDatesApprovedIn += " " + approvedIn[0].timeIn.toLocaleTimeString()
+    
+    let formatedDatesApprovedOut = approvedOut[0].timeOut.toDateString()
+    formatedDatesApprovedOut += " " + approvedOut[0].timeOut.toLocaleTimeString()
+
+
     const userDetails = await Log.find({user: userId}).populate("user")
 
-    let formatedDatesPedingVIn = pendingValidationIn[0].timeIn.toDateString()
-    formatedDatesPedingVIn += " " + pendingValidationIn[0].timeIn.toLocaleTimeString()
    
     console.log("PendingV time ", formatedDates )
 
     res.render("admin/worklog-validation.hbs", { 
-        pendingValidationIn, 
-        pendingValidationOut, 
-        deniedValidationIn, 
-        deniedValidationOut, 
-        validateValidationIn, 
-        validateValidationOut,
+        pendingIn,
+        pendingOut,
+        formatedDatesPendingIn,
+        formatedDatesPendingOut,
+        deniedIn,
+        deniedOut,
+        formatedDatesDeniedIn,
+        formatedDatesDeniedOut,
+        approvedIn,
+        approvedOut,
+        formatedDatesApprovedIn,
+        formatedDatesApprovedOut,
         userDetails,
         validation
     })
