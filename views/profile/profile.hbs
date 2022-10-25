@@ -14,23 +14,29 @@
     {{/with}}
     <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
     <br>    
-   
+   <hr>
  {{!-- feeds from Log.model con EACH ... --}}
- 
-{{#each worklogDates}}
+
+{{#each worklogDatesIn}}   
     <h2>WORKLOG time in:{{timeIn}}</h2>
     <h2>WORKLOG comment:{{comment}}</h2>
-    <hr>
-    
+{{/each}}
+{{#each worklogDatesOut}}
+
     <h2>WORKLOG time out:{{timeOut}}</h2>
     <h2>WORKLOG comment:{{comment}}</h2>
-   
-{{/each}}
+
+ 
+    <hr>
+
+{{/each}} 
+
+
 
 
     <br>
      {{#if isWorking}}
-    <form action="/profile" method="POST">
+    <form action="/profile/log-out" method="POST">
 
         <label for="comment">Write a comment:</label>
         <input type="text" name="comment">
@@ -40,12 +46,12 @@
         <br>--}} 
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-        
+         <label for="timeOut">
+        <input type="date" name="timeOut" hidden="true"></label>
         <button>WORK LOG OUT</button>
-
     </form>
 {{else}}
-    <form action="/profile" method="POST">
+    <form action="/profile/log-in" method="POST">
 
         <label for="comment">Write a comment:</label>
         <input type="text" name="comment">
@@ -55,7 +61,8 @@
         <br>--}} 
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-        
+        <label for="timeIn">
+        <input type="date" name="timeIn" hidden="true"></label>
         <button>WORK LOG IN</button>
 
     </form>

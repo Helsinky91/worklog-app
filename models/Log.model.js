@@ -4,11 +4,11 @@ const logSchema = new Schema({
 
     timeIn: { 
         type : Date,
-        default: Date.now 
+        
     },
     timeOut: { 
         type : Date, 
-        default: Date.now 
+        
     },
     comment: String,
     validation: { 
