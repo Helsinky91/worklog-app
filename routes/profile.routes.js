@@ -5,6 +5,7 @@ const Log = require("../models/Log.model")
 const {isAdmin} = require("../middlewares/auth.middleware.js")
 const department = require("../utils/department")
 const role = require("../utils/role")
+const fileUploader = require('../config/cloudinary.config');
 
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
@@ -33,9 +34,7 @@ router.get("/", async (req, res, next) => {
 //POST "/profile/log-in" => takes info from "worklog form" and updates DB
 router.post("/log-in", async (req, res, next) => {
     //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
-    //eventListener que quan es premi botó, canvia a OUT ( jugar amb el hidden) i isWorking a true. 
-    //eventListener lo mismo pero al revés.
-    
+       
     const {comment, validation, user} = req.body;
     const timeIn = new Date()
     
@@ -62,8 +61,6 @@ router.post("/log-in", async (req, res, next) => {
 //POST "/profile/log-out" => takes info from "worklog form" and updates DB
 router.post("/log-out", async (req, res, next) => {
     //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
-    //eventListener que quan es premi botó, canvia a OUT ( jugar amb el hidden) i isWorking a true. 
-    //eventListener lo mismo pero al revés.
     const {comment, validation, user} = req.body;
     const timeOut = new Date()
     //console.log("timeOut", timeOut)
@@ -89,7 +86,7 @@ router.post("/log-out", async (req, res, next) => {
 
 
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
-router.get("/edit/:userId", async (req, res, next) => {
+router.get("/edit/:userId", fileUploader.single('profile-pic-image'), async (req, res, next) => {
         const { userId } = req.params
         let adminRole = false;
        console.log(req.session.activeUser.role)

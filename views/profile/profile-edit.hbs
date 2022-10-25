@@ -4,7 +4,10 @@
 
  {{#with userDetails}}
 
-    <form action="/profile/edit/{{_id}}" method="POST">
+    <form action="/profile/edit/{{_id}}" method="POST" enctype="multipart/form-data">
+        <label for="photo">Upload a Pic of yourself</label>
+        <input type="file" name="profile-pic-image" />
+    <br>
         <label for="firstName">Worker's first name</label>
         <input type="text" name="firstName" value="{{firstName}}">
 <br>
