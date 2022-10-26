@@ -9,9 +9,12 @@
     <input type="text" name="name" required="true" autocomplete="false">
     <br />
     <label for="eventType">Type of event: </label>
+    {{!-- from bootstrap 
+     <select class="form-select"> --}}
      {{#each ../eventType}}
          <option value="{{this}}">{{this}}</option>
       {{/each}}
+      {{!-- </select> --}}
     <br />
 
     <label for="description">Description: </label>
