@@ -1,18 +1,20 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/fondo.jpg"); 
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+ 
 }
-
- a {
-  text-decoration: none;
-  color:rgb(2, 0, 3)
-} 
 
 h1 {
   color: 15px;
 }
 
-body {
+.btn {
+  border: solid 1px rgba(8, 157, 216, 0.562);
 <<<<<<< HEAD
   background-image: url("../public/images/fondo.jpg"); 
   background-size:cover;
@@ -24,28 +26,33 @@ body {
   text-decoration: none;
 }
 =======
-  background-image: "../public/images/fondo.jpg";
+  background-color: rgb(8, 157, 216, 0.562);
 }
 
-/* .a-link {
-  text-decoration: nome
-} */
-button {
- text-decoration: none; 
+.btn > a {
+  text-decoration: none;
+  color:black
 }
 
+.btn:hover {
+ background-color: rgb(28, 103, 241, 0.562);
+}
 
+.btn-delete {
+  border: solid 1px rgba(228, 15, 15, 0.562);
+  background-color: rgb(228, 15, 15, 0.562);
+}
+
+.btn-delete > a {
+  text-decoration: none;
+  color:black
+}
+
+.btn-delete:hover {
+  background-color: rgba(241, 28, 28, 0.877);
+}
 
 .nav-link {
   color: rgb(0, 204, 204)
   } 
 
-  body {
-    background-image: url("../images/fondo.jpg"); 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-attachment: fixed;
-  }
-  
->>>>>>> 2d97836489d8aabda33c9bb0ba2649a2197a3492

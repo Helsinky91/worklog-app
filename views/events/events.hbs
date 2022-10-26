@@ -1,7 +1,7 @@
 <div>
 <h2>All events</h2>
   {{#if adminRole}}
-    <a href="/events/create">Create new Event</a>
+    <button  class="btn"><a href="/events/create">Create new Event</a> </button>
     {{/if}}
 <br>
 {{#each allEvents}}
@@ -13,17 +13,17 @@
 <h3>Date: {{date}}</h3>
 <h3>Hour: {{hour}}</h3>
   {{#if ../adminRole}} 
-    <button> <a href="/events/{{this._id}}/edit">Edit this event</a></button>
+    <button class="btn"><a href="/events/{{this._id}}/edit">Edit this event</a></button>
    
     <form action="/events/{{this._id}}/delete" method="POST">
-        <button>Delete this event</button>
+        <button class="btn-delete">Delete this event</button>
     </form>
     <br>
 
 
   {{else}}
    <form action="/events/{{_id}}/events-favorites" method="POST">
-      <button>Add to favorites</button>
+      <button class="btn">Add to favorites</button>
     </form>
  {{!-- <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form> --}}
 

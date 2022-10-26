@@ -5,33 +5,36 @@
             <h4>Welcome back, {{firstName}}!</h4>
    
 
-     <button><a class="a-link" href="/profile/edit/{{_id}}">Edit your profile</a></button>
+     <button class="btn"><a href="/profile/edit/{{_id}}">Edit your profile</a></button>
        {{/with}} 
     <hr>
  
   <div>
     <h2>Next events</h2>
 {{!-- carrusel eventos --}}
-      <a href="/events">See events</a></div>
+      <p>Create, edit and check all events!</p>
+      <button class="btn"><a href="/events">Take me to events</a></button>
+      
     <hr>
 
       <div>  
         <h2>Active workers</h2>
-        <button> <a href="/admin/all-users">List of all workers</a> </button>
+        <button class="btn"> <a href="/admin/all-users">List of all workers</a> </button>
     
             {{#each allUsers}}
               {{#if isWorking}}
-          <h5>{{firstName}} {{lastName}}</h5> 
-          <h5>Department: {{department}}</h5> 
+          <p>{{firstName}} {{lastName}}</p> 
+          <p>Department: {{department}}</p> 
 
-        <button><a href="/profile/edit/{{_id}}">Edit this Worker's info</a></button>
+        <button class="btn"><a href="/profile/edit/{{_id}}">Edit this Worker's info</a></button>
+        
         <form action="/admin/worklog-validation/{{_id}}" method="POST">
-           <button>Validate Worklogs</button>
+           <button class="btn">Validate Worklogs</button>
         </form>
      <hr>
-                  {{/if}}
+            {{/if}}
     
-            {{/each}}
+          {{/each}}
     </div>
 
 </div>
