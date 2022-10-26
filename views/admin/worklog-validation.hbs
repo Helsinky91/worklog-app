@@ -5,8 +5,9 @@
     <h2>Pending</h2>
     <div>
     <h3>Worklogs in</h3>
+            {{#if datesPendingIn}}
         <ul>
-            <li>{{formatedDatesPendingIn}}</li>
+            <li>{{datesPendingIn}} - {{hoursPenningIn}}</li>
             {{#each pendingIn}}
             <li>Comment: {{comment}}</li>
         </ul>
@@ -21,13 +22,15 @@
             <button>Submit</button>
         </form>
         {{/each}}
+        {{else}}
+        <h3>Not pending validations for this worker</h3>
     
     </div>
     <div>
     <h3>Worklogs out</h3>
-   
+   {{#if datesPendingOut}}
        <ul>
-            <li>{{formatedDatesPendingOut}}</li>
+            <li>{{datesPendingOut}} - {{hoursPendingOut}}</li>
             {{#each pendingOut}}
             <li>Comment: {{comment}}</li>
         </ul>
@@ -41,13 +44,17 @@
             <button>Submit</button>
         </form>
         {{/each}}
+        {{else}}
+        <h3>Not pending validations for this worker</h3>
+
     </div>
 
 <div>
 <ul>
     <h2>Approved</h2>
     <h3>Worklogs in</h3>
-        <li>{{formatedDatesApprovedIn}}</li>
+    {{#if datesApprovedIn}}
+        <li>{{datesApprovedIn}} - {{hoursApprovedIn}}</li>
     {{#each approvedIn}}
        <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
@@ -59,11 +66,14 @@
         </select>
         <button>Submit</button>
     </form>
-
     {{/each}}
+    {{else}}
+        <h3>Not pending validations for this worker</h3>
+
 
     <h3>Worklogs out</h3>
-        <li>{{formatedDatesApprovedOut}}</li>
+    {{#if datesApprovedOut}}
+        <li>{{datesApprovedOut}} - {{hoursApprovedOut}}</li>
       {{#each approvedOut}}
        <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
@@ -75,8 +85,10 @@
         </select>
         <button>Submit</button>
     </form>
-
     {{/each}}
+    {{else}}
+        <h3>Not pending validations for this worker</h3>
+
 </ul>
 </div>
 
@@ -85,7 +97,8 @@
 <ul>
     <h2>Denied</h2>
     <h3>Worklogs in</h3>
-        <li>{{formatedDatesDeniedIn}}</li>
+    {{#if datesDeniedIn}}
+        <li>{{datesDeniedIn}} - {{hoursDeniedIn}}</li>
     {{#each deniedIn}}
         <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
@@ -97,11 +110,14 @@
         </select>
         <button>Submit</button>
     </form>
-
     {{/each}}
-
+{{else}}
+        <h3>Not pending validations for this worker</h3>
+</div>
+<div>
     <h3>Worklogs out</h3>
-        <li>{{formatedDatesDeniedOut}}</li>
+    {{#if datesDeniedOut}}
+        <li>{{datesDeniedOut}} - {{hoursDeniedOut}}</li>
       {{#each deniedOut}}
         <h4>Comment: {{comment}}</h4>
         <form action="/admin/{{_id}}/edit" method="POST">
@@ -115,6 +131,9 @@
     </form>
 
     {{/each}}
+    {{else}}
+        <h3>Not pending validations for this worker</h3>
+
 </ul>
 </div>
 

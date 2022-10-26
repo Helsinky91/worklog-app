@@ -5,15 +5,15 @@
     <ul>
     <h3>Cook</h3>
         {{#each cookDepartment}}
-         <a href="/profile/edit/{{_id}}">
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
+            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
             </a>
             <form action="/admin/worklog-validation/{{_id}}" method="POST">
-            <button>Worklogs</button>
+            <button>Validate Worklogs</button>
             </form>
            
         {{/each}}
@@ -22,15 +22,15 @@
 
     <h3>Receptionist</h3>
   {{#each receptionistDepartment}}
-         <a href="/profile/edit/{{_id}}">
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
+            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
             </a>
               <form action="/admin/worklog-validation/{{_id}}" method="POST">
-            <button>Worklogs</button>
+            <button>Validate Worklogs</button>
             </form>
         {{/each}}
 </ul>
@@ -38,15 +38,15 @@
 
     <h3>Restaurant</h3>
   {{#each restaurantDepartment}}
-         <a href="/profile/edit/{{_id}}">
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
+            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
             </a>
               <form action="/admin/worklog-validation/{{_id}}" method="POST">
-            <button>Worklogs</button>
+            <button>Validate Worklogs</button>
             </form>
         {{/each}}
 </ul>
@@ -54,15 +54,15 @@
 
     <h3>Reservations</h3>
       {{#each reservationDepartment}}
-         <a href="/profile/edit/{{_id}}">
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
+          <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
            </a>
              <form action="/admin/worklog-validation/{{_id}}" method="POST">
-            <button>Worklogs</button>
+            <button>Validate Worklogs</button>
             </form>
         {{/each}}
 </ul>
