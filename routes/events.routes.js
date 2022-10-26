@@ -10,11 +10,12 @@ const fileUploader = require('../config/cloudinary.config');
 //GET "/events" => render the page with all events
 router.get("/", async (req, res, next) => {
     let adminRole = false;
-    console.log(req.session.activeUser.role)
+
     if(req.session.activeUser.role === "admin"){
         adminRole = true;
     } 
-    console.log("is admin role: ", adminRole)
+    
+
 //! EDIT DATE FORMAT 
 
     try { 
@@ -22,7 +23,7 @@ router.get("/", async (req, res, next) => {
         res.render("events/events.hbs", {
             allEvents, adminRole
         })
-        console.log("allEvents is: ", allEvents)
+        
         
     } catch (error) {
         next(error)
@@ -30,7 +31,26 @@ router.get("/", async (req, res, next) => {
 })
 
 //POST "/events/:eventId/events-favorites" => add to favourite collection in User Profile
-router.post("/:eventId/events-favorites")
+router.post("/:eventId/events-favorites", async (req, res, next) => {
+        const  { eventId }  = req.params;
+        console.log ("eventId", eventId)
+    try { 
+        let userEvents = await User.findById(req.session.activeUser._id).populate("events")
+        console.log("userEvents", userEvents)
+      /*  const userDetails = await User.findById(req.session.activeUser._id)
+        console.log("userDetails", userDetails)
+        
+        const newEvent = userDetails.events.push(`${eventId}`)
+        console.log("newEvent", newEvent)
+        await User.findByIdAndUpdate(userDetails._id, {"events": [newEvent] } )
+        console.log("userevents", userEvents)
+*/
+
+        res.redirect("/events")
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 //GET "/events/create" => render a page whit a form to create events
@@ -58,7 +78,7 @@ router.post("/create", isAdmin, fileUploader.single('event-image'), async (req, 
         eventType, 
         date, 
         place, 
-        photo: req.file.path,
+        //photo: req.file.path,
         hour
         
     })
