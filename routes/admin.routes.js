@@ -49,12 +49,14 @@ router.get("/all-users", async (req, res, next) => {
 })
 
 
-// POST /admin/worklog-validation/:userId
-router.post("/worklog-validation/:userId", async (req, res, next) => {
+// get /admin/worklog-validation/:userId
+router.get("/worklog-validation/:userId", async (req, res, next) => {
     const { userId } = req.params
     let data = {}
 try { 
     //pending validation
+    
+    console.log("paso2")
     data.pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
     data.pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeOut": -1}).limit(3)  
     
@@ -112,7 +114,8 @@ router.post("/:logId/edit", async (req, res, next) => {
         const userId = await Log.findById(logId).populate("user")
         console.log("userID", userId)
         await Log.findByIdAndUpdate(logId, { validation } )
-        res.redirect(`/admin/all-users`)
+        console.log("paso 1")
+        res.redirect(`/admin/worklog-validation/${userId.user._id}`)
         
     } catch (error) {
         next(error)
