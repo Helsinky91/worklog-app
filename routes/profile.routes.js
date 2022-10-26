@@ -16,29 +16,25 @@ router.get("/", async (req, res, next) => {
         return;
     }
 
+        let data = {} //stores all the following code inside the data object
     try {
 
-        const userDetails = await User.findById(req.session.activeUser._id)
-        let isWorking = userDetails.isWorking
-        const worklogDatesIn = await Log.find({ user: userDetails }).sort({ "timeIn": -1 }).limit(1)
-        let formatedWorklogDatesIn = worklogDatesIn[0]?.timeIn?.toDateString()
-        formatedWorklogDatesIn += " " + worklogDatesIn[0]?.timeIn?.toLocaleTimeString()
-        console.log("Formated dates :", formatedWorklogDatesIn)
-               
-        const worklogDatesOut = await Log.find({ user: userDetails }).sort({ "timeOut": -1 }).limit(1)
-        let formatedWorklogDatesOut = worklogDatesOut[0]?.timeOut?.toDateString();
-        formatedWorklogDatesOut += " " + worklogDatesOut[0]?.timeOut?.toLocaleTimeString()
-        const userFavEvents = await User.findById(req.session.activeUser._id).populate("events")
-        const  userEventsList = userFavEvents.events
-        console.log("userEventsList", userEventsList)
+        data.userDetails = await User.findById(req.session.activeUser._id)
+        data.isWorking = data.userDetails.isWorking
+    
+        data.worklogDatesIn = await Log.find({ user: data.userDetails }).sort({ "timeIn": -1 }).limit(1)
+        data.formatedWorklogDatesIn = data.worklogDatesIn[0]?.timeIn?.toDateString()
+        data.formatedWorklogHoursIn = data.worklogDatesIn[0]?.timeIn?.toLocaleTimeString()
         
-        res.render("profile/profile.hbs", { userDetails, 
-            worklogDatesIn,
-            formatedWorklogDatesIn, 
-            worklogDatesOut,
-            formatedWorklogDatesOut, 
-            userEventsList,
-            isWorking })
+               
+        data.worklogDatesOut = await Log.find({ user: data.userDetails }).sort({ "timeOut": -1 }).limit(1)
+        data.formatedWorklogDatesOut = data.worklogDatesOut[0]?.timeOut?.toDateString();
+        data.formatedWorklogHoursOut = data.worklogDatesOut[0]?.timeOut?.toLocaleTimeString()
+        
+        data.userFavEvents = await User.findById(req.session.activeUser._id).populate("events")
+        data.userEventsList = data.userFavEvents.events
+        
+        res.render("profile/profile.hbs", data)
 
     } catch (err) {
         next(err)
