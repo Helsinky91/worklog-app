@@ -1,13 +1,15 @@
 <div>
-    <h2>Worker's name: {{userDetails.firstName}} {{userDetails.lastName}}</h2>
+    {{#each userDetails}}
+    <h2>Worker's name: {{user.firstName}} {{user.lastName}}</h2>
+    {{/each}}
 <div>
 <div>
     <h2>Pending</h2>
     <div>
-    <h3>Worklogs in</h3>
+    <h3 style="color: blue">Worklogs in</h3>
+            {{#if datesPendingIn}}
         <ul>
-      
-            <li>{{formatedDatesPendingIn}}</li>
+            <li>{{datesPendingIn}} - {{hoursPenningIn}}</li>
             {{#each pendingIn}}
             <li>Comment: {{comment}}</li>
         </ul>
@@ -21,15 +23,17 @@
             </select>
             <button>Submit</button>
         </form>
-        {{/each}}
-       
+            {{/each}}
+        {{else}}
+        <p>Not pending validations for this worker</p>
+        {{/if}}
     </div>
     <div>
-    <h3>Worklogs out</h3>
    
+    <h3 style="color: blue">Worklogs out</h3>
+   {{#if datesPendingOut}}
        <ul>
-
-            <li>{{formatedDatesPendingOut}}</li>
+            <li>{{datesPendingOut}} - {{hoursPendingOut}}</li>
             {{#each pendingOut}}
             <li>Comment: {{comment}}</li>
         </ul>
@@ -42,86 +46,106 @@
             </select>
             <button>Submit</button>
         </form>
-        {{/each}}
+            {{/each}}
+        {{else}}
+        <p>Not pending validations for this worker</p>
+    {{/if}}
     </div>
-
+</div>
 <div>
-<ul>
-    <h2>Approved</h2>
-    <h3>Worklogs in</h3>
-        <li>{{formatedDatesApprovedIn}}</li>
-    {{#each approvedIn}}
-       <h4>Comment: {{comment}}</h4>
+
+    <h2 style="color: green">Approved</h2>
+
+    <h3 style="color: blue">Worklogs in</h3>
+  {{#if datesApprovedIn}}
+    <ul>
+        <li>{{datesApprovedIn}} - {{hoursApprovedIn}}</li>
+        {{#each approvedIn}}
+       <li>Comment: {{comment}}</li>
+       </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
+            <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                {{#each ../validation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
+        {{/each}}
+    {{else}}
+    <p>Not pending validations for this worker</p>
+    {{/if}}
 
-    {{/each}}
-
-    <h3>Worklogs out</h3>
-        <li>{{formatedDatesApprovedOut}}</li>
+    <h3 style="color: blue">Worklogs out</h3>
+    {{#if datesApprovedOut}}
+    <ul>
+        <li>{{datesApprovedOut}} - {{hoursApprovedOut}}</li>
       {{#each approvedOut}}
-       <h4>Comment: {{comment}}</h4>
+       <li>Comment: {{comment}}</li>
+       </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
+            <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                {{#each ../validation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
+        {{/each}}
+        {{else}}
+        <p>Not pending validations for this worker</p>
 
-    {{/each}}
-</ul>
+    {{/if}}
+    </div>
 </div>
-
 
 <div>
-<ul>
-    <h2>Denied</h2>
-    <h3>Worklogs in</h3>
-        <li>{{formatedDatesDeniedIn}}</li>
+    <div>
+    <h2 style="color: red">Denied</h2>
+    <h3 style="color: blue">Worklogs in</h3>
+    <ul>
+    {{#if datesDeniedIn}}
+        <li>{{datesDeniedIn}} - {{hoursDeniedIn}}</li>
     {{#each deniedIn}}
-        <h4>Comment: {{comment}}</h4>
+        <li>Comment: {{comment}}</li>
+        </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
-
-    {{/each}}
-
-    <h3>Worklogs out</h3>
-        <li>{{formatedDatesDeniedOut}}</li>
+             <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                {{#each ../validation}}
+                 <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
+        {{/each}}
+        {{else}}
+        <p>Not pending validations for this worker</p>>
+        {{/if}}
+</div>
+<div>
+    <h3 style="color: blue">Worklogs out</h3>
+    <ul>
+    {{#if datesDeniedOut}}
+        <li>{{datesDeniedOut}} - {{hoursDeniedOut}}</li>
       {{#each deniedOut}}
-        <h4>Comment: {{comment}}</h4>
+        <li>Comment: {{comment}}</li>
+        </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
-         <label for="validation">Validation: </label>
-        <select name="validation" multiple="false" >
-            {{#each ../validation}}
-             <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
-        <button>Submit</button>
-    </form>
+             <label for="validation">Validation: </label>
+            <select name="validation" multiple="false" >
+                {{#each ../validation}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+            <button>Submit</button>
+        </form>
 
-    {{/each}}
+        {{/each}}
+    {{else}}
+       <p>Not pending validations for this worker</p>
+{{/if}}
 </ul>
 </div>
-
-
-
-</div>
-
-

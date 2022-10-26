@@ -16,11 +16,17 @@ router.get("/", async (req, res, next) => {
         adminRole = true;
     } 
     
-
-//! EDIT DATE FORMAT 
-
+    
     try { 
         const allEvents = await Event.find()
+        
+        //! EDIT DATE FORMAT 
+        //const {eventId} = req.params
+        /* const eventDate = await Event.find({ event: eventId }).select("date")
+
+        console.log("date of event :", eventDate)
+        const formatedEventDate = eventDate[0].toDateString();*/
+        
         res.render("events/events.hbs", {
             allEvents, adminRole
         })
