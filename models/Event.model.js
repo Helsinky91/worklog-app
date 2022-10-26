@@ -13,9 +13,7 @@ const eventSchema = new Schema(
       default: "https://cdn2.iconfinder.com/data/icons/festivalization-and-exhibition-filled-outline/64/event-organizer-manager-planner-operation-staff-512.png"
     },  
     place: String,
-    date: {
-      type: Date
-    },
+    date: String,
     hour: String,
     description: String
   })
