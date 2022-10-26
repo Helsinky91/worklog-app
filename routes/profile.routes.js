@@ -21,13 +21,13 @@ router.get("/", async (req, res, next) => {
         const userDetails = await User.findById(req.session.activeUser._id)
         let isWorking = userDetails.isWorking
         const worklogDatesIn = await Log.find({ user: userDetails }).sort({ "timeIn": -1 }).limit(1)
-        let formatedWorklogDatesIn = worklogDatesIn[0]?.timeIn.toDateString()
-        formatedWorklogDatesIn += " " + worklogDatesIn[0]?.timeIn.toLocaleTimeString()
+        let formatedWorklogDatesIn = worklogDatesIn[0]?.timeIn?.toDateString()
+        formatedWorklogDatesIn += " " + worklogDatesIn[0]?.timeIn?.toLocaleTimeString()
         console.log("Formated dates :", formatedWorklogDatesIn)
                
         const worklogDatesOut = await Log.find({ user: userDetails }).sort({ "timeOut": -1 }).limit(1)
-        let formatedWorklogDatesOut = worklogDatesOut[0]?.timeOut.toDateString();
-        formatedWorklogDatesOut += " " + worklogDatesOut[0]?.timeOut.toLocaleTimeString() 
+        let formatedWorklogDatesOut = worklogDatesOut[0]?.timeOut?.toDateString();
+        formatedWorklogDatesOut += " " + worklogDatesOut[0]?.timeOut?.toLocaleTimeString() 
         
         res.render("profile/profile.hbs", { userDetails, 
             worklogDatesIn,
