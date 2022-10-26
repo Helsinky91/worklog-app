@@ -5,6 +5,7 @@ const User = require("../models/User.model");
 const Event = require("../models/Event.model");
 const eventType = require("../utils/event-types");
 const fileUploader = require('../config/cloudinary.config');
+const { array } = require('../config/cloudinary.config');
 
 
 //GET "/events" => render the page with all events
@@ -44,7 +45,12 @@ router.post("/:eventId/events-favorites", async (req, res, next) => {
         console.log("newEvent", newEvent)
         await User.findByIdAndUpdate(userDetails._id, {"events": [newEvent] } )
         console.log("userevents", userEvents)
-*/
+*/   
+
+// $push => añadir elem a un array a ese id del evento.
+// $pull => sacar del array
+
+//!BONUS - añadir only once usando un derivado de $push
 
         res.redirect("/events")
     } catch (error) {

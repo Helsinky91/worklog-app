@@ -52,59 +52,43 @@ router.get("/all-users", async (req, res, next) => {
 // POST /admin/worklog-validation/:userId
 router.post("/worklog-validation/:userId", async (req, res, next) => {
     const { userId } = req.params
-
+    let data = {}
 try { 
     //pending validation
-    const pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
-    const pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeOut": -1}).limit(3)  
+    data.pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
+    data.pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeOut": -1}).limit(3)  
     
-    let formatedDatesPendingIn = pendingIn[0]?.timeIn?.toDateString()  //format the date to String
-    formatedDatesPendingIn += " " + pendingIn[0]?.timeIn?.toLocaleTimeString()  //format the Hour
-    
-    let formatedDatesPendingOut = pendingOut[0]?.timeOut?.toDateString()
-    formatedDatesPendingOut += " " + pendingOut[0]?.timeOut?.toLocaleTimeString()
+    data.datesPendingIn = data.pendingIn[0]?.timeIn?.toDateString()  //format the date to String
+    data.hoursPendingIn = data.pendingIn[0]?.timeIn?.toLocaleTimeString()  //format the Hour
+        
+    data.datesPendingOut = data.pendingOut[0]?.timeOut?.toDateString()
+    data.hoursPendingOut = data.pendingOut[0]?.timeOut?.toLocaleTimeString()
 
     //denied validation
-    const deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
-    const deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeOut": -1}).limit(3)    
+    data.deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
+    data.deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeOut": -1}).limit(3)    
     
-    let formatedDatesDeniedIn = deniedIn[0]?.timeIn?.toDateString()
-    formatedDatesDeniedIn += " " + deniedIn[0]?.timeIn?.toLocaleTimeString()
+    data.datesDeniedIn = data.deniedIn[0]?.timeIn?.toDateString()
+    data.hoursDeniedIn = data.deniedIn[0]?.timeIn?.toLocaleTimeString()
     
-    let formatedDatesDeniedOut = deniedOut[0]?.timeOut?.toDateString()
-    formatedDatesDeniedOut += " " + deniedOut[0]?.timeOut?.toLocaleTimeString()
+    data.datesDeniedOut = data.deniedOut[0]?.timeOut?.toDateString()
+    data.hoursDeniedOut = data.deniedOut[0]?.timeOut?.toLocaleTimeString()
 
     //approved validation
-    const approvedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
-    const approvedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeOut": -1}).limit(3)
+    data.approvedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
+    data.approvedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeOut": -1}).limit(3)
    
-    let formatedDatesApprovedIn = approvedIn[0]?.timeIn?.toDateString()
-    formatedDatesApprovedIn += " " + approvedIn[0]?.timeIn?.toLocaleTimeString()
+    data.datesApprovedIn = data.approvedIn[0]?.timeIn?.toDateString()
+    data.hoursApprovedIn = data.approvedIn[0]?.timeIn?.toLocaleTimeString()
     
-    let formatedDatesApprovedOut = approvedOut[0]?.timeOut?.toDateString()
-    formatedDatesApprovedOut += " " + approvedOut[0]?.timeOut?.toLocaleTimeString()
+    data.datesApprovedOut = data.approvedOut[0]?.timeOut?.toDateString()
+    data.hoursApprovedOut = data.approvedOut[0]?.timeOut?.toLocaleTimeString()
 
-
-    const userDetails = await Log.find({user: userId}).populate("user")
-
-   //! BONUS -- IF UNDEFINED MOSTRAR CAMPO VACIO, NO "UNDEFINED"
+    data.userDetails = await Log.find({user: userId}).populate("user")
+    data.validation = validation  //!-- funcionará?
   
-    res.render("admin/worklog-validation.hbs", { 
-        pendingIn,
-        pendingOut,
-        formatedDatesPendingIn,
-        formatedDatesPendingOut,
-        deniedIn,
-        deniedOut,
-        formatedDatesDeniedIn,
-        formatedDatesDeniedOut,
-        approvedIn,
-        approvedOut,
-        formatedDatesApprovedIn,
-        formatedDatesApprovedOut,
-        userDetails,
-        validation
-    })
+    res.render("admin/worklog-validation.hbs", data)
+
 } catch (error) {
     next(error)
 }

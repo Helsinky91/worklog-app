@@ -6,6 +6,7 @@
     <div>
     <h3>Worklogs in</h3>
         <ul>
+      
             <li>{{formatedDatesPendingIn}}</li>
             {{#each pendingIn}}
             <li>Comment: {{comment}}</li>
@@ -21,12 +22,13 @@
             <button>Submit</button>
         </form>
         {{/each}}
-    
+       
     </div>
     <div>
     <h3>Worklogs out</h3>
    
        <ul>
+
             <li>{{formatedDatesPendingOut}}</li>
             {{#each pendingOut}}
             <li>Comment: {{comment}}</li>

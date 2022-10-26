@@ -23,7 +23,10 @@
     
         <h3>Department: {{department}}</h3> 
     <button><a href="/profile/edit/{{_id}}">Edit this Worker</a></button>
-    
+    <form action="/admin/worklog-validation/{{_id}}" method="POST">
+            <button>Validate Worklogs</button>
+            </form>
+    </button>
     <hr>
 
 
