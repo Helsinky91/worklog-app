@@ -12,5 +12,12 @@ h1 {
 }
 
 body {
-  background-image: "../public/images/fondo.jpg";
+  background-image: url("../public/images/fondo.jpg"); 
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+}
+*a {
+  text-decoration: none;
 }
