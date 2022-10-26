@@ -9,13 +9,16 @@
     <h3>email: {{email}}</h3>
     <h3>Department: {{department}}</h3>
     <h3>Interested in: {{interest}}</h3> {{!--esto es un dropdown!!--}}
-    <h1>is working= {{isWorking}}</h1>
-
     {{/with}}
     <button type="button" class="btn btn-outline-primary"><a href="/profile/edit/{{userDetails._id}}"> Edit</a></button>
     <br>    
-   <hr>
- {{!-- feeds from Log.model con EACH ... --}}
+   <hr class="border border-primary border-3 opacity-75">
+
+    {{#if isWorking}}
+    <h1>Your work state <span style="color: rgb(70, 159, 189)">Active</span></h1>
+    {{else}}
+    <h1>Your work state <span style="color: red">Inactive</span></h1>
+    {{/if}}
     <h2>WORKLOG time in: {{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h2>
 
 {{#each worklogDatesIn}}   
@@ -25,14 +28,13 @@
 {{#each worklogDatesOut}}
     <h2>WORKLOG comment: {{comment}}</h2>
 {{/each}} 
-
-<hr>
     <br>
      {{#if isWorking}}
     <form action="/profile/log-out" method="POST">
 
         <label for="comment">Write a comment:</label>
         <input type="text" name="comment" required="true">
+
         <br>
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
@@ -54,6 +56,7 @@
 
     </form>
     {{/if}}
+<hr class="border border-primary border-3 opacity-75">
 
     <h2>My next Events</h2>
     {{!-- carrusel eventos --}}
@@ -67,5 +70,8 @@
     <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form>
     {{/each}}
     <a href="/events">See events</a>
+    <div class="spinner-grow text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
 
 </div>
