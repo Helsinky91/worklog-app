@@ -12,7 +12,7 @@
     <h1>is working= {{isWorking}}</h1>
 
     {{/with}}
-    <button> <a href="/profile/edit/{{userDetails._id}}">Edit</a> </button>
+    <button type="button" class="btn btn-outline-primary"><a href="/profile/edit/{{userDetails._id}}"> Edit</a></button>
     <br>    
    <hr>
  {{!-- feeds from Log.model con EACH ... --}}
@@ -58,7 +58,7 @@
     <h2>My next Events</h2>
     {{!-- carrusel eventos --}}
     {{#each userEventsList}}
-    {{!-- añadir foto --}}
+    
     <img src="{{photo}}" alt="event photo" width="150px">
     <li>Name: {{name}}</li>
     <li>Place: {{place}}</li>

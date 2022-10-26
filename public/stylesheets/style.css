@@ -3,9 +3,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
-}
+ a {
+  text-decoration: none;
+  color:rgb(2, 0, 3)
+} 
 
 h1 {
   color: 15px;
@@ -14,3 +15,25 @@ h1 {
 body {
   background-image: "../public/images/fondo.jpg";
 }
+
+/* .a-link {
+  text-decoration: nome
+} */
+button {
+ text-decoration: none; 
+}
+
+
+
+.nav-link {
+  color: rgb(0, 204, 204)
+  } 
+
+  body {
+    background-image: url("../images/fondo.jpg"); 
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+  }
+  

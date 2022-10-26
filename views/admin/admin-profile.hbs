@@ -2,38 +2,36 @@
     <h2>My Teamlead profile</h2>
         {{#with adminDetails}} 
          <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
-            <h3>Name: {{firstName}}</h3>
-            <h3>Email: {{email}}</h3>
+            <h4>Welcome back, {{firstName}}!</h4>
    
 
-     <button><a href="/profile/edit/{{_id}}">Edit your profile</a></button>
+     <button><a class="a-link" href="/profile/edit/{{_id}}">Edit your profile</a></button>
        {{/with}} 
- <hr>
+    <hr>
  
-  <div><h2>Next events</h2>
+  <div>
+    <h2>Next events</h2>
 {{!-- carrusel eventos --}}
-<a href="/events">See events</a></div>
-<hr>
-  <div>  <h2 style="color:blueviolet">trabajadores trabajando trabajos</h2>
-  <button> <a href="/admin/all-users">List of all workers</a>
-</button>
-  {{#each allUsers}}
-     {{#if isWorking}}
-        <h3>Name: {{firstName}} {{lastName}}</h3> 
-    
-        <h3>Department: {{department}}</h3> 
-    <button><a href="/profile/edit/{{_id}}">Edit this Worker</a></button>
-    <form action="/admin/worklog-validation/{{_id}}" method="POST">
-            <button>Validate Worklogs</button>
-            </form>
-    </button>
+      <a href="/events">See events</a></div>
     <hr>
 
-
-
-        {{/if}}
+      <div>  
+        <h2>Active workers</h2>
+        <button> <a href="/admin/all-users">List of all workers</a> </button>
     
-{{/each}}
-</div>
+            {{#each allUsers}}
+              {{#if isWorking}}
+          <h5>{{firstName}} {{lastName}}</h5> 
+          <h5>Department: {{department}}</h5> 
+
+        <button><a href="/profile/edit/{{_id}}">Edit this Worker's info</a></button>
+        <form action="/admin/worklog-validation/{{_id}}" method="POST">
+           <button>Validate Worklogs</button>
+        </form>
+     <hr>
+                  {{/if}}
+    
+            {{/each}}
+    </div>
 
 </div>
