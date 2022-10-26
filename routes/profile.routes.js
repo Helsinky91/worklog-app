@@ -54,7 +54,6 @@ router.post("/log-in", async (req, res, next) => {
         const userDetails = await User.findById(req.session.activeUser._id)
         await User.findByIdAndUpdate(userDetails, { isWorking: true })
         //  const userDetails = User.findById(req.session.activeUser._id)
-        //console.log("timeIn", timeIn)
         Log.create({
             timeIn: timeIn,
             comment: comment,
@@ -105,7 +104,6 @@ router.get("/edit/:userId", async (req, res, next) => {
         adminRole = true;
     }
 
-    console.log("es admin?", adminRole)
     try {
         const userDetails = await User.findById(userId)
 
@@ -119,8 +117,6 @@ router.get("/edit/:userId", async (req, res, next) => {
 router.post("/edit/:userId", fileUploader.single('profilePicImage'), async (req, res, next) => {
     const { userId } = req.params
     const { firstName, lastName, photo, email, role, department, interest } = req.body
-
-
 
     const userDetails = {
         firstName,
