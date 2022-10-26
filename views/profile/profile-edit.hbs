@@ -34,7 +34,7 @@
  {{#if ../adminRole}}
         
 <label for="role">Role</label>
-    <select name="{{role}}" multiple="false" >
+    <select name="role" multiple="false" >
     {{#each ../role}}
     {{!-- marcar valor que tenia antes selected="true" --}}
         <option value="{{this}}">{{this}}</option>
@@ -44,7 +44,7 @@
 <br>
 
 <label for="department">Department</label>
-     <select name="{{department}}" multiple="false" >
+     <select name="department" multiple="false" >
     {{#each ../department}}
     {{!-- marcar valor que tenia antes selected="true" --}}
         <option value="{{this}}">{{this}}</option>
