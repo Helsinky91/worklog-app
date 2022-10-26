@@ -27,13 +27,17 @@ router.get("/", async (req, res, next) => {
                
         const worklogDatesOut = await Log.find({ user: userDetails }).sort({ "timeOut": -1 }).limit(1)
         let formatedWorklogDatesOut = worklogDatesOut[0]?.timeOut?.toDateString();
-        formatedWorklogDatesOut += " " + worklogDatesOut[0]?.timeOut?.toLocaleTimeString() 
+        formatedWorklogDatesOut += " " + worklogDatesOut[0]?.timeOut?.toLocaleTimeString()
+        const userFavEvents = await User.findById(req.session.activeUser._id).populate("events")
+        const  userEventsList = userFavEvents.events
+        console.log("userEventsList", userEventsList)
         
         res.render("profile/profile.hbs", { userDetails, 
             worklogDatesIn,
             formatedWorklogDatesIn, 
             worklogDatesOut,
             formatedWorklogDatesOut, 
+            userEventsList,
             isWorking })
 
     } catch (err) {

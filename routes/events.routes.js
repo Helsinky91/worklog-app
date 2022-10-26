@@ -42,7 +42,7 @@ router.post("/:eventId/events-favorites", async (req, res, next) => {
         const  { eventId }  = req.params;
         console.log ("eventId", eventId)
     try { 
-        let userEvents = await User.findById(req.session.activeUser._id).populate("events")
+        let userEvents = await User.findByIdAndUpdate(req.session.activeUser._id, {$push:{events:eventId}})
         console.log("userEvents", userEvents)
       /*  const userDetails = await User.findById(req.session.activeUser._id)
         console.log("userDetails", userDetails)
@@ -63,6 +63,18 @@ router.post("/:eventId/events-favorites", async (req, res, next) => {
         next(error)
     }
 })
+
+//POST "/events/:event/delete-fav" 0> recieve the data from the form and delete event
+router.post("/:eventId/delete-fav", async (req, res, next) => {
+        const { eventId } = req.params
+
+    try { await User.findByIdAndUpdate(req.session.activeUser._id, {$pull:{events:eventId}})
+        res.redirect("/profile")
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 
 //GET "/events/create" => render a page whit a form to create events

@@ -63,8 +63,18 @@
     </form>
     {{/if}}
 
-    <h2>Next events</h2>
+    <h2>My next Events</h2>
     {{!-- carrusel eventos --}}
+    {{#each userEventsList}}
+    {{!-- añadir foto --}}
+    <img src="{{photo}}" alt="event photo" width="150px">
+    <li>Name: {{name}}</li>
+    <li>Event type: {{eventType}}</li>
+    <li>Place: {{place}}</li>
+    <li>Date {{date}} - {{hour}}</li>
+    <li>Description: {{description}}</li>
+    <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form>
+    {{/each}}
     <a href="/events">See events</a>
 
 </div>
