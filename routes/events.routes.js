@@ -6,6 +6,7 @@ const Event = require("../models/Event.model");
 const eventType = require("../utils/event-types");
 const fileUploader = require("../config/cloudinary.config");
 const { array } = require("../config/cloudinary.config");
+const { findById } = require("../models/User.model");
 
 //GET "/events" => render the page with all events
 router.get("/", async (req, res, next) => {
@@ -16,6 +17,7 @@ router.get("/", async (req, res, next) => {
   }
 
   try {
+
     const allEvents = await Event.find();
 
     //! EDIT DATE FORMAT

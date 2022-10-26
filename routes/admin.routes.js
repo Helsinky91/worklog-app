@@ -86,8 +86,8 @@ try {
     data.datesApprovedOut = data.approvedOut[0]?.timeOut?.toDateString()
     data.hoursApprovedOut = data.approvedOut[0]?.timeOut?.toLocaleTimeString()
 
-    data.userDetails = await Log.find({user: userId}).populate("user")
-    console.log("userDetails: ", data.userDetails)
+    data.userInfo = await Log.find({user: userId}).populate("user")
+    data.userDetails = data.userInfo[0]?.user
     data.validation = validation  //!-- funcionará?
   
     res.render("admin/worklog-validation.hbs", data)

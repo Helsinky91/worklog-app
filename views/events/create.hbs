@@ -9,16 +9,9 @@
     <input type="text" name="name" required="true" autocomplete="false">
     <br />
     <label for="eventType">Type of event: </label>
-{{!--     {{#each tipeOfEvent}}
-    <select name="{{eventType}}" multiple="false">
-        <option value="{{eventType}}">{{eventType}}</option> --}}
-    <select name="eventType" multiple="false">   
-        <option value="TIC formation">TIC formation</option>
-        <option value="Teamlead">Teamlead</option>
-        <option value="Lenguages formation">Lenguages formation </option>
-        <option value="Customer service">Customer service</option>
-        <option value="Recreational activities">Recreational activities</option>
-    </select> 
+     {{#each ../eventType}}
+         <option value="{{this}}">{{this}}</option>
+      {{/each}}
     <br />
 
     <label for="description">Description: </label>

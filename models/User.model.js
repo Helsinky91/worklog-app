@@ -22,10 +22,6 @@ const userSchema = new Schema(
         type: String, 
         enum: department,
     },
-    interest: {
-      type: String,
-    enum: eventType
-    },
     events: [{
       //feeds from Event.model to select the eventType
         type: Schema.Types.ObjectId, 
