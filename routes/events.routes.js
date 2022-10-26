@@ -17,11 +17,7 @@ router.get("/", async (req, res, next) => {
   }
 
   try {
-
     const allEvents = await Event.find();
-
-    //! EDIT DATE FORMAT
-
     res.render("events/events.hbs", {
       allEvents,
       adminRole,
@@ -36,10 +32,8 @@ router.post("/:eventId/events-favorites", async (req, res, next) => {
   const { eventId } = req.params;
   try {
     let userEvents = await User.findByIdAndUpdate(req.session.activeUser._id, {
-      $push: { events: eventId },
+      $addToSet: { events: eventId }, //to add favourites to our list and avoid repetitions.
     });
-
-    //!BONUS - añadir only once usando un derivado de $push
 
     res.redirect("/events");
   } catch (error) {
@@ -47,7 +41,7 @@ router.post("/:eventId/events-favorites", async (req, res, next) => {
   }
 });
 
-//POST "/events/:event/delete-fav" 0> recieve the data from the form and delete event
+//POST "/events/:event/delete-fav" => recieve the data from the form and delete event
 router.post("/:eventId/delete-fav", async (req, res, next) => {
   const { eventId } = req.params;
 
@@ -66,6 +60,7 @@ router.get("/create", isAdmin, async (req, res, next) => {
   try {
     // const tipeOfEvent = await Event.find() //.select("eventType")
     const adminDetails = await User.findById(req.session.activeUser._id);
+    console.log("eventType :", eventType)
     res.render("events/create.hbs", { adminDetails, eventType });
   } catch (error) {
     next(error);

@@ -8,13 +8,12 @@
     <label for="name">Name of the event: </label>
     <input type="text" name="name" required="true" autocomplete="false">
     <br />
-    <label for="eventType">Type of event: </label>
-    {{!-- from bootstrap 
-     <select class="form-select"> --}}
-     {{#each ../eventType}}
+    <label for="eventType" >Type of event: </label>
+     <select class="form-select"> 
+     {{#each eventType}}
          <option value="{{this}}">{{this}}</option>
       {{/each}}
-      {{!-- </select> --}}
+      </select>
     <br />
 
     <label for="description">Description: </label>
