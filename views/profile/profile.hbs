@@ -16,19 +16,17 @@
     <br>    
    <hr>
  {{!-- feeds from Log.model con EACH ... --}}
-    <h2>WORKLOG time in:{{formatedWorklogDatesIn}}</h2>
+    <h2>WORKLOG time in: {{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h2>
 
 {{#each worklogDatesIn}}   
-    <h2>WORKLOG comment:{{comment}}</h2>
+    <h2>WORKLOG comment: {{comment}}</h2>
 {{/each}}
-    <h2>WORKLOG time out:{{formatedWorklogDatesOut}}</h2>
+    <h2>WORKLOG time out: {{formatedWorklogDatesOut}} {{formatedWorklogHoursOut}}</h2>
 {{#each worklogDatesOut}}
-    <h2>WORKLOG comment:{{comment}}</h2>
+    <h2>WORKLOG comment: {{comment}}</h2>
 {{/each}} 
 
 <hr>
-
-
     <br>
      {{#if isWorking}}
     <form action="/profile/log-out" method="POST">
@@ -36,9 +34,6 @@
         <label for="comment">Write a comment:</label>
         <input type="text" name="comment" required="true">
         <br>
-       {{!-- <label for="timeIn">TimeIn</label>
-        <input type="text" name="timeIn">
-        <br>--}} 
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
          <label for="timeOut">
@@ -51,9 +46,6 @@
         <label for="comment">Write a comment:</label>
         <input type="text" name="comment" required="true">
         <br>
-       {{!-- <label for="timeIn">TimeIn</label>
-        <input type="text" name="timeIn">
-        <br>--}} 
         <label for="user"></label>
         <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
         <label for="timeIn">
