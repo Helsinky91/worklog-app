@@ -248,7 +248,6 @@ FER GRID PER DISPLAY EVENTS???
 anomenar al */
 
 
-.center-display {
-  display: flex;
-  align-items: center
+.justify {
+  text-align: center;
 }

@@ -1,7 +1,17 @@
 <div>
-  <h1 class="section-title">List of all workers</h1>
+  <div class="one-line-display">
 
+  <h1 class="section-title">List of all workers</h1>
+  <form>
+    <input type="button" class="back-btn left-space btn-size" value="Go back!" onclick="history.back()" />
+  </form>
+  </div>
   <h3 class="resalted">Departments</h3>
+  <br>
+<div class="container"></div>
+<div class="row">
+   <div class="col">
+  
   <ul>
     <h4>Cook</h4>
     {{#each cookDepartment}}
@@ -19,8 +29,12 @@
       <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
           Worklogs</a></button>
     {{/each}}
+<br>
 
   </ul>
+  </div>
+  <div class="col">
+  
   <ul>
 
     <h4>Receptionist</h4>
@@ -40,7 +54,13 @@
       <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
           Worklogs</a></button>
     {{/each}}
+  
   </ul>
+  
+  </div>
+  <div class="w-100"></div>
+  <div class="col">
+    <hr>
   <ul>
 
     <h4>Restaurant</h4>
@@ -59,7 +79,11 @@
       <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
           Worklogs</a></button>
     {{/each}}
+    <br>
   </ul>
+  </div>
+  <div class="col">
+  <hr>
   <ul>
 
     <h4>Reservations</h4>
@@ -78,9 +102,10 @@
       <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
           Worklogs</a></button>
     {{/each}}
-  </ul>
-  <form>
-    <input type="button" value="Go back!" onclick="history.back()" />
-  </form>
 
+  </ul>
+  
+  </div>
+  
+</div>
 </div>

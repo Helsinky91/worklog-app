@@ -1,42 +1,48 @@
 <div>
     <div id="all-events-view">
       <h1 class="section-title">All events</h1>
-  {{#if adminRole}}
+      {{#if adminRole}}
     <button class="btn"><a href="/events/create">Create new Event</a> </button>
-    {{/if}}
+     {{/if}}
 <br>
 </div>
 <hr>
-<div  id="events-view">
-{{#each allEvents}}
-<div>
-<img src="{{photo}}" alt="{{name}}" width="150px">
-<p><span class="resalted">Name: </span>{{name}}</p>
-<p><span class="resalted">Type: </span>{{eventType}}</p>
-<p><span class="resalted">Description: </span>{{description}}</p>
-<p><span class="resalted">Place: </span>{{place}}</p>
-<p><span class="resalted">Date: </span>{{date}}</p>
-<p><span class="resalted">Hour: </span>{{hour}}</p>
+<div class="container">
+{{!-- <div  id="events-view"> --}}
+  <div class="row align-items-end justify">
+
+        {{#each allEvents}}
+    <div class="col-sm ">
+
+        <img src="{{photo}}" alt="{{name}}" width="150px">
+        <p><span class="resalted">Name: </span>{{name}}</p>
+        <p><span class="resalted">Type: </span>{{eventType}}</p>
+        <p><span class="resalted">Description: </span>{{description}}</p>
+        <p><span class="resalted">Place: </span>{{place}}</p>
+        <p><span class="resalted">Date: </span>{{date}} {{hour}}</p>
+        
  
-  {{#if ../adminRole}} 
+           {{#if ../adminRole}} 
   
-    <button class="btn"><a href="/events/{{this._id}}/edit">Edit this event</a></button>
-    <br>
-    <br>
-    <form action="/events/{{this._id}}/delete" method="POST">
-        <button class="btn-delete btn-size">Delete this event</button>
-    </form>
+        <button class="btn"><a href="/events/{{this._id}}/edit">Edit this event</a></button>
+        <br>
+        <br>
+        <form action="/events/{{this._id}}/delete" method="POST">
+           <button class="btn-delete btn-size">Delete this event</button>
+        </form>
   
-  {{else}}
-    <br>
-    <form action="/events/{{_id}}/events-favorites" method="POST">
-      <button class="btn">Add to favorites</button>
-    </form>
-    {{!-- <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form> --}}
+            {{else}}
+        <br>
+        <form action="/events/{{_id}}/events-favorites" method="POST">
+          <button class="btn">Add to favorites</button>
+        </form>
+     {{!-- <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form> --}}
 
-  {{/if}}
-</div>
-{{/each}}
-</div>
+            {{/if}}
+      <hr>
+      </div>
+        {{/each}}
+    </div>
 
+  </div>
 </div>
