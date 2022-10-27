@@ -1,18 +1,6 @@
 <div>
     <h1 class="section-title">Create your account</h1>
-    
-   {{!-- <form action="/auth/signup" method="POST">
-        
-          <label for="firstName">Name:</label>
-        <input type="text" name="firstName">
-            <br>
-        <label for="email">Email:</label>
-        <input type="email" name="email">
-            <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-            <br> --}}
-
+   
    <form action="/auth/signup" method="POST">
 
         <div >
@@ -35,23 +23,13 @@
             <label for="department" class="form-label"></label>
             <select class="form-select form-select-departm" name="department" >
                 <option selected disabled value="">Select your department</option>
-                <option value="Rook">Cook</option>
+                <option value="Cook">Cook</option>
                 <option value="Receptionist">Receptionist</option>
                 <option value="Restaurant">Restaurant</option>
                 <option value="Reservations">Reservations</option>
              </select>                
             </select>
-      </div>
-
-
-        {{!-- old 
-  <label for="department">Department: </label>
-        <select class="form-select" name="department" >
-            {{#each department}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>--}}
-        
+      </div>      
        <div><p style="color: red"><strong>{{errorMessage}}</strong></p> </div>
         
         <button class="btn">Sign up</button>
