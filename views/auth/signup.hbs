@@ -1,5 +1,5 @@
 <div>
-    <h3>Sign up form</h3>
+    <h1 class="section-title">Create your account</h1>
     
     <form action="/auth/signup" method="POST">
         
@@ -15,7 +15,7 @@
         <input type="password" name="password">
         <br>
         <label for="department">Department: </label>
-        <select name="department" multiple="false">
+        <select class="form-select" name="department" multiple="false">
             <option value="cook">Cook</option>
             <option value="receptionist">Receptionist</option>
             <option value="restaurant">Restaurant</option>
@@ -24,7 +24,7 @@
         
        <p style="color: red"><strong>{{errorMessage}}</strong></p> 
         
-        <button>Sign up</button>
+        <button class="btn">Sign up</button>
     </form>
 
 </div>
