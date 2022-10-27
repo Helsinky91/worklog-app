@@ -10,7 +10,7 @@ const eventSchema = new Schema(
     },
     photo: { 
       type: String,
-      default: "https://cdn2.iconfinder.com/data/icons/festivalization-and-exhibition-filled-outline/64/event-organizer-manager-planner-operation-staff-512.png"
+      default: "https://sustainablecortland00.files.wordpress.com/2013/07/event-icon.png"
     },  
     place: String,
     date: String,

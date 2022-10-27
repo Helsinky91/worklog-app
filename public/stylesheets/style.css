@@ -15,7 +15,7 @@ body {
   background-position:center;
   background-repeat:no-repeat;
   background-attachment: fixed;
-  /*margin: 10px, 5px ;*/ 
+
 }
 
 h1 {
@@ -97,7 +97,7 @@ background-image: url("/images/skycraper.jpg");
 background-size:cover;
 background-repeat:no-repeat;
 height: 70vh;
-width: 95vw;
+width: 93vw;
 opacity: 20;
 }
 
@@ -173,10 +173,11 @@ opacity: 20;
 
  }
 
+ #all-events-view {
+  text-align: center;
+ }
 
 
- /*FER GRID PER DISPLAY EVENTS???
-anomenar al 
 .input-group{
   width: 350px;
 }
@@ -201,8 +202,8 @@ anomenar al
   width: 350px;
 }
 
+/*
 FER GRID PER DISPLAY EVENTS???
 anomenar al */
-
 
 

@@ -14,16 +14,16 @@
    <body>
 
  <nav>
-      <nav class="navbar sticky-top bg-light">
+      <nav class="navbar sticky-top bg-light p-2 bg-opacity-75">
                   
         <div class="container-fluid">
       
          <ul class="nav nav-tabs">
          <li class="nav-item">
-            <a class="navbar-brand nav-link" href="/">
-               <img src="https://cdn1.iconfinder.com/data/icons/business-bw-vol-2/100/business-10-40-512.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top"> Home</a>
+            <a class="nav-link" href="/">
+               <img src="https://cdn1.iconfinder.com/data/icons/business-bw-vol-2/100/business-10-40-512.png" alt="Logo" width="24" height="24" class="d-inline-block align-text-top"> Home</a>
          
-      {{#if isUserActive}}
+               {{#if isUserActive}}
             <li class="nav-item">
                <a class="nav-link" href="/profile">My Profile</a>
             </li>
@@ -33,45 +33,20 @@
             <li class="nav-item">
                <a class="nav-link" href="/auth/logout">Log out</a>
             </li>    
-      {{else}}
+                {{else}}
             <li class="nav-item">
                <a class="nav-link" href="/auth/signup">Sign up</a>
             </li> 
             <li class="nav-item">
                <a class="nav-link" href="/auth/login">Log in</a>
             </li>  
-      </ul>
-      {{/if}}
-      </div>
-
+         </ul>
+                {{/if}}
          </div>
 
-</nav>
+      </div>
 
-{{!-- </nav>  
-<hr>
-<nav class="navbar navbar-expand-lg bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/auth/signup">Sign up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/auth/login">Log in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Link</a>
-        </li>
-        
-    </div>
-  </div>
-</nav> --}}
-            
+   </nav>
 
    <hr class="border border-primary border-3 opacity-75">
       {{{body}}}
