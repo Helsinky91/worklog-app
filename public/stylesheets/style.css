@@ -39,15 +39,18 @@ h1 {
 .btn-delete {
   border: solid 1px rgba(228, 15, 15, 0.562);
   background-color: rgb(228, 15, 15, 0.562);
+  border-radius: 5px;
 }
 
 .btn-delete > a {
   text-decoration: none;
-  color:black
+  color:black;
+ 
 }
 
 .btn-delete:hover {
   background-color: rgba(241, 28, 28, 0.877);
+  border-radius: 5px;
 }
 
 .nav-link {
@@ -162,6 +165,18 @@ opacity: 20;
   margin: 20px;
  }
 
+
+ .admin-profile-view {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+
+ }
+
+
+
+ /*FER GRID PER DISPLAY EVENTS???
+anomenar al 
 .input-group{
   width: 350px;
 }
@@ -186,7 +201,7 @@ opacity: 20;
   width: 350px;
 }
 
-/*FER GRID PER DISPLAY EVENTS???
+FER GRID PER DISPLAY EVENTS???
 anomenar al */
 
 
