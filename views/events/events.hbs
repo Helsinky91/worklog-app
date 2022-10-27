@@ -1,11 +1,15 @@
 <div>
-<h1 class="section-title">All events</h1>
+    <div><h1 class="section-title">All events</h1>
   {{#if adminRole}}
     <button class="btn"><a href="/events/create">Create new Event</a> </button>
     {{/if}}
+    
 <br>
+</div>
 <hr>
+<div  id="events-view">
 {{#each allEvents}}
+<div>
 <img src="{{photo}}" alt="{{name}}" width="150px">
 <p><span class="resalted">Name: </span>{{name}}</p>
 <p><span class="resalted">Type: </span>{{eventType}}</p>
@@ -28,8 +32,8 @@
     {{!-- <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form> --}}
 
   {{/if}}
-
+</div>
 {{/each}}
-
+</div>
 
 </div>

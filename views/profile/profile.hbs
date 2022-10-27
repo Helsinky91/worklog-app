@@ -1,6 +1,6 @@
 {{!--reder user and admin profile --}}
 
-<div id="profile-view">
+<div>
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
     <div id="profile-view-top">
         <div id="profile-view-top-div">
@@ -68,20 +68,21 @@
       <h2>My next Events</h2>
       <button class="btn"><a href="/events">See all events</a></button>
 </div>
-<div class="profile-events-view" >
+</div>
+<div id="profile-events-view-div">
+   
        {{#each userEventsList}}
-    <hr>
-    <div>
+     <div>
+        <hr>
         <img src="{{photo}}" alt="event photo" width="150px">
-        <li>Name: {{name}}</li>
-        <li>Place: {{place}}</li>
-        <li>Date {{date}} - {{hour}}</li>
-        <li>Description: {{description}}</li>
+        <li><span class="resalted">Name: </span>{{name}}</li>
+        <li><span class="resalted">Place:</span> {{place}}</li>
+        <li><span class="resalted">Date: </span>{{date}} - {{hour}}</li>
+        <li><span class="resalted">Description: </span>{{description}}</li>
         <form action="/events/{{_id}}/delete-fav" method="POST"><button class="btn">I'm not interested</button></form>
     </div>
         {{/each}}
+
         </div>
-        
-    </div>
 
 </div>

@@ -145,14 +145,33 @@ opacity: 20;
   text-align: center;
 }
 
-.profile-events-view {
+
+#profile-events-view-div{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   padding: 10px;
-  gap: 20px;
   flex-wrap: wrap;
   text-align: left;
+}
 
+#events-view {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 20px;
+ }
+
+.input-group{
+  width: 350px;
+}
+
+.input-group-text {
+  background-color: rgba(8, 157, 216, 0.137);
+}
+
+.form-select-departm {
+  width: 350px;
 }
 
 .input-group{
