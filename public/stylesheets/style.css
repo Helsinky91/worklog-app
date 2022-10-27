@@ -51,7 +51,7 @@ h1 {
 }
 
 .nav-link {
-  color: rgb(0, 204, 204)
+  color: rgba(8, 157, 216)
   }
 
 .comment {
@@ -60,6 +60,7 @@ h1 {
 
 .section-title {
   font-family: 'Acme', sans-serif; 
+ 
 }
 
 .resalted {
@@ -69,3 +70,6 @@ h1 {
 p {
   font-size: large;
 }
+
+/*FER GRID PER DISPLAY EVENTS???
+anomenar al 

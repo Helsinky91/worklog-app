@@ -1,9 +1,9 @@
 <div>
-    <h2 class="section-title">List of all workers</h2>
+    <h1 class="section-title">List of all workers</h1>
 
-    <h3 class="section-title">Departments</h3>
+    <h3>Departments</h3>
     <ul>
-    <h3 class="section-title">Cook</h3>
+    <h4>Cook</h4>
         {{#each cookDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
@@ -17,7 +17,7 @@
 </ul> 
 <ul>
 
-    <h3 class="section-title">Receptionist</h3>
+    <h4>Receptionist</h4>
   {{#each receptionistDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
@@ -30,7 +30,7 @@
 </ul>
  <ul>
 
-    <h3 class="section-title">Restaurant</h3>
+    <h4>Restaurant</h4>
   {{#each restaurantDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
@@ -43,7 +43,7 @@
 </ul>
  <ul>
 
-    <h3 class="section-title">Reservations</h3>
+    <h4>Reservations</h4>
       {{#each reservationDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>

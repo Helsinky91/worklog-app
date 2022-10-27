@@ -1,7 +1,7 @@
 <div>
-<h2>All events</h2>
+<h1 class="section-title">All events</h1>
   {{#if adminRole}}
-    <button  class="btn"><a href="/events/create">Create new Event</a> </button>
+    <button class="btn"><a href="/events/create">Create new Event</a> </button>
     {{/if}}
 <br>
 {{#each allEvents}}
@@ -12,9 +12,9 @@
 <p><span class="resalted">Place: </span>{{place}}</p>
 <p><span class="resalted">Date: </span>{{date}}</p>
 <p><span class="resalted">Hour: </span>{{hour}}</p>
+ 
   {{#if ../adminRole}} 
     <button class="btn"><a href="/events/{{this._id}}/edit">Edit this event</a></button>
-   
     <form action="/events/{{this._id}}/delete" method="POST">
         <button class="btn-delete">Delete this event</button>
     </form>
