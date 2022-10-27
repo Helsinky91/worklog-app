@@ -1,98 +1,68 @@
-{{!reder user and admin profile }}
-
 <div>
-  {{! si hay algo vació, sale comentario que alerta y los campos estan en rojo}}
   <div id="profile-view-top">
     <div id="profile-view-top-div">
       <h1 class="section-title">My profile</h1>
-
-      {{#with userDetails}}
+          <br>
+          {{#with userDetails}}
         <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px" />
-        <h3><span class="resalted">Worker's name:</span>
-          {{firstName}}
-          {{lastName}}</h3>
-        <h3><span class="resalted">email:</span> {{email}}</h3>
-        <h3><span class="resalted">Department:</span> {{department}}</h3>
-      {{/with}}
-      <button type="button" class="btn btn-outline-primary"><a
-          href="/profile/edit/{{userDetails._id}}"
-        > Edit my profile</a></button>
-      <br />
+        <h4><span class="resalted">Welcome back, {{firstName}}</span></h4>
+        <p><span class="resalted">email:</span> {{email}}</p>
+        <p><span class="resalted">Department:</span> {{department}}</p>
+          {{/with}}
+        <button type="button" class="btn btn-outline-primary">
+          <a href="/profile/edit/{{userDetails._id}}">Edit my profile</a>
+        </button>
     </div>
     <div>
-      {{#if isWorking}}
         <h1 class="section-title">Your work state
+          {{#if isWorking}}
           <span style="color: rgb(70, 159, 189)">Active</span></h1>
-      {{else}}
-        <h1 class="section-title">Your work state
+          {{else}}
           <span style="color: red">Inactive</span></h1>
-      {{/if}}
+          {{/if}}
+          <br>
 
-      <h2><span class="resalted">WORKLOG time in:</span>
-        {{formatedWorklogDatesIn}}
-        {{formatedWorklogHoursIn}}</h2>
+      <h4><span class="resalted">Worklog time in: </span>{{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h4>
 
-      {{#each worklogDatesIn}}
-        <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
-        <br />
-      {{/each}}
-      <h2><span class="resalted">WORKLOG time out: </span>
-      {{formatedWorklogDatesOut}}
-        {{formatedWorklogHoursOut}}</h2>
-        {{#if formatedWorklogDatesOut}}
-      {{#each worklogDatesOut}}
-        <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
-      {{/each}}
+        {{#each worklogDatesIn}}
+        <h4><span class="resalted">Worklog comment: </span>{{comment}}</h4>
+        <br>
+        {{/each}}
+      <h4><span class="resalted">Worklog time out: </span> {{formatedWorklogDatesOut}} {{formatedWorklogHoursOut}}</h4>
 
-      {{/if}}
+        {{#if formatedWorklogDatesOut}} 
+      
+          {{#each worklogDatesOut}}
+        <h4><span class="resalted">Worklog comment: </span>{{comment}}</h4>
+          {{/each}}
+
+          {{/if}}
       <br />
       {{#if isWorking}}
         <form action="/profile/log-out" method="POST">
           <div class="form-floating">
-            <textarea
-              name="comment"
-              class="form-control"
-              placeholder="Leave a comment here"
-              id="floatingTextarea"
-            ></textarea>
-            <label for="comment" name="comment">Write a comment</label>
-          <br>
+            <textarea name="comment" required="true" class="form-control" id="floatingTextarea"></textarea>
+            <label for="comment" name="comment"  >Write a comment</label>
           </div>
+            <br>
           <label for="user"></label>
-          <input
-            type="text"
-            name="user"
-            hidden="true"
-            value="{{userDetails._id}}"
-          />
+          <input type="text" name="user" hidden="true" value="{{userDetails._id}}"/>
           <label for="timeOut">
-            <input type="date" name="timeOut" hidden="true" /></label>
+          <input type="date" name="timeOut" hidden="true" /></label>
           <button class="btn-delete worklog-btn section-title">WORK LOG OUT</button>
         </form>
       {{else}}
         <form action="/profile/log-in" method="POST">
           <div class="form-floating">
-            <textarea
-              name="comment"
-              class="form-control"
-              placeholder="Leave a comment here"
-              id="floatingTextarea"
-            ></textarea>
+            <textarea name="comment" required="true" class="form-control" id="floatingTextarea"></textarea>
             <label for="comment" name="comment">Write a comment</label>
-            <br>
           </div>
-
+            <br>
           <label for="user"></label>
-          <input
-            type="text"
-            name="user"
-            hidden="true"
-            value="{{userDetails._id}}"
-          />
-          <label for="timeIn">
+          <input type="text" name="user" hidden="true" value="{{userDetails._id}}"/>
+            <label for="timeIn">
             <input type="date" name="timeIn" hidden="true" /></label>
           <button class="btn worklog-btn section-title">WORK LOG IN</button>
-
         </form>
       {{/if}}
     </div>
@@ -104,23 +74,25 @@
       <h2>My next Events</h2>
       <button class="btn"><a href="/events">See all events</a></button>
     </div>
-  </div>
-  <div id="profile-events-view-div">
+    <br>
+</div>
 
-    {{#each userEventsList}}
-      <div>
-        <hr />
-        <img src="{{photo}}" alt="event photo" width="150px" />
-        <li><span class="resalted">Name: </span>{{name}}</li>
-        <li><span class="resalted">Place:</span> {{place}}</li>
-        <li><span class="resalted">Date: </span>{{date}} - {{hour}}</li>
-        <li><span class="resalted">Description: </span>{{description}}</li>
-        <form action="/events/{{_id}}/delete-fav" method="POST"><button
-            class="btn"
-          >I'm not interested</button></form>
+<div class="container">
+  <div class="row align-items-end justify">
+      {{#each userEventsList}}
+      <div class="col-sm">
+         
+          <img src="{{photo}}" alt="event photo" width="150px" />
+          <p><span class="resalted">Name: </span>{{name}}</p>
+          <p><span class="resalted">Place:</span> {{place}}</p>
+          <p><span class="resalted">Date: </span>{{date}} - {{hour}}</p>
+          <p><span class="resalted">Description: </span>{{description}}</p>
+          <form action="/events/{{_id}}/delete-fav" method="POST"><button
+              class="btn"
+            >I'm not interested</button></form>
+             <hr>
       </div>
-    {{/each}}
-
-  </div>
-
+      {{/each}}
+</div>
+</div>
 </div>
