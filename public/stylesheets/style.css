@@ -107,6 +107,7 @@ opacity: 20;
   width: 250px;
 }
 
+
 .form-control {
   width: 350px
 }
@@ -118,7 +119,7 @@ opacity: 20;
 }
 
 .back-btn:hover {
- background-color: gray;
+ background-color: rgba(128, 128, 128, 0.767);
 }
 
 .img-events {
@@ -176,3 +177,32 @@ opacity: 20;
 
  /*FER GRID PER DISPLAY EVENTS???
 anomenar al 
+.input-group{
+  width: 350px;
+}
+
+.input-group-text {
+  background-color: rgba(8, 157, 216, 0.137);
+}
+
+.form-select-departm {
+  width: 350px;
+}
+
+.input-group{
+  width: 350px;
+}
+
+.input-group-text {
+  background-color: rgba(8, 157, 216, 0.137);
+}
+
+.form-select-departm {
+  width: 350px;
+}
+
+FER GRID PER DISPLAY EVENTS???
+anomenar al */
+
+
+

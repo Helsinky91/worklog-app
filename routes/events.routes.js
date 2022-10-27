@@ -5,6 +5,7 @@ const User = require("../models/User.model");
 const Event = require("../models/Event.model");
 const eventType = require("../utils/event-types");
 const fileUploader = require("../config/cloudinary.config");
+//! necesitamos estas dos lineas???
 const { array } = require("../config/cloudinary.config");
 const { findById } = require("../models/User.model");
 

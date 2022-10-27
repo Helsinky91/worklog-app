@@ -1,3 +1,3 @@
-const department = ["cook", "receptionist", "restaurant", "reservations"]
+const department = ["Cook", "Receptionist", "Restaurant", "Reservations"]
 
 module.exports= department;
