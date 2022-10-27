@@ -38,7 +38,7 @@ h1 {
 
 .btn-delete {
   border: solid 1px rgba(228, 15, 15, 0.562);
-  background-color: rgb(228, 15, 15, 0.562);
+  background-color: rgba(228, 15, 15, 0.562);
 }
 
 .btn-delete > a {
@@ -69,6 +69,24 @@ h1 {
 
 p {
   font-size: large;
+}
+
+.form-select {
+  width: 250px;
+}
+
+.form-control {
+  width: 350px
+}
+
+.back-btn {
+  border: solid 2px rgba(8, 157, 216, 0.562);
+  border-radius: 15%;
+  
+}
+
+.back-btn:hover {
+ background-color: gray;
 }
 
 /*FER GRID PER DISPLAY EVENTS???
