@@ -23,14 +23,14 @@
     
             {{#each allUsers}}
               {{#if isWorking}}
-          <p>{{firstName}} {{lastName}}</p> 
-          <p>Department: {{department}}</p> 
-
-        <button class="btn"><a href="/profile/edit/{{_id}}">Edit this Worker's info</a></button>
+          <p> <span class="resalted">Name:</span> {{firstName}} {{lastName}}</p> 
+          <p><span class="resalted">Department:</span> {{department}}</p> 
         
-        <form action="/admin/worklog-validation/{{_id}}" method="POST">
+        <a href="/admin/worklog-validation/{{_id}}">
            <button class="btn">Validate Worklogs</button>
-        </form>
+        </a>
+
+        <button class="btn"><a href="/profile/edit/{{_id}}">Edit this Worker's profile</a></button>
      <hr>
             {{/if}}
     

@@ -52,12 +52,19 @@ h1 {
 
 .nav-link {
   color: rgb(0, 204, 204)
-  } 
+  }
 
 .comment {
   font-family: 'Shadows Into Light', cursive;
 }
 
+.resalted {
+  font-weight: bold;
+}
+
+p {
+  font-size: large;
+}
 .section-title {
   font-family: 'Acme', sans-serif; 
 }
