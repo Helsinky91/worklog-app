@@ -9,40 +9,39 @@
 
         {{#with eventDetails}}
 
-        <form action="/events/{{_id}}/edit" method="POST" enctype="multipart/form-data">
-        
-            <label for="photo" class="form-label">Upload an Event Pic:</label>
-            <input class="form-control"  type="file" name="event-image">
-                <br>
-            <label for="name">Name of the event: </label>
-            <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
-                <br>
+    <form action="/events/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+    
+        <label for="photo" class="form-label">Upload an Event Pic:</label>
+        <input class="form-control"  type="file" name="event-image">
+            <br>
+        <label for="name">Name of the event: </label>
+        <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
+            <br>
 
 
-            <label for="eventType">Type of event: </label>
-            <select class="form-select" name="eventType"  >
-                <option selected disabled value="">{{eventType}}</option>
-                    {{#each ../eventType}}
-                <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-            </select>
-            
-            <label for="description">Description: </label>
-            <input type="text" name="description" required="true" autocomplete="false" value="{{description}}">
-                <br>
-            <label for="place">Place of the event: </label>
-            <input type="text" name="place" required="true" autocomplete="false" value="{{place}}">
-                <br>
-            <label for="date">Date of the event: </label>
-            <input type="date" name="date" required="true" autocomplete="false" value="{{date}}">
-                <br>
-            <label for="hour">Hour of the event: </label>
-            <input type="text" name="hour" required="true" autocomplete="false" value="{{hour}}">
-                <br>
-            <button class="btn">Update Event</button>
-            
-        </form>
-        <br>
-        {{/with}}
+        <label for="eventType">Type of event: </label>
+        <select class="form-select" name="eventType"  >
+            <option selected disabled value="">{{eventType}}</option>
+                {{#each ../eventType}}
+            <option value="{{this}}">{{this}}</option>
+                {{/each}}
+        </select>
         
+        <label for="description">Description: </label>
+        <input type="text" name="description" required="true" autocomplete="false" value="{{description}}">
+            <br>
+        <label for="place">Place of the event: </label>
+        <input type="text" name="place" required="true" autocomplete="false" value="{{place}}">
+            <br>
+        <label for="date">Date of the event: </label>
+        <input type="date" name="date" required="true" autocomplete="false" value="{{date}}">
+            <br>
+        <label for="hour">Hour of the event: </label>
+        <input type="text" name="hour" required="true" autocomplete="false" value="{{hour}}">
+            <br>
+        <button class="btn">Update Event</button>
+        
+    </form>
+    <br>
+        {{/with}}       
 </div>
