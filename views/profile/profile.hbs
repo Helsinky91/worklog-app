@@ -1,77 +1,87 @@
 {{!--reder user and admin profile --}}
 
-<div>
+<div id="profile-view">
     {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
-    <h2>My profile</h2>
-    {{#with userDetails}}
-    <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
-    <h3>Worker's name: {{firstName}} {{lastName}}</h3>
-    <h3>email: {{email}}</h3>
-    <h3>Department: {{department}}</h3>
-    <h3>Interested in: {{interest}}</h3> {{!--esto es un dropdown!!--}}
-    {{/with}}
-    <button type="button" class="btn btn-outline-primary"><a href="/profile/edit/{{userDetails._id}}"> Edit</a></button>
-    <br>    
-   <hr class="border border-primary border-3 opacity-75">
+    <div id="profile-view-top">
+        <div id="profile-view-top-div">
+        <h1 class="section-title">My profile</h1>
+        
+        {{#with userDetails}}
+        <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
+        <h3><span class="resalted">Worker's name:</span> {{firstName}} {{lastName}}</h3>
+        <h3><span class="resalted">email:</span> {{email}}</h3>
+        <h3><span class="resalted">Department:</span> {{department}}</h3>
+        {{/with}}
+        <button type="button" class="btn btn-outline-primary"><a href="/profile/edit/{{userDetails._id}}"> Edit my profile</a></button>
+        <br>    
+    </div>
+    <div>
+        {{#if isWorking}}
+        <h1 class="section-title">Your work state <span style="color: rgb(70, 159, 189)">Active</span></h1>
+        {{else}}
+        <h1 class="section-title">Your work state <span style="color: red">Inactive</span></h1>
+        {{/if}}
+        
+        <h2><span class="resalted">WORKLOG time in:</span> {{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h2>
 
-    {{#if isWorking}}
-    <h1>Your work state <span style="color: rgb(70, 159, 189)">Active</span></h1>
-    {{else}}
-    <h1>Your work state <span style="color: red">Inactive</span></h1>
-    {{/if}}
-    <h2>WORKLOG time in: {{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h2>
-
-{{#each worklogDatesIn}}   
-    <h2>WORKLOG comment: {{comment}}</h2>
-{{/each}}
-    <h2>WORKLOG time out: {{formatedWorklogDatesOut}} {{formatedWorklogHoursOut}}</h2>
-{{#each worklogDatesOut}}
-    <h2>WORKLOG comment: {{comment}}</h2>
-{{/each}} 
-    <br>
-     {{#if isWorking}}
-    <form action="/profile/log-out" method="POST">
-
-        <label for="comment">Write a comment:</label>
-        <input type="text" name="comment" required="true">
-
+    {{#each worklogDatesIn}}   
+        <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
         <br>
-        <label for="user"></label>
-        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-         <label for="timeOut">
-        <input type="date" name="timeOut" hidden="true"></label>
-        <button>WORK LOG OUT</button>
-    </form>
-{{else}}
-    <form action="/profile/log-in" method="POST">
-
-        <label for="comment">Write a comment:</label>
-        <input type="text" name="comment" required="true">
-        <br>
-        <label for="user"></label>
-        <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-        <label for="timeIn">
-        <input type="date" name="timeIn" hidden="true"></label>
-        <button>WORK LOG IN</button>
-
-    </form>
-    {{/if}}
-<hr class="border border-primary border-3 opacity-75">
-
-    <h2>My next Events</h2>
-    {{!-- carrusel eventos --}}
-    {{#each userEventsList}}
-    
-    <img src="{{photo}}" alt="event photo" width="150px">
-    <li>Name: {{name}}</li>
-    <li>Place: {{place}}</li>
-    <li>Date {{date}} - {{hour}}</li>
-    <li>Description: {{description}}</li>
-    <form action="/events/{{_id}}/delete-fav" method="POST"><button>I'm not interested</button></form>
     {{/each}}
-    <a href="/events">See events</a>
-    <div class="spinner-grow text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
+        <h2><span class="resalted">WORKLOG time out: </span>{{formatedWorklogDatesOut}} {{formatedWorklogHoursOut}}</h2>
+    {{#each worklogDatesOut}}
+        <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
+    {{/each}} 
+        <br>
+        {{#if isWorking}}
+        <form action="/profile/log-out" method="POST">
+
+            <label for="comment">Write a comment:</label>
+            <input type="text" name="comment" required="true">
+
+            <br>
+            <label for="user"></label>
+            <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
+            <label for="timeOut">
+            <input type="date" name="timeOut" hidden="true"></label>
+            <button class="btn">WORK LOG OUT</button>
+        </form>
+    {{else}}
+        <form action="/profile/log-in" method="POST">
+
+            <label for="comment">Write a comment:</label>
+            <input type="text" name="comment" required="true">
+            <br>
+            <label for="user"></label>
+            <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
+            <label for="timeIn">
+            <input type="date" name="timeIn" hidden="true"></label>
+            <button class="btn">WORK LOG IN</button>
+
+        </form>
+        {{/if}}
+        </div>
+    </div>
+<hr class="border border-primary border-3 opacity-75">
+<div id="profile-events">
+<div class="profile-events-view">
+      <h2>My next Events</h2>
+      <button class="btn"><a href="/events">See all events</a></button>
 </div>
+<div class="profile-events-view" >
+       {{#each userEventsList}}
+    <hr>
+    <div>
+        <img src="{{photo}}" alt="event photo" width="150px">
+        <li>Name: {{name}}</li>
+        <li>Place: {{place}}</li>
+        <li>Date {{date}} - {{hour}}</li>
+        <li>Description: {{description}}</li>
+        <form action="/events/{{_id}}/delete-fav" method="POST"><button class="btn">I'm not interested</button></form>
+    </div>
+        {{/each}}
+        </div>
+        
+    </div>
 
 </div>

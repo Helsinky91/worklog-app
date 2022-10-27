@@ -7,7 +7,7 @@ font-family: 'Shadows Into Light', cursive; => comentaris worklogs
 
 
 body {
-  padding: 50px;
+  padding: 3%;
   font: 14px;
   font-family: 'Exo', sans-serif; 
   background-image: url("../images/fondo.jpg"); 
@@ -59,7 +59,8 @@ h1 {
 }
 
 .section-title {
-  font-family: 'Acme', sans-serif; 
+  font-family: 'Acme', sans-serif;
+  font-size: 50px;
  
 }
 
@@ -116,6 +117,42 @@ opacity: 20;
 
 .back-btn:hover {
  background-color: rgba(128, 128, 128, 0.767);
+}
+
+.img-events {
+  width: 60px;
+  padding: 10px
+}
+
+#profile-view div {
+  align-items: center;
+}
+
+#profile-view-top {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 20px;
+  margin-right: 30px;
+  flex-wrap: wrap;
+
+}
+#profile-view-top-div {
+  padding-right: 30px;
+  text-align: center;
+}
+
+#profile-events{
+  text-align: center;
+}
+
+.profile-events-view {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 20px;
+  flex-wrap: wrap;
+  text-align: left;
+
 }
 
 /*FER GRID PER DISPLAY EVENTS???
