@@ -155,6 +155,20 @@ opacity: 20;
 
 }
 
+.input-group{
+  width: 350px;
+}
+
+.input-group-text {
+  background-color: rgba(8, 157, 216, 0.137);
+}
+
+.form-select-departm {
+  width: 350px;
+}
+
 /*FER GRID PER DISPLAY EVENTS???
 anomenar al */
+
+
 
