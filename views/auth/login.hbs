@@ -1,15 +1,21 @@
 <div>
     <h1 class="section-title">Acces to your account</h1>
     <form action="/auth/login" method="POST">
-    <label for="email">email: </label>
-    <input type="email" name="email">
-    <br />
-    <label for="password">Password:</label>
-    <input type="password" name="password">
 
-    <br />
+    <div class="form-floating mb-3">
+        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="email">Email address</label>
+    </div>
+
+
+    <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="password">Password</label>
+    </div>
+
+
     <p style="color: red">{{errorMessage}}</p>
-        <br />
+
     <button class="btn">Log in</button>
     </form>
 </div>

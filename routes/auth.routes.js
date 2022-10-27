@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
+const department = require("../utils/department")
 
 //GET "/auth/signup" => render a page with a registration form
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup.hbs")
-})
+   })
 
 //POST "/auth/signup" => recive form data and create profile in DB. Redirect to login page
 router.post("/signup", async (req, res, next) => {
@@ -15,7 +16,7 @@ router.post("/signup", async (req, res, next) => {
     // Backend validations
     if ( email === "" || password === "" || department === "" || firstName === "") {
         res.render("auth/signup.hbs", {
-            errorMessage: "Please, fill all the fields"
+            errorMessage: "Please, fill all the fields",
         })
         return;
     }
@@ -23,8 +24,8 @@ router.post("/signup", async (req, res, next) => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z]).{6,}$/gm;
     if (passwordRegex.test(password) === false) {
         res.render("auth/signup.hbs", {
-          errorMessage:
-            "The password must have 6 caracters containing one number",
+            errorMessage:
+            "The password must have 6 caracters containing one number"
         });
         return;
     }
@@ -32,9 +33,8 @@ router.post("/signup", async (req, res, next) => {
         const userEmail = await User.findOne({email})
         if (userEmail !== null) {
             res.render("auth/signup.hbs", {
-                errorMessage: "This email is already registered",
+                errorMessage: "This email is already registered"
               });
-              //! bonus: RECUPERA TU CONTRASEÑA?
               return;
         }
         //Secured password
