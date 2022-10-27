@@ -1,5 +1,5 @@
 <div>
-    <h2>My Teamlead profile</h2>
+    <h1 class="section-title">My Teamlead profile</h1>
         {{#with adminDetails}} 
          <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
             <h4>Welcome back, {{firstName}}!</h4>
@@ -16,19 +16,21 @@
       <button class="btn"><a href="/events">Take me to events</a></button>
       
     <hr>
-
+    <h2>All workers</h2>
+        <p>Cheack a list of all workers to edit the profiles and worklogs</p>
+        <button class="btn"> <a href="/admin/all-users">Take me to the list</a> </button>
+ <hr>
       <div>  
         <h2>Active workers</h2>
-        <button class="btn"> <a href="/admin/all-users">List of all workers</a> </button>
     
             {{#each allUsers}}
               {{#if isWorking}}
           <p> <span class="resalted">Name:</span> {{firstName}} {{lastName}}</p> 
           <p><span class="resalted">Department:</span> {{department}}</p> 
         
-        <a href="/admin/worklog-validation/{{_id}}">
-           <button class="btn">Validate Worklogs</button>
-        </a>
+        <button class="btn">
+           <a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a>
+        </button>
 
         <button class="btn"><a href="/profile/edit/{{_id}}">Edit this Worker's profile</a></button>
      <hr>
