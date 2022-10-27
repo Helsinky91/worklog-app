@@ -1,88 +1,126 @@
-{{!--reder user and admin profile --}}
+{{!reder user and admin profile }}
 
 <div>
-    {{!-- si hay algo vació, sale comentario que alerta y los campos estan en rojo--}}
-    <div id="profile-view-top">
-        <div id="profile-view-top-div">
-        <h1 class="section-title">My profile</h1>
-        
-        {{#with userDetails}}
-        <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px">
-        <h3><span class="resalted">Worker's name:</span> {{firstName}} {{lastName}}</h3>
+  {{! si hay algo vació, sale comentario que alerta y los campos estan en rojo}}
+  <div id="profile-view-top">
+    <div id="profile-view-top-div">
+      <h1 class="section-title">My profile</h1>
+
+      {{#with userDetails}}
+        <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px" />
+        <h3><span class="resalted">Worker's name:</span>
+          {{firstName}}
+          {{lastName}}</h3>
         <h3><span class="resalted">email:</span> {{email}}</h3>
         <h3><span class="resalted">Department:</span> {{department}}</h3>
-        {{/with}}
-        <button type="button" class="btn btn-outline-primary"><a href="/profile/edit/{{userDetails._id}}"> Edit my profile</a></button>
-        <br>    
+      {{/with}}
+      <button type="button" class="btn btn-outline-primary"><a
+          href="/profile/edit/{{userDetails._id}}"
+        > Edit my profile</a></button>
+      <br />
     </div>
     <div>
-        {{#if isWorking}}
-        <h1 class="section-title">Your work state <span style="color: rgb(70, 159, 189)">Active</span></h1>
-        {{else}}
-        <h1 class="section-title">Your work state <span style="color: red">Inactive</span></h1>
-        {{/if}}
-        
-        <h2><span class="resalted">WORKLOG time in:</span> {{formatedWorklogDatesIn}} {{formatedWorklogHoursIn}}</h2>
+      {{#if isWorking}}
+        <h1 class="section-title">Your work state
+          <span style="color: rgb(70, 159, 189)">Active</span></h1>
+      {{else}}
+        <h1 class="section-title">Your work state
+          <span style="color: red">Inactive</span></h1>
+      {{/if}}
 
-    {{#each worklogDatesIn}}   
+      <h2><span class="resalted">WORKLOG time in:</span>
+        {{formatedWorklogDatesIn}}
+        {{formatedWorklogHoursIn}}</h2>
+
+      {{#each worklogDatesIn}}
         <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
-        <br>
-    {{/each}}
-        <h2><span class="resalted">WORKLOG time out: </span>{{formatedWorklogDatesOut}} {{formatedWorklogHoursOut}}</h2>
-    {{#each worklogDatesOut}}
+        <br />
+      {{/each}}
+      <h2><span class="resalted">WORKLOG time out: </span>
+      {{formatedWorklogDatesOut}}
+        {{formatedWorklogHoursOut}}</h2>
+        {{#if formatedWorklogDatesOut}}
+      {{#each worklogDatesOut}}
         <h2><span class="resalted">WORKLOG comment: </span>{{comment}}</h2>
-    {{/each}} 
-        <br>
-        {{#if isWorking}}
+      {{/each}}
+
+      {{/if}}
+      <br />
+      {{#if isWorking}}
         <form action="/profile/log-out" method="POST">
-
-            <label for="comment">Write a comment:</label>
-            <input type="text" name="comment" required="true">
-
-            <br>
-            <label for="user"></label>
-            <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-            <label for="timeOut">
-            <input type="date" name="timeOut" hidden="true"></label>
-            <button class="btn">WORK LOG OUT</button>
+          <div class="form-floating">
+            <textarea
+              name="comment"
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"
+            ></textarea>
+            <label for="comment" name="comment">Write a comment</label>
+          <br>
+          </div>
+          <label for="user"></label>
+          <input
+            type="text"
+            name="user"
+            hidden="true"
+            value="{{userDetails._id}}"
+          />
+          <label for="timeOut">
+            <input type="date" name="timeOut" hidden="true" /></label>
+          <button class="btn-delete worklog-btn section-title">WORK LOG OUT</button>
         </form>
-    {{else}}
+      {{else}}
         <form action="/profile/log-in" method="POST">
-
-            <label for="comment">Write a comment:</label>
-            <input type="text" name="comment" required="true">
+          <div class="form-floating">
+            <textarea
+              name="comment"
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"
+            ></textarea>
+            <label for="comment" name="comment">Write a comment</label>
             <br>
-            <label for="user"></label>
-            <input type="text" name="user" hidden="true" value="{{userDetails._id}}">
-            <label for="timeIn">
-            <input type="date" name="timeIn" hidden="true"></label>
-            <button class="btn">WORK LOG IN</button>
+          </div>
+
+          <label for="user"></label>
+          <input
+            type="text"
+            name="user"
+            hidden="true"
+            value="{{userDetails._id}}"
+          />
+          <label for="timeIn">
+            <input type="date" name="timeIn" hidden="true" /></label>
+          <button class="btn worklog-btn section-title">WORK LOG IN</button>
 
         </form>
-        {{/if}}
-        </div>
+      {{/if}}
     </div>
-<hr class="border border-primary border-3 opacity-75">
-<div id="profile-events">
-<div class="profile-events-view">
+    
+  </div>
+  <hr class="border border-primary border-3 opacity-75" />
+  <div id="profile-events">
+    <div class="profile-events-view">
       <h2>My next Events</h2>
       <button class="btn"><a href="/events">See all events</a></button>
-</div>
-</div>
-<div id="profile-events-view-div">
-   
-       {{#each userEventsList}}
-     <div>
-        <hr>
-        <img src="{{photo}}" alt="event photo" width="150px">
+    </div>
+  </div>
+  <div id="profile-events-view-div">
+
+    {{#each userEventsList}}
+      <div>
+        <hr />
+        <img src="{{photo}}" alt="event photo" width="150px" />
         <li><span class="resalted">Name: </span>{{name}}</li>
         <li><span class="resalted">Place:</span> {{place}}</li>
         <li><span class="resalted">Date: </span>{{date}} - {{hour}}</li>
         <li><span class="resalted">Description: </span>{{description}}</li>
-        <form action="/events/{{_id}}/delete-fav" method="POST"><button class="btn">I'm not interested</button></form>
-    </div>
-        {{/each}}
+        <form action="/events/{{_id}}/delete-fav" method="POST"><button
+            class="btn"
+          >I'm not interested</button></form>
+      </div>
+    {{/each}}
 
-        </div>
+  </div>
 
 </div>

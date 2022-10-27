@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
     adminRole = true;
   }
 
-  try {
+  try { 
     const allEvents = await Event.find();
     res.render("events/events.hbs", {
       allEvents,
