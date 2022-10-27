@@ -1,12 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Exo:wght@300&family=Shadows+Into+Light&display=swap');
+
+/* font-family: 'Acme', sans-serif;    => titols
+font-family: 'Exo', sans-serif;        => text
+font-family: 'Shadows Into Light', cursive; => comentaris worklogs
+*/  
+
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'Exo', sans-serif; 
   background-image: url("../images/fondo.jpg"); 
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   background-attachment: fixed;
- 
+  /*margin: 10px, 5px ;*/ 
 }
 
 h1 {
@@ -45,3 +54,10 @@ h1 {
   color: rgb(0, 204, 204)
   } 
 
+.comment {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.section-title {
+  font-family: 'Acme', sans-serif; 
+}

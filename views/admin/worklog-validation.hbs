@@ -13,7 +13,7 @@
         <ul>
             <li>{{datesPendingIn}} - {{hoursPendingIn}}</li>
             {{#each pendingIn}}
-            <li>Comment: {{comment}}</li>
+            <li class="comment">Comment: {{comment}}</li>
         </ul>
             {{!--partials con el código del form debajo --}}
         <form action="/admin/{{_id}}/edit" method="POST">
@@ -37,7 +37,7 @@
        <ul>
             <li>{{datesPendingOut}} - {{hoursPendingOut}}</li>
             {{#each pendingOut}}
-            <li>Comment: {{comment}}</li>
+            <li class="comment">Comment: {{comment}}</li>
         </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
             <label for="validation">Validation: </label>
@@ -63,7 +63,7 @@
     <ul>
         <li>{{datesApprovedIn}} - {{hoursApprovedIn}}</li>
         {{#each approvedIn}}
-       <li>Comment: {{comment}}</li>
+       <li class="comment">Comment: {{comment}}</li>
        </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
             <label for="validation">Validation: </label>
@@ -84,7 +84,7 @@
     <ul>
         <li>{{datesApprovedOut}} - {{hoursApprovedOut}}</li>
       {{#each approvedOut}}
-       <li>Comment: {{comment}}</li>
+       <li class="comment">Comment: {{comment}}</li>
        </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
             <label for="validation">Validation: </label>
@@ -111,7 +111,7 @@
     {{#if datesDeniedIn}}
         <li>{{datesDeniedIn}} - {{hoursDeniedIn}}</li>
     {{#each deniedIn}}
-        <li>Comment: {{comment}}</li>
+        <li class="comment">Comment: {{comment}}</li>
         </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
              <label for="validation">Validation: </label>
@@ -133,7 +133,7 @@
     {{#if datesDeniedOut}}
         <li>{{datesDeniedOut}} - {{hoursDeniedOut}}</li>
       {{#each deniedOut}}
-        <li>Comment: {{comment}}</li>
+        <li class="comment">Comment: {{comment}}</li>
         </ul>
         <form action="/admin/{{_id}}/edit" method="POST">
              <label for="validation">Validation: </label>

@@ -1,69 +1,57 @@
 <div>
-    <h2> list of all workers</h2>
+    <h2 class="section-title">List of all workers</h2>
 
-    <h3>Departments</h3>
+    <h3 class="section-title">Departments</h3>
     <ul>
-    <h3>Cook</h3>
+    <h3 class="section-title">Cook</h3>
         {{#each cookDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
-            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
-            </a>
-          <a href="/admin/worklog-validation/{{_id}}">
-            <button>Validate Worklogs</button>
-            </a>
-           
+            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
         {{/each}}
 
-</ul> <ul>
+</ul> 
+<ul>
 
-    <h3>Receptionist</h3>
+    <h3 class="section-title">Receptionist</h3>
   {{#each receptionistDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
-            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
-            </a>
-           <a href="/admin/worklog-validation/{{_id}}">
-            <button>Validate Worklogs</button>
-            </a>
+            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>           
+            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
         {{/each}}
 </ul>
  <ul>
 
-    <h3>Restaurant</h3>
+    <h3 class="section-title">Restaurant</h3>
   {{#each restaurantDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
-            <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
-            </a>
-              <a href="/admin/worklog-validation/{{_id}}">
-            <button>Validate Worklogs</button>
-            </a>
+            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
         {{/each}}
 </ul>
  <ul>
 
-    <h3>Reservations</h3>
+    <h3 class="section-title">Reservations</h3>
       {{#each reservationDepartment}}
             {{#if isWorking}}
             <li style="color:blue">{{firstName}} {{lastName}}</li>
             {{else}}
             <li style="color: red">{{firstName}} {{lastName}}</li>
             {{/if}}
-          <a href="/profile/edit/{{_id}}"><button>Edit Profile</button>
-           </a>
-             <a href="/admin/worklog-validation/{{_id}}">
-            <button>Validate Worklogs</button>
-            </a>
+            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button> 
+            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
         {{/each}}
 </ul>
 
