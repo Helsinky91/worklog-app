@@ -99,5 +99,23 @@ opacity: 20;
 
 
 
+.form-select {
+  width: 250px;
+}
+
+.form-control {
+  width: 350px
+}
+
+.back-btn {
+  border: solid 2px rgba(8, 157, 216, 0.562);
+  border-radius: 15%;
+  
+}
+
+.back-btn:hover {
+ background-color: gray;
+}
+
 /*FER GRID PER DISPLAY EVENTS???
 anomenar al 

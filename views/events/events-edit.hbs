@@ -4,8 +4,9 @@
 {{#with eventDetails}}
 
 <form action="/events/{{_id}}/edit" method="POST" enctype="multipart/form-data">
-    <label for="photo">Upload an Event Pic</label>
-    <input type="file" name="event-image" />
+    
+    <label for="photo" class="form-label">Upload an Event Pic:</label>
+    <input class="form-control"  type="file" name="event-image">
     <br>
     <label for="name">Name of the event: </label>
     <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
@@ -13,7 +14,7 @@
 
 
    <label for="eventType">Type of event: </label>
-    <select name="eventType" multiple="false" >
+    <select class="form-select" name="eventType"  >
     {{#each ../eventType}}
         {{!-- marcar valor que tenia antes selected="true"
         .map en la ruta y if true > show the variable created with the .map , else show this --}}
@@ -31,11 +32,14 @@
     <br>
     <label for="hour">Hour of the event: </label>
     <input type="text" name="hour" required="true" autocomplete="false" value="{{hour}}">
+    <br>
+    <button class="btn">Update Event</button>
     
-    <button>Update Event</button>
-    </form>
+</form>
+   <br>
     {{/with}}
+
     <form>
-    <input type="button" value="Go back!" onclick="history.back()">
+    <input class="back-btn" type="button" value="Go back!" onclick="history.back()">
     </form>
 </div>
