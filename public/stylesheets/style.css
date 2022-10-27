@@ -71,5 +71,33 @@ p {
   font-size: large;
 }
 
+.li-names-blue {
+  font-size: 20px;
+  color:blue;
+}
+
+.li-names-red {
+  font-size: 20px;
+  color: red
+}
+
+
+#login-singup {
+  text-align: center;
+  padding: 40px
+}
+
+
+#home-img {
+background-image: url("../images/skycraper.jpg");
+background-size:cover;
+background-repeat:no-repeat;
+height: 70vh;
+width: 95vw;
+opacity: 20;
+}
+
+
+
 /*FER GRID PER DISPLAY EVENTS???
 anomenar al 

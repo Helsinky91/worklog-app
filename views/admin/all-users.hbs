@@ -1,59 +1,86 @@
 <div>
-    <h1 class="section-title">List of all workers</h1>
+  <h1 class="section-title">List of all workers</h1>
 
-    <h3>Departments</h3>
-    <ul>
+  <h3 class="resalted">Departments</h3>
+  <ul>
     <h4>Cook</h4>
-        {{#each cookDepartment}}
-            {{#if isWorking}}
-            <li style="color:blue">{{firstName}} {{lastName}}</li>
-            {{else}}
-            <li style="color: red">{{firstName}} {{lastName}}</li>
-            {{/if}}
-            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
-            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
-        {{/each}}
+    {{#each cookDepartment}}
+      {{#if isWorking}}
+        <p class="li-names-blue">
+          <img src="{{photo}}" width="40px" />
+          {{firstName}}
+          {{lastName}}</p>
+      {{else}}
+        <p class="li-names-red">
+          <img src="{{photo}}" width="40px" />{{firstName}}
+          {{lastName}}</p>
+      {{/if}}
+      <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+      <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
+          Worklogs</a></button>
+    {{/each}}
 
-</ul> 
-<ul>
+  </ul>
+  <ul>
 
     <h4>Receptionist</h4>
-  {{#each receptionistDepartment}}
-            {{#if isWorking}}
-            <li style="color:blue">{{firstName}} {{lastName}}</li>
-            {{else}}
-            <li style="color: red">{{firstName}} {{lastName}}</li>
-            {{/if}}
-            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>           
-            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
-        {{/each}}
-</ul>
- <ul>
+    {{#each receptionistDepartment}}
+      {{#if isWorking}}
+        <p class="li-names-blue">
+          <img src="{{photo}}" width="40px" />
+          {{firstName}}
+          {{lastName}}</p>
+      {{else}}
+        <p class="li-names-red">
+          <img src="{{photo}}" width="40px" />
+          {{firstName}}
+          {{lastName}}</p>
+      {{/if}}
+      <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+      <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
+          Worklogs</a></button>
+    {{/each}}
+  </ul>
+  <ul>
 
     <h4>Restaurant</h4>
-  {{#each restaurantDepartment}}
-            {{#if isWorking}}
-            <li style="color:blue">{{firstName}} {{lastName}}</li>
-            {{else}}
-            <li style="color: red">{{firstName}} {{lastName}}</li>
-            {{/if}}
-            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
-            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
-        {{/each}}
-</ul>
- <ul>
+    {{#each restaurantDepartment}}
+      {{#if isWorking}}
+        <p class="li-names-blue">
+          <img src="{{photo}}" width="40px" />
+          {{firstName}}
+          {{lastName}}</p>
+      {{else}}
+        <p class="li-names-red">
+          <img src="{{photo}}" width="40px" />{{firstName}}
+          {{lastName}}</p>
+      {{/if}}
+      <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+      <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
+          Worklogs</a></button>
+    {{/each}}
+  </ul>
+  <ul>
 
     <h4>Reservations</h4>
-      {{#each reservationDepartment}}
-            {{#if isWorking}}
-            <li style="color:blue">{{firstName}} {{lastName}}</li>
-            {{else}}
-            <li style="color: red">{{firstName}} {{lastName}}</li>
-            {{/if}}
-            <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button> 
-            <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate Worklogs</a></button>
-        {{/each}}
-</ul>
-
+    {{#each reservationDepartment}}
+      {{#if isWorking}}
+        <p class="li-names-blue">
+          <img src="{{photo}}" width="40px" />
+          {{firstName}}
+          {{lastName}}</p>
+      {{else}}
+        <p class="li-names-red">
+          <img src="{{photo}}" width="40px" />{{firstName}}
+          {{lastName}}</p>
+      {{/if}}
+      <button class="btn"><a href="/profile/edit/{{_id}}">Edit Profile</a></button>
+      <button class="btn"><a href="/admin/worklog-validation/{{_id}}">Validate
+          Worklogs</a></button>
+    {{/each}}
+  </ul>
+  <form>
+    <input type="button" value="Go back!" onclick="history.back()" />
+  </form>
 
 </div>
