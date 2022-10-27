@@ -193,6 +193,7 @@ opacity: 20;
 
 .input-group-text {
   background-color: rgba(8, 157, 216, 0.137);
+  
 }
 
 .form-select-departm {
@@ -223,7 +224,6 @@ opacity: 20;
 .bottom-display {
   display: flex;
   align-items: flex-end
-
 }
 
 .worklog-btn {
@@ -249,3 +249,7 @@ FER GRID PER DISPLAY EVENTS???
 anomenar al */
 
 
+.center-display {
+  display: flex;
+  align-items: center
+}

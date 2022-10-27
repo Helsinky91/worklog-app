@@ -31,10 +31,10 @@ router.get("/all-users", async (req, res, next) => {
         //set dif views depending of department
 
 
-        const cookDepartment = await User.find({$and: [{"department": "cook"}, {"role": "user"}]});
-        const receptionistDepartment = await User.find({$and: [{"department": "receptionist"}, {"role": "user"}]});
-        const restaurantDepartment = await User.find({$and: [{"department": "restaurant"}, {"role": "user"}]});
-        const reservationDepartment = await User.find({$and: [{"department": "reservations"}, {"role": "user"}]});
+        const cookDepartment = await User.find({$and: [{"department": "Cook"}, {"role": "user"}]});
+        const receptionistDepartment = await User.find({$and: [{"department": "Receptionist"}, {"role": "user"}]});
+        const restaurantDepartment = await User.find({$and: [{"department": "Restaurant"}, {"role": "user"}]});
+        const reservationDepartment = await User.find({$and: [{"department": "Reservations"}, {"role": "user"}]});
        
         res.render("admin/all-users.hbs", {
             cookDepartment,

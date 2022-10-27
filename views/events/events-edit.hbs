@@ -1,45 +1,48 @@
 <div>
-<h1>Edit this event</h1>
+    <div class="one-line-display">
+        <h1 class="section-title">Edit this event</h1>
+        <form>
+        <input class="back-btn left-space btn-size" type="button" value="Go back!" onclick="history.back()">
+        </form>
 
-{{#with eventDetails}}
+    </div>
 
-<form action="/events/{{_id}}/edit" method="POST" enctype="multipart/form-data">
-    
-    <label for="photo" class="form-label">Upload an Event Pic:</label>
-    <input class="form-control"  type="file" name="event-image">
-    <br>
-    <label for="name">Name of the event: </label>
-    <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
-    <br />
+        {{#with eventDetails}}
+
+        <form action="/events/{{_id}}/edit" method="POST" enctype="multipart/form-data">
+        
+            <label for="photo" class="form-label">Upload an Event Pic:</label>
+            <input class="form-control"  type="file" name="event-image">
+                <br>
+            <label for="name">Name of the event: </label>
+            <input type="text" name="name" required="true" autocomplete="false" value="{{name}}">
+                <br>
 
 
-   <label for="eventType">Type of event: </label>
-    <select class="form-select" name="eventType"  >
-    {{#each ../eventType}}
-        {{!-- marcar valor que tenia antes selected="true"
-        .map en la ruta y if true > show the variable created with the .map , else show this --}}
-         <option value="{{this}}">{{this}}</option>
-      {{/each}}
-
-    </select>
-    <br />
-    <label for="description">Description: </label>
-    <input type="text" name="description" required="true" autocomplete="false" value="{{description}}">
-    <label for="place">Place of the event: </label>
-    <input type="text" name="place" required="true" autocomplete="false" value="{{place}}">
-    <label for="date">Date of the event: </label>
-    <input type="date" name="date" required="true" autocomplete="false" value="{{date}}">
-    <br>
-    <label for="hour">Hour of the event: </label>
-    <input type="text" name="hour" required="true" autocomplete="false" value="{{hour}}">
-    <br>
-    <button class="btn">Update Event</button>
-    
-</form>
-   <br>
-    {{/with}}
-
-    <form>
-    <input class="back-btn" type="button" value="Go back!" onclick="history.back()">
-    </form>
+            <label for="eventType">Type of event: </label>
+            <select class="form-select" name="eventType"  >
+                <option selected disabled value="">{{eventType}}</option>
+                    {{#each ../eventType}}
+                <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+            </select>
+            
+            <label for="description">Description: </label>
+            <input type="text" name="description" required="true" autocomplete="false" value="{{description}}">
+                <br>
+            <label for="place">Place of the event: </label>
+            <input type="text" name="place" required="true" autocomplete="false" value="{{place}}">
+                <br>
+            <label for="date">Date of the event: </label>
+            <input type="date" name="date" required="true" autocomplete="false" value="{{date}}">
+                <br>
+            <label for="hour">Hour of the event: </label>
+            <input type="text" name="hour" required="true" autocomplete="false" value="{{hour}}">
+                <br>
+            <button class="btn">Update Event</button>
+            
+        </form>
+        <br>
+        {{/with}}
+        
 </div>
