@@ -6,12 +6,12 @@
 <br>
 {{#each allEvents}}
 <img src="{{photo}}" alt="{{name}}" width="150px">
-<h3>Name: {{name}}</h3>
-<h3>Type: {{eventType}}</h3>
-<h3>Description: {{description}}</h3>
-<h3>Place: {{place}}</h3>
-<h3>Date: {{date}}</h3>
-<h3>Hour: {{hour}}</h3>
+<p><span class="resalted">Name: </span>{{name}}</p>
+<p><span class="resalted">Type: </span>{{eventType}}</p>
+<p><span class="resalted">Description: </span>{{description}}</p>
+<p><span class="resalted">Place: </span>{{place}}</p>
+<p><span class="resalted">Date: </span>{{date}}</p>
+<p><span class="resalted">Hour: </span>{{hour}}</p>
   {{#if ../adminRole}} 
     <button class="btn"><a href="/events/{{this._id}}/edit">Edit this event</a></button>
    
