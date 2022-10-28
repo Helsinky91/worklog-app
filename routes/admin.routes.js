@@ -57,18 +57,21 @@ try {
     //pending validation
     
     console.log("paso2")
-    data.pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(3)
-    data.pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeOut": -1}).limit(3)  
+    data.pendingIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Pending"} ]}).sort({"timeIn": -1}).limit(1)
+    data.pendingOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Pending"}  ]}).sort({"timeOut": -1}).limit(1)  
     
     data.datesPendingIn = data.pendingIn[0]?.timeIn?.toDateString()  //format the date to String
     data.hoursPendingIn = data.pendingIn[0]?.timeIn?.toLocaleTimeString()  //format the Hour
+    console.log("PendingIn", data.pendingIn)
+    
+    console.log("datesPendingIn", data.datesPendingIn)
         
     data.datesPendingOut = data.pendingOut[0]?.timeOut?.toDateString()
     data.hoursPendingOut = data.pendingOut[0]?.timeOut?.toLocaleTimeString()
 
     //denied validation
-    data.deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(3)    
-    data.deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeOut": -1}).limit(3)    
+    data.deniedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Denied"} ]}).sort({"timeIn": -1}).limit(1)    
+    data.deniedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Denied"} ]}).sort({"timeOut": -1}).limit(1)    
     
     data.datesDeniedIn = data.deniedIn[0]?.timeIn?.toDateString()
     data.hoursDeniedIn = data.deniedIn[0]?.timeIn?.toLocaleTimeString()
@@ -77,8 +80,8 @@ try {
     data.hoursDeniedOut = data.deniedOut[0]?.timeOut?.toLocaleTimeString()
 
     //approved validation
-    data.approvedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(3)    
-    data.approvedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeOut": -1}).limit(3)
+    data.approvedIn = await Log.find({$and: [ {user: userId}, {timeOut: undefined}, {validation: "Approved"}  ]}).sort({"timeIn": -1}).limit(1)    
+    data.approvedOut = await Log.find({$and: [ {user: userId}, {timeIn: undefined}, {validation: "Approved"} ]}).sort({"timeOut": -1}).limit(1)
    
     data.datesApprovedIn = data.approvedIn[0]?.timeIn?.toDateString()
     data.hoursApprovedIn = data.approvedIn[0]?.timeIn?.toLocaleTimeString()
