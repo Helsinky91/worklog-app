@@ -2,11 +2,12 @@
 
 
 ## Access to our app
-[https://github.com/Helsinky91/worklog-app](https://github.com/Helsinky91/worklog-app)
+#####https://worklog.cyclic.app/
 
 ## About the web app
 Worklog app is a website created to log all the working times of a worker inside a company, in this case an Hotel, and the Teamlead can check on those worklog times and validate them.
 It also alows the Teamlead to create some events, and the worker to add some of those events to favourites and to be display on their profile.
+
 ---
 ## MVP (EXPRESS - MONGOOSE)
 There is a Home view where you can either sign up or log in, and depending on your role status you can access two different views and funcionalities.
@@ -57,12 +58,12 @@ const logSchema = new Schema({
     },
 })
 ```
-
+---
 *The background image belongs to Vecteezy.com*
 
-# Links
-## Git
+## Links
+### Git
 https://github.com/Helsinky91/worklog-app
 
-## Slides
+### Slides
 https://docs.google.com/presentation/d/1TACqs-7ggxfYX6yrsueunnyFZuw4TXNcUZvJo8ff9NQ/edit?usp=sharing
