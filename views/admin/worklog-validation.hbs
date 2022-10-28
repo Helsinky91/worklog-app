@@ -17,24 +17,23 @@
                     <li><span class="resalted">Hour: </span>{{hoursPendingIn}}</li>
                     {{#each pendingIn}}
                     <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                    {{/each}}
                 
                 </ul>
-                    {{!--partials con el código del form debajo --}}
                 <form action="/admin/{{_id}}/edit" method="POST">
                     <label for="validation">Validation: </label>
                     <select class="validate-form" name="validation" >
-                        <option selected="true" disabled="disabled">Choose one</option>
+                        <option selected disabled value="">Choose one</option>
                         {{#each ../validation}}
                         <option value="{{this}}">{{this}}</option>
                         {{/each}}
                     </select>
                     <button class="btn-validation">Submit</button>
                 </form>
-                <hr width="250px">
-                {{else}}
+                    {{/each}}
+                
+                    {{else}}
                 <p>Not pending validations for this worker</p>
-                {{/if}}
+                      {{/if}}
             </div>
             <div class="col-sm ">
                 <h3 style="color: blue">Worklogs out</h3>
@@ -44,7 +43,6 @@
                        <li><span class="resalted">Hour </span>{{hoursPendingOut}}</li>
                         {{#each pendingOut}}
                         <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                        {{/each}}
 
                     </ul>
                     <form action="/admin/{{_id}}/edit" method="POST">
@@ -57,7 +55,7 @@
                         </select>
                         <button class="btn-validation">Submit</button>
                     </form>
-                    <hr width="250px">
+                        {{/each}}
                     {{else}}
                     <p>Not pending validations for this worker</p>
                 {{/if}}
@@ -79,7 +77,6 @@
                 <li><span class="resalted">Hour: </span>{{hoursDeniedIn}}</li>
                 {{#each deniedIn}}
                 <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                {{/each}}
 
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
@@ -92,7 +89,7 @@
                     </select>
                     <button class="btn-validation">Submit</button>
                 </form>
-                <hr width="250px">
+                {{/each}}
                 {{else}}
                 <p>Not approved validations for this worker</p>
                 {{/if}}
@@ -105,7 +102,6 @@
                 <li><span class="resalted">Hour: </span>{{hoursDeniedOut}}</li>
                 {{#each deniedOut}}
                 <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                {{/each}}
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
                     <label for="validation">Validation: </label>
@@ -117,12 +113,14 @@
                     </select>
                     <button class="btn-validation">Submit</button>
                 </form>
-                <hr width="250px">
+                {{/each}}
                 {{else}}
                 <p>Not approved validations for this worker</p>
                 {{/if}}
             </div>
     </div>
+    </div>
+    
 <div class="container">
     <div class="row">
         <hr>
@@ -137,7 +135,6 @@
                 
                     {{#each approvedIn}}
                     <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                    {{/each}}
 
                 </ul>
                     <form action="/admin/{{_id}}/edit" method="POST">
@@ -150,8 +147,8 @@
                         </select>
                         <button class="btn-validation">Submit</button>
                     </form>
-                    <hr width="250px">
-                {{else}}
+                    {{/each}}
+                    {{else}}
                 <p>Not denied validations for this worker</p>
                 {{/if}}
             </div>
@@ -163,7 +160,6 @@
                     <li><span class="resalted">Hour: </span>{{hoursApprovedOut}}</li>
                     {{#each approvedOut}}
                     <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
-                {{/each}}
 
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
@@ -176,7 +172,7 @@
                     </select>
                     <button class="btn-validation">Submit</button>
                 </form>
-                <hr width="250px">
+                {{/each}}
                 {{else}}
                 <p>Not denied validations for this worker</p>
                 {{/if}}

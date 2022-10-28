@@ -1,7 +1,7 @@
 <div>
   <div id="profile-view-top">
-    <div id="profile-view-top-div">
-      <h1 class="section-title">My profile</h1>
+    <div id="profile-view-top-div" class="justify ">
+      <h1 class="section-title ">My profile</h1>
           <br>
           {{#with userDetails}}
         <img src="{{photo}}" alt="{{fistName}}'s pic" width="150px" />
@@ -13,7 +13,7 @@
           <a href="/profile/edit/{{userDetails._id}}">Edit my profile</a>
         </button>
     </div>
-    <div>
+    <div class="left-space ">
         <h1 class="section-title">Your work state
           {{#if isWorking}}
           <span style="color: rgb(70, 159, 189)">Active</span></h1>
@@ -49,7 +49,7 @@
           <input type="text" name="user" hidden="true" value="{{userDetails._id}}"/>
           <label for="timeOut">
           <input type="date" name="timeOut" hidden="true" /></label>
-          <button class="btn-delete worklog-btn section-title">WORK LOG OUT</button>
+          <button class="btn-delete worklog-btn">WORK LOG OUT</button>
         </form>
       {{else}}
         <form action="/profile/log-in" method="POST">
@@ -62,7 +62,7 @@
           <input type="text" name="user" hidden="true" value="{{userDetails._id}}"/>
             <label for="timeIn">
             <input type="date" name="timeIn" hidden="true" /></label>
-          <button class="btn worklog-btn section-title">WORK LOG IN</button>
+          <button class="btn worklog-btn ">WORK LOG IN</button>
         </form>
       {{/if}}
     </div>

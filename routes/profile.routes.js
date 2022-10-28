@@ -10,12 +10,9 @@ const fileUploader = require('../config/cloudinary.config');
 // GET "/profile" => render user or admin profile
 router.get("/", async (req, res, next) => {
     if (req.session.activeUser.role === "admin") {
-        console.log(req.session.activeUser.role)
-        // const adminDetails = await User.findById(req.session.activeUser._id)
         res.redirect("/admin/profile")
         return;
     }
-
         let data = {} //stores all the following code inside the data object
     try {
 
@@ -24,8 +21,7 @@ router.get("/", async (req, res, next) => {
     
         data.worklogDatesIn = await Log.find({ user: data.userDetails }).sort({ "timeIn": -1 }).limit(1)
         data.formatedWorklogDatesIn = data.worklogDatesIn[0]?.timeIn?.toDateString()
-        data.formatedWorklogHoursIn = data.worklogDatesIn[0]?.timeIn?.toLocaleTimeString()
-        
+        data.formatedWorklogHoursIn = data.worklogDatesIn[0]?.timeIn?.toLocaleTimeString()       
                
         data.worklogDatesOut = await Log.find({ user: data.userDetails }).sort({ "timeOut": -1 }).limit(1)
         data.formatedWorklogDatesOut = data.worklogDatesOut[0]?.timeOut?.toDateString();
@@ -39,13 +35,11 @@ router.get("/", async (req, res, next) => {
     } catch (err) {
         next(err)
     }
-
 })
 
 //POST "/profile/log-in" => takes info from "worklog form" and updates DB
 router.post("/log-in", async (req, res, next) => {
-    //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
-
+        //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
     const { comment, validation, user } = req.body;
     const timeIn = new Date()
 
@@ -53,7 +47,7 @@ router.post("/log-in", async (req, res, next) => {
         //2. ruta para cambiar isWorking de false a true, feed from worklog button
         const userDetails = await User.findById(req.session.activeUser._id)
         await User.findByIdAndUpdate(userDetails, { isWorking: true })
-        //  const userDetails = User.findById(req.session.activeUser._id)
+
         Log.create({
             timeIn: timeIn,
             comment: comment,
@@ -73,12 +67,10 @@ router.post("/log-out", async (req, res, next) => {
     //1. funcionalidad botón worklog para que fiche con la hora con el Log.model
     const { comment, validation, user } = req.body;
     const timeOut = new Date()
-    //console.log("timeOut", timeOut)
     try {
-        //2. ruta para cambiar isWorking de false a true, feed from worklog button
+        //2. ruta para cambiar isWorking de true a false, feed from worklog button
         const userDetails = await User.findById(req.session.activeUser._id)
         await User.findByIdAndUpdate(userDetails, { isWorking: false })
-        //  const userDetails = User.findById(req.session.activeUser._id)
 
         Log.create({
             timeOut: timeOut,
@@ -93,13 +85,11 @@ router.post("/log-out", async (req, res, next) => {
     }
 })
 
-
-
 //GET "/profile/edit/:userId" => USER: render a form to edit user profile
 router.get("/edit/:userId", async (req, res, next) => {
     const { userId } = req.params
     let adminRole = false;
-    console.log(req.session.activeUser.role)
+
     if (req.session.activeUser.role === "admin") {
         adminRole = true;
     }
@@ -130,8 +120,8 @@ router.post("/edit/:userId", fileUploader.single('profilePicImage'), async (req,
 
     try {
         await User.findByIdAndUpdate(userId, userDetails)
-        //  console.log(userDetails)
         res.redirect("/profile")
+        
     } catch (error) {
         next(err)
     }

@@ -5,9 +5,6 @@ const User = require("../models/User.model");
 const Event = require("../models/Event.model");
 const eventType = require("../utils/event-types");
 const fileUploader = require("../config/cloudinary.config");
-//! necesitamos estas dos lineas???
-const { array } = require("../config/cloudinary.config");
-const { findById } = require("../models/User.model");
 
 //GET "/events" => render the page with all events
 router.get("/", async (req, res, next) => {
@@ -23,6 +20,7 @@ router.get("/", async (req, res, next) => {
       allEvents,
       adminRole,
     });
+
   } catch (error) {
     next(error);
   }
@@ -31,6 +29,7 @@ router.get("/", async (req, res, next) => {
 //POST "/events/:eventId/events-favorites" => add to favourite collection in User Profile
 router.post("/:eventId/events-favorites", async (req, res, next) => {
   const { eventId } = req.params;
+
   try {
     let userEvents = await User.findByIdAndUpdate(req.session.activeUser._id, {
       $addToSet: { events: eventId }, //to add favourites to our list and avoid repetitions.
@@ -50,6 +49,7 @@ router.post("/:eventId/delete-fav", async (req, res, next) => {
     await User.findByIdAndUpdate(req.session.activeUser._id, {
       $pull: { events: eventId },
     });
+
     res.redirect("/profile");
   } catch (error) {
     next(error);
@@ -59,10 +59,9 @@ router.post("/:eventId/delete-fav", async (req, res, next) => {
 //GET "/events/create" => render a page whit a form to create events
 router.get("/create", isAdmin, async (req, res, next) => {
   try {
-    // const tipeOfEvent = await Event.find() //.select("eventType")
     const adminDetails = await User.findById(req.session.activeUser._id);
-    console.log("eventType :", eventType)
     res.render("events/create.hbs", { adminDetails, eventType });
+
   } catch (error) {
     next(error);
   }
@@ -70,14 +69,10 @@ router.get("/create", isAdmin, async (req, res, next) => {
 
 //POST "/events/create" => recive the data from the form and add to the DB/ redirect
 router.post("/create", isAdmin, fileUploader.single("event-image"), async (req, res, next) => {
-    const { name, description, eventType, date, photo, place, hour } = req.body;
-    //const formatedDate = date.toDateString()
-   // console.log("formatedDate", formatedDate)
-   console.log("date", date)
-   const {eventId} = req.params
-   /*const eventDate = await Event.find({ event: eventId }).select("date")
-   const formatedEventDate = eventDate[0]?.date?.toDateString();*/
-   
+  
+  const { name, description, eventType, date, photo, place, hour } = req.body;
+  const {eventId} = req.params
+      
     try {
       await Event.create({
         name,
@@ -85,9 +80,10 @@ router.post("/create", isAdmin, fileUploader.single("event-image"), async (req, 
         eventType,
         date,
         place,
-        //photo: req.file.path,
+        photo: req.file?.path,
         hour,
       });
+
       res.redirect("/events");
     } catch (error) {
       next(error);
@@ -100,22 +96,18 @@ router.get("/:eventId/edit", isAdmin, async (req, res, next) => {
   const { eventId } = req.params;
 
   try {
-    //const formerEventType = eventType.map()
-    //console.log(formerEventType)
     const eventDetails = await Event.findById(eventId);
     res.render("events/events-edit.hbs", { eventDetails, eventType });
+
   } catch (error) {
     next(error);
   }
 });
 
 //POST "/events/:eventId/edit" => gets info from update form and update DB
-router.post(
-  "/:eventId/edit",
-  isAdmin,
-  fileUploader.single("event-image"),
-  async (req, res, next) => {
-    const { name, description, eventType, date, place, hour } = req.body;
+router.post( "/:eventId/edit", isAdmin, fileUploader.single("event-image"),  async (req, res, next) => {
+    
+  const { name, description, eventType, date, place, hour } = req.body;
     const eventDetails = {
       name,
       description,
@@ -125,11 +117,13 @@ router.post(
       photo: req.file?.path,
       hour,
     };
+
     const { eventId } = req.params;
 
     try {
       await Event.findByIdAndUpdate(eventId, eventDetails);
       res.redirect("/events");
+
     } catch (error) {
       next(error);
     }
