@@ -13,14 +13,18 @@
                 <h3 style="color: blue">Worklogs in</h3>
                         {{#if datesPendingIn}}
                 <ul>
+                    <li><span class="resalted">Day: </span>{{datesPendingIn}}</li>
+                    <li><span class="resalted">Hour: </span>{{hoursPendingIn}}</li>
                     {{#each pendingIn}}
-                    <li>{{datesPendingIn}} - {{hoursPendingIn}}</li>
-                    <li class="comment">Comment: {{comment}}</li>
+                    <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                    {{/each}}
+                
                 </ul>
                     {{!--partials con el código del form debajo --}}
                 <form action="/admin/{{_id}}/edit" method="POST">
                     <label for="validation">Validation: </label>
                     <select class="validate-form" name="validation" >
+                        <option selected="true" disabled="disabled">Choose one</option>
                         {{#each ../validation}}
                         <option value="{{this}}">{{this}}</option>
                         {{/each}}
@@ -28,7 +32,6 @@
                     <button class="btn-validation">Submit</button>
                 </form>
                 <hr width="250px">
-                    {{/each}}
                 {{else}}
                 <p>Not pending validations for this worker</p>
                 {{/if}}
@@ -37,13 +40,17 @@
                 <h3 style="color: blue">Worklogs out</h3>
                      {{#if datesPendingOut}}
                         <ul>
+                       <li><span class="resalted">Day: </span>{{datesPendingOut}}</li>
+                       <li><span class="resalted">Hour </span>{{hoursPendingOut}}</li>
                         {{#each pendingOut}}
-                        <li>{{datesPendingOut}} - {{hoursPendingOut}}</li>
-                        <li class="comment">Comment: {{comment}}</li>
+                        <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                        {{/each}}
+
                     </ul>
                     <form action="/admin/{{_id}}/edit" method="POST">
                         <label for="validation">Validation: </label>
                         <select  class="validate-form" name="validation" >
+                            <option selected="true" disabled="disabled">Choose one</option>
                             {{#each ../validation}}
                             <option value="{{this}}">{{this}}</option>
                             {{/each}}
@@ -51,7 +58,6 @@
                         <button class="btn-validation">Submit</button>
                     </form>
                     <hr width="250px">
-                        {{/each}}
                     {{else}}
                     <p>Not pending validations for this worker</p>
                 {{/if}}
@@ -60,58 +66,6 @@
 </div>
 
 
-<div class="container">
-    <div class="row">
-        <hr>
-        <h2 style="color: green">Approved</h2>
-            <div class="col-sm ">
-                <h3 style="color: blue">Worklogs in</h3>
-                    {{#if datesApprovedIn}}
-                <ul>
-                    {{#each approvedIn}}
-                    <li>{{datesApprovedIn}} - {{hoursApprovedIn}}</li>
-                <li class="comment">Comment: {{comment}}</li>
-                </ul>
-                    <form action="/admin/{{_id}}/edit" method="POST">
-                        <label for="validation">Validation: </label>
-                        <select  class="validate-form" name="validation" >
-                            {{#each ../validation}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <button class="btn-validation">Submit</button>
-                    </form>
-                    <hr width="250px">
-                    {{/each}}
-                {{else}}
-                <p>Not pending validations for this worker</p>
-                {{/if}}
-            </div>
-            <div class="col-sm ">
-                <h3 style="color: blue">Worklogs out</h3>
-                    {{#if datesApprovedOut}}
-                <ul>
-                    {{#each approvedOut}}
-                    <li>{{datesApprovedOut}} - {{hoursApprovedOut}}</li>
-                <li class="comment">Comment: {{comment}}</li>
-                </ul>
-                <form action="/admin/{{_id}}/edit" method="POST">
-                    <label for="validation">Validation: </label>
-                    <select  class="validate-form" name="validation" >
-                        {{#each ../validation}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                    </select>
-                    <button class="btn-validation">Submit</button>
-                </form>
-                <hr width="250px">
-                {{/each}}
-                {{else}}
-                <p>Not pending validations for this worker</p>
-                {{/if}}
-            </div>
-    </div>
-</div>
 
 <div class="container"> 
     <div class="row">
@@ -121,15 +75,17 @@
                 <h3 style="color: blue">Worklogs in</h3>
                 {{#if datesDeniedIn}}
                 <ul>
-
+                <li><span class="resalted">Day: </span>{{datesDeniedIn}}</li>
+                <li><span class="resalted">Hour: </span>{{hoursDeniedIn}}</li>
                 {{#each deniedIn}}
-                <li>{{datesDeniedIn}} - {{hoursDeniedIn}}</li>
-                
-                <li class="comment">Comment: {{comment}}</li>
+                <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                {{/each}}
+
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
                     <label for="validation">Validation: </label>
                     <select  class="validate-form" name="validation" >
+                        <option selected="true" disabled="disabled">Choose one</option>
                         {{#each ../validation}}
                         <option value="{{this}}">{{this}}</option>
                         {{/each}}
@@ -137,22 +93,24 @@
                     <button class="btn-validation">Submit</button>
                 </form>
                 <hr width="250px">
-                {{/each}}
                 {{else}}
-                <p>Not pending validations for this worker</p>
+                <p>Not approved validations for this worker</p>
                 {{/if}}
             </div>
             <div class="col-sm ">
                 <h3 style="color: blue">Worklogs out</h3>
                 {{#if datesDeniedOut}}
                 <ul>
+                <li><span class="resalted">Day: </span>{{datesDeniedOut}}</li>
+                <li><span class="resalted">Hour: </span>{{hoursDeniedOut}}</li>
                 {{#each deniedOut}}
-                <li>{{datesDeniedOut}} - {{hoursDeniedOut}}</li>
-                <li class="comment">Comment: {{comment}}</li>
+                <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                {{/each}}
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
                     <label for="validation">Validation: </label>
                     <select  class="validate-form" name="validation" >
+                        <option selected="true" disabled="disabled">Choose one</option>
                         {{#each ../validation}}
                         <option value="{{this}}">{{this}}</option>
                         {{/each}}
@@ -160,11 +118,70 @@
                     <button class="btn-validation">Submit</button>
                 </form>
                 <hr width="250px">
-                {{/each}}
                 {{else}}
-                <p>Not pending validations for this worker</p>
+                <p>Not approved validations for this worker</p>
                 {{/if}}
             </div>
     </div>
+<div class="container">
+    <div class="row">
+        <hr>
+        <h2 style="color: green">Approved</h2>
+            <div class="col-sm ">
+                <h3 style="color: blue">Worklogs in</h3>
+                    {{#if datesApprovedIn}}
+                <ul>
+
+                    <li><span class="resalted">Day: </span>{{datesApprovedIn}}</li>
+                    <li><span class="resalted">Hour: </span>{{hoursApprovedIn}}</li>
+                
+                    {{#each approvedIn}}
+                    <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                    {{/each}}
+
+                </ul>
+                    <form action="/admin/{{_id}}/edit" method="POST">
+                        <label for="validation">Validation: </label>
+                        <select  class="validate-form" name="validation" >
+                            <option selected="true" disabled="disabled">Choose one</option>
+                            {{#each ../validation}}
+                            <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                        <button class="btn-validation">Submit</button>
+                    </form>
+                    <hr width="250px">
+                {{else}}
+                <p>Not denied validations for this worker</p>
+                {{/if}}
+            </div>
+            <div class="col-sm ">
+                <h3 style="color: blue">Worklogs out</h3>
+                    {{#if datesApprovedOut}}
+                <ul>
+                    <li><span class="resalted">Day: </span>{{datesApprovedOut}}</li>
+                    <li><span class="resalted">Hour: </span>{{hoursApprovedOut}}</li>
+                    {{#each approvedOut}}
+                    <li><span class="resalted">Comment: </span><span class="comment">{{comment}}</span></li>
+                {{/each}}
+
+                </ul>
+                <form action="/admin/{{_id}}/edit" method="POST">
+                    <label for="validation">Validation: </label>
+                    <select  class="validate-form" name="validation" >
+                        <option selected="true" disabled="disabled">Choose one</option>
+                        {{#each ../validation}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <button class="btn-validation">Submit</button>
+                </form>
+                <hr width="250px">
+                {{else}}
+                <p>Not denied validations for this worker</p>
+                {{/if}}
+            </div>
+    </div>
+</div>
 </div>
         
