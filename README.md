@@ -29,15 +29,16 @@ From the active workers list, you'll be able to edit some of their information a
 
 ## Routes
 There are 5 routes that feed into each other. 
--**index.routes.js** => to configure the path of the following routes.
--**auth.routes.js** => to create the login & logout configuration.
--**profile.routes.js** => to configure the CRUD of a User.
--**admin.routes.js** => to configure admin role and it's aditional features.
--**events.routes.js** => to configure the CRUD of an Event.
+- **index.routes.js** => to configure the path of the following routes.
+- **auth.routes.js** => to create the login & logout configuration.
+- **profile.routes.js** => to configure the CRUD of a User.
+- **admin.routes.js** => to configure admin role and it's aditional features.
+- **events.routes.js** => to configure the CRUD of an Event.
 
 
 ## Models
-There are 3 models: Event, Log and User, and their are connected between them.
+There are 3 models: Event, Log and User, and Log and User are connected between them:
+
 **User.model.js** is connected with Event.Model, so a User can have many events on it's ID:
 
 ```
