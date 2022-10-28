@@ -121,8 +121,10 @@
                 <h3 style="color: blue">Worklogs in</h3>
                 {{#if datesDeniedIn}}
                 <ul>
+
                 {{#each deniedIn}}
                 <li>{{datesDeniedIn}} - {{hoursDeniedIn}}</li>
+                
                 <li class="comment">Comment: {{comment}}</li>
                 </ul>
                 <form action="/admin/{{_id}}/edit" method="POST">
